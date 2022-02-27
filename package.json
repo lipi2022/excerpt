@@ -1,0 +1,34 @@
+{
+  "name": "excerpt",
+  "version": "0.0.1",
+  "description": "excerpt web editor",
+  "main": "block.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lipi2022/excerpt.git"
+  },
+  "keywords": [
+    "markdown",
+    "block",
+    "editor"
+  ],
+  "author": "lipi2022@petalmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lipi2022/excerpt/issues"
+  },
+  "homepage": "https://github.com/lipi2022/excerpt#readme",
+  "dependencies": {
+    "@editorjs/editorjs": "^2.23.2",
+    "@editorjs/header": "^2.6.2",
+    "@editorjs/list": "^1.6.2",
+    "parcel-bundler": "^1.12.5"
+  },
+  "devDependencies": {
+    "@editorjs/image": "^2.6.2",
+    "parcel": "^2.3.2"
+  }
+}
