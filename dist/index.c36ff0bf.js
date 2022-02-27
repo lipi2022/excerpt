@@ -526,28 +526,42 @@ var _header = require("@editorjs/header");
 var _headerDefault = parcelHelpers.interopDefault(_header);
 var _image = require("@editorjs/image");
 var _imageDefault = parcelHelpers.interopDefault(_image);
+var _list = require("@editorjs/list");
+var _listDefault = parcelHelpers.interopDefault(_list);
+var _embed = require("@editorjs/embed");
+var _embedDefault = parcelHelpers.interopDefault(_embed);
+var _table = require("@editorjs/table");
+var _tableDefault = parcelHelpers.interopDefault(_table);
+const Quote = require('@editorjs/quote');
+const CodeTool = require('@editorjs/code');
+const Checklist = require('@editorjs/checklist');
+const Warning = require('@editorjs/warning');
+const Marker = require('@editorjs/marker');
+const Delimiter = require('@editorjs/delimiter');
+const InlineCode = require('@editorjs/inline-code');
+const LinkTool = require('@editorjs/link');
 /**
  * To initialize the Editor, create a new instance with configuration object
  * @see docs/installation.md for mode details
  */ var editor = new _editorjsDefault.default({
     /**
-     * Enable/Disable the read only mode
-     */ readOnly: false,
+   * Enable/Disable the read only mode
+   */ readOnly: false,
     /**
-     * Wrapper of Editor
-     */ holder: "editorjs",
+   * Wrapper of Editor
+   */ holder: "editorjs",
     /**
-     * Common Inline Toolbar settings
-     * - if true (or not specified), the order from 'tool' property will be used
-     * - if an array of tool names, this order will be used
-     */ // inlineToolbar: ['link', 'marker', 'bold', 'italic'],
+   * Common Inline Toolbar settings
+   * - if true (or not specified), the order from 'tool' property will be used
+   * - if an array of tool names, this order will be used
+   */ // inlineToolbar: ['link', 'marker', 'bold', 'italic'],
     // inlineToolbar: true,
     /**
-     * Tools list
-     */ tools: {
+   * Tools list
+   */ tools: {
         /**
-         * Each Tool is a Plugin. Pass them via 'class' option with necessary settings {@link docs/tools.md}
-         */ header: {
+     * Each Tool is a Plugin. Pass them via 'class' option with necessary settings {@link docs/tools.md}
+     */ header: {
             class: _headerDefault.default,
             inlineToolbar: [
                 "marker",
@@ -559,19 +573,19 @@ var _imageDefault = parcelHelpers.interopDefault(_image);
             shortcut: "CMD+SHIFT+H"
         },
         /**
-         * Or pass class directly without any configuration
-         */ // image: SimpleImage,
+     * Or pass class directly without any configuration
+     */ // image: SimpleImage,
         image: {
             class: _imageDefault.default,
             config: {
                 /**
-                 * Custom uploader
-                 */ uploader: {
+         * Custom uploader
+         */ uploader: {
                     /**
-                     * Upload file to the server and return an uploaded image data
-                     * @param {File} file - file selected from the device or pasted by drag-n-drop
-                     * @return {Promise.<{success, file: {url}}>}
-                     */ uploadByFile (file) {
+           * Upload file to the server and return an uploaded image data
+           * @param {File} file - file selected from the device or pasted by drag-n-drop
+           * @return {Promise.<{success, file: {url}}>}
+           */ uploadByFile (file) {
                         // your own uploading logic here
                         return MyAjax.upload(file).then(()=>{
                             return {
@@ -583,10 +597,10 @@ var _imageDefault = parcelHelpers.interopDefault(_image);
                         });
                     },
                     /**
-                     * Send URL-string to the server. Backend should load image by this URL and return an uploaded image data
-                     * @param {string} url - pasted image URL
-                     * @return {Promise.<{success, file: {url}}>}
-                     */ uploadByUrl (url) {
+           * Send URL-string to the server. Backend should load image by this URL and return an uploaded image data
+           * @param {string} url - pasted image URL
+           * @return {Promise.<{success, file: {url}}>}
+           */ uploadByUrl (url) {
                         // your ajax request for uploading
                         return MyAjax.upload(file).then(()=>{
                             return {
@@ -601,7 +615,7 @@ var _imageDefault = parcelHelpers.interopDefault(_image);
             }
         },
         list: {
-            class: List,
+            class: _listDefault.default,
             inlineToolbar: true,
             shortcut: "CMD+SHIFT+L"
         },
@@ -633,19 +647,19 @@ var _imageDefault = parcelHelpers.interopDefault(_image);
             shortcut: "CMD+SHIFT+C"
         },
         linkTool: LinkTool,
-        embed: Embed,
+        embed: _embedDefault.default,
         table: {
-            class: Table,
+            class: _tableDefault.default,
             inlineToolbar: true,
             shortcut: "CMD+ALT+T"
         }
     },
     /**
-     * This Tool will be used as default
-     */ // defaultBlock: 'paragraph',
+   * This Tool will be used as default
+   */ // defaultBlock: 'paragraph',
     /**
-     * Initial Editor data
-     */ data: {
+   * Initial Editor data
+   */ data: {
         blocks: [
             {
                 type: "header",
@@ -776,7 +790,7 @@ const readOnlyIndicator = document.getElementById("readonly-state");
     readOnlyIndicator.textContent = readOnlyState ? "On" : "Off";
 });
 
-},{"@editorjs/editorjs":"4eyUD","@editorjs/header":"kkSVA","@editorjs/image":"eKOQX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4eyUD":[function(require,module,exports) {
+},{"@editorjs/editorjs":"4eyUD","@editorjs/header":"kkSVA","@editorjs/image":"eKOQX","@editorjs/list":"1ChUe","@editorjs/quote":"l0hGJ","@editorjs/code":"4Jy6l","@editorjs/checklist":"8lX7A","@editorjs/warning":"2kInA","@editorjs/marker":"hVtvH","@editorjs/delimiter":"63vxr","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@editorjs/inline-code":"k0Dv8","@editorjs/link":"3KqSZ","@editorjs/embed":"4qeqT","@editorjs/table":"eH9Rq"}],"4eyUD":[function(require,module,exports) {
 /*! For license information please see editor.js.LICENSE.txt */ !function(t, e) {
     "object" == typeof exports && "object" == typeof module ? module.exports = e() : "function" == typeof define && define.amd ? define([], e) : "object" == typeof exports ? exports.EditorJS = e() : t.EditorJS = e();
 }(window, function() {
@@ -18301,6 +18315,3252 @@ const readOnlyIndicator = document.getElementById("readonly-state");
     ]).default;
 });
 
+},{}],"1ChUe":[function(require,module,exports) {
+!function(e, t) {
+    "object" == typeof exports && "object" == typeof module ? module.exports = t() : "function" == typeof define && define.amd ? define([], t) : "object" == typeof exports ? exports.List = t() : e.List = t();
+}(window, function() {
+    return (function(e1) {
+        var t1 = {
+        };
+        function n(r) {
+            if (t1[r]) return t1[r].exports;
+            var i = t1[r] = {
+                i: r,
+                l: !1,
+                exports: {
+                }
+            };
+            return e1[r].call(i.exports, i, i.exports, n), i.l = !0, i.exports;
+        }
+        return n.m = e1, n.c = t1, n.d = function(e, t, r) {
+            n.o(e, t) || Object.defineProperty(e, t, {
+                enumerable: !0,
+                get: r
+            });
+        }, n.r = function(e) {
+            "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(e, Symbol.toStringTag, {
+                value: "Module"
+            }), Object.defineProperty(e, "__esModule", {
+                value: !0
+            });
+        }, n.t = function(e, t) {
+            if (1 & t && (e = n(e)), 8 & t) return e;
+            if (4 & t && "object" == typeof e && e && e.__esModule) return e;
+            var r = Object.create(null);
+            if (n.r(r), Object.defineProperty(r, "default", {
+                enumerable: !0,
+                value: e
+            }), 2 & t && "string" != typeof e) for(var i in e)n.d(r, i, (function(t) {
+                return e[t];
+            }).bind(null, i));
+            return r;
+        }, n.n = function(e) {
+            var t = e && e.__esModule ? function() {
+                return e.default;
+            } : function() {
+                return e;
+            };
+            return n.d(t, "a", t), t;
+        }, n.o = function(e, t) {
+            return Object.prototype.hasOwnProperty.call(e, t);
+        }, n.p = "/", n(n.s = 0);
+    })([
+        function(e2, t2, n1) {
+            function r1(e3) {
+                return (function(e) {
+                    if (Array.isArray(e)) return i1(e);
+                })(e3) || (function(e) {
+                    if ("undefined" != typeof Symbol && Symbol.iterator in Object(e)) return Array.from(e);
+                })(e3) || (function(e, t) {
+                    if (!e) return;
+                    if ("string" == typeof e) return i1(e, t);
+                    var n = Object.prototype.toString.call(e).slice(8, -1);
+                    "Object" === n && e.constructor && (n = e.constructor.name);
+                    if ("Map" === n || "Set" === n) return Array.from(e);
+                    if ("Arguments" === n || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return i1(e, t);
+                })(e3) || (function() {
+                    throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+                })();
+            }
+            function i1(e, t) {
+                (null == t || t > e.length) && (t = e.length);
+                for(var n = 0, r = new Array(t); n < t; n++)r[n] = e[n];
+                return r;
+            }
+            function a1(e, t) {
+                for(var n = 0; n < t.length; n++){
+                    var r = t[n];
+                    r.enumerable = r.enumerable || !1, r.configurable = !0, "value" in r && (r.writable = !0), Object.defineProperty(e, r.key, r);
+                }
+            }
+            function o(e, t, n) {
+                return t && a1(e.prototype, t), n && a1(e, n), e;
+            }
+            n1(1).toString();
+            var s = function() {
+                function e4(t3) {
+                    var n = t3.data, r = (t3.config, t3.api), i = t3.readOnly;
+                    !function(e, t) {
+                        if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function");
+                    }(this, e4), this._elements = {
+                        wrapper: null
+                    }, this.api = r, this.readOnly = i, this.settings = [
+                        {
+                            name: "unordered",
+                            title: this.api.i18n.t("Unordered"),
+                            icon: '<svg width="17" height="13" viewBox="0 0 17 13" xmlns="http://www.w3.org/2000/svg"> <path d="M5.625 4.85h9.25a1.125 1.125 0 0 1 0 2.25h-9.25a1.125 1.125 0 0 1 0-2.25zm0-4.85h9.25a1.125 1.125 0 0 1 0 2.25h-9.25a1.125 1.125 0 0 1 0-2.25zm0 9.85h9.25a1.125 1.125 0 0 1 0 2.25h-9.25a1.125 1.125 0 0 1 0-2.25zm-4.5-5a1.125 1.125 0 1 1 0 2.25 1.125 1.125 0 0 1 0-2.25zm0-4.85a1.125 1.125 0 1 1 0 2.25 1.125 1.125 0 0 1 0-2.25zm0 9.85a1.125 1.125 0 1 1 0 2.25 1.125 1.125 0 0 1 0-2.25z"/></svg>',
+                            default: !1
+                        },
+                        {
+                            name: "ordered",
+                            title: this.api.i18n.t("Ordered"),
+                            icon: '<svg width="17" height="13" viewBox="0 0 17 13" xmlns="http://www.w3.org/2000/svg"><path d="M5.819 4.607h9.362a1.069 1.069 0 0 1 0 2.138H5.82a1.069 1.069 0 1 1 0-2.138zm0-4.607h9.362a1.069 1.069 0 0 1 0 2.138H5.82a1.069 1.069 0 1 1 0-2.138zm0 9.357h9.362a1.069 1.069 0 0 1 0 2.138H5.82a1.069 1.069 0 0 1 0-2.137zM1.468 4.155V1.33c-.554.404-.926.606-1.118.606a.338.338 0 0 1-.244-.104A.327.327 0 0 1 0 1.59c0-.107.035-.184.105-.234.07-.05.192-.114.369-.192.264-.118.475-.243.633-.373.158-.13.298-.276.42-.438a3.94 3.94 0 0 1 .238-.298C1.802.019 1.872 0 1.975 0c.115 0 .208.042.277.127.07.085.105.202.105.351v3.556c0 .416-.15.624-.448.624a.421.421 0 0 1-.32-.127c-.08-.085-.121-.21-.121-.376zm-.283 6.664h1.572c.156 0 .275.03.358.091a.294.294 0 0 1 .123.25.323.323 0 0 1-.098.238c-.065.065-.164.097-.296.097H.629a.494.494 0 0 1-.353-.119.372.372 0 0 1-.126-.28c0-.068.027-.16.081-.273a.977.977 0 0 1 .178-.268c.267-.264.507-.49.722-.678.215-.188.368-.312.46-.371.165-.11.302-.222.412-.334.109-.112.192-.226.25-.344a.786.786 0 0 0 .085-.345.6.6 0 0 0-.341-.553.75.75 0 0 0-.345-.08c-.263 0-.47.11-.62.329-.02.029-.054.107-.101.235a.966.966 0 0 1-.16.295c-.059.069-.145.103-.26.103a.348.348 0 0 1-.25-.094.34.34 0 0 1-.099-.258c0-.132.031-.27.093-.413.063-.143.155-.273.279-.39.123-.116.28-.21.47-.282.189-.072.411-.107.666-.107.307 0 .569.045.786.137a1.182 1.182 0 0 1 .618.623 1.18 1.18 0 0 1-.096 1.083 2.03 2.03 0 0 1-.378.457c-.128.11-.344.282-.646.517-.302.235-.509.417-.621.547a1.637 1.637 0 0 0-.148.187z"/></svg>',
+                            default: !0
+                        }
+                    ], this._data = {
+                        style: this.settings.find(function(e) {
+                            return !0 === e.default;
+                        }).name,
+                        items: []
+                    }, this.data = n;
+                }
+                return o(e4, null, [
+                    {
+                        key: "isReadOnlySupported",
+                        get: function() {
+                            return !0;
+                        }
+                    },
+                    {
+                        key: "enableLineBreaks",
+                        get: function() {
+                            return !0;
+                        }
+                    },
+                    {
+                        key: "toolbox",
+                        get: function() {
+                            return {
+                                icon: '<svg width="17" height="13" viewBox="0 0 17 13" xmlns="http://www.w3.org/2000/svg"> <path d="M5.625 4.85h9.25a1.125 1.125 0 0 1 0 2.25h-9.25a1.125 1.125 0 0 1 0-2.25zm0-4.85h9.25a1.125 1.125 0 0 1 0 2.25h-9.25a1.125 1.125 0 0 1 0-2.25zm0 9.85h9.25a1.125 1.125 0 0 1 0 2.25h-9.25a1.125 1.125 0 0 1 0-2.25zm-4.5-5a1.125 1.125 0 1 1 0 2.25 1.125 1.125 0 0 1 0-2.25zm0-4.85a1.125 1.125 0 1 1 0 2.25 1.125 1.125 0 0 1 0-2.25zm0 9.85a1.125 1.125 0 1 1 0 2.25 1.125 1.125 0 0 1 0-2.25z"/></svg>',
+                                title: "List"
+                            };
+                        }
+                    }
+                ]), o(e4, [
+                    {
+                        key: "render",
+                        value: function() {
+                            var e = this;
+                            return this._elements.wrapper = this.makeMainTag(this._data.style), this._data.items.length ? this._data.items.forEach(function(t) {
+                                e._elements.wrapper.appendChild(e._make("li", e.CSS.item, {
+                                    innerHTML: t
+                                }));
+                            }) : this._elements.wrapper.appendChild(this._make("li", this.CSS.item)), this.readOnly || this._elements.wrapper.addEventListener("keydown", function(t) {
+                                switch(t.keyCode){
+                                    case 13:
+                                        e.getOutofList(t);
+                                        break;
+                                    case 8:
+                                        e.backspace(t);
+                                }
+                            }, !1), this._elements.wrapper;
+                        }
+                    },
+                    {
+                        key: "save",
+                        value: function() {
+                            return this.data;
+                        }
+                    },
+                    {
+                        key: "renderSettings",
+                        value: function() {
+                            var e = this, t4 = this._make("div", [
+                                this.CSS.settingsWrapper
+                            ], {
+                            });
+                            return this.settings.forEach(function(n) {
+                                var r = e._make("div", e.CSS.settingsButton, {
+                                    innerHTML: n.icon
+                                });
+                                r.addEventListener("click", function() {
+                                    e.toggleTune(n.name);
+                                    var t5 = r.parentNode.querySelectorAll("." + e.CSS.settingsButton);
+                                    Array.from(t5).forEach(function(t) {
+                                        return t.classList.remove(e.CSS.settingsButtonActive);
+                                    }), r.classList.toggle(e.CSS.settingsButtonActive);
+                                }), e.api.tooltip.onHover(r, n.title, {
+                                    placement: "top",
+                                    hidingDelay: 500
+                                }), e._data.style === n.name && r.classList.add(e.CSS.settingsButtonActive), t4.appendChild(r);
+                            }), t4;
+                        }
+                    },
+                    {
+                        key: "onPaste",
+                        value: function(e) {
+                            var t = e.detail.data;
+                            this.data = this.pasteHandler(t);
+                        }
+                    },
+                    {
+                        key: "makeMainTag",
+                        value: function(e) {
+                            var t = "ordered" === e ? this.CSS.wrapperOrdered : this.CSS.wrapperUnordered, n = "ordered" === e ? "ol" : "ul";
+                            return this._make(n, [
+                                this.CSS.baseBlock,
+                                this.CSS.wrapper,
+                                t
+                            ], {
+                                contentEditable: !this.readOnly
+                            });
+                        }
+                    },
+                    {
+                        key: "toggleTune",
+                        value: function(e) {
+                            for(var t = this.makeMainTag(e); this._elements.wrapper.hasChildNodes();)t.appendChild(this._elements.wrapper.firstChild);
+                            this._elements.wrapper.replaceWith(t), this._elements.wrapper = t, this._data.style = e;
+                        }
+                    },
+                    {
+                        key: "_make",
+                        value: function(e) {
+                            var t, n = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : null, i = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {
+                            }, a = document.createElement(e);
+                            Array.isArray(n) ? (t = a.classList).add.apply(t, r1(n)) : n && a.classList.add(n);
+                            for(var o in i)a[o] = i[o];
+                            return a;
+                        }
+                    },
+                    {
+                        key: "getOutofList",
+                        value: function(e) {
+                            var t = this._elements.wrapper.querySelectorAll("." + this.CSS.item);
+                            if (!(t.length < 2)) {
+                                var n = t[t.length - 1], r = this.currentItem;
+                                r !== n || n.textContent.trim().length || (r.parentElement.removeChild(r), this.api.blocks.insert(), this.api.caret.setToBlock(this.api.blocks.getCurrentBlockIndex()), e.preventDefault(), e.stopPropagation());
+                            }
+                        }
+                    },
+                    {
+                        key: "backspace",
+                        value: function(e) {
+                            var t = this._elements.wrapper.querySelectorAll("." + this.CSS.item), n = t[0];
+                            n && t.length < 2 && !n.innerHTML.replace("<br>", " ").trim() && e.preventDefault();
+                        }
+                    },
+                    {
+                        key: "selectItem",
+                        value: function(e) {
+                            e.preventDefault();
+                            var t = window.getSelection(), n = t.anchorNode.parentNode.closest("." + this.CSS.item), r = new Range;
+                            r.selectNodeContents(n), t.removeAllRanges(), t.addRange(r);
+                        }
+                    },
+                    {
+                        key: "pasteHandler",
+                        value: function(e5) {
+                            var t, n = e5.tagName;
+                            switch(n){
+                                case "OL":
+                                    t = "ordered";
+                                    break;
+                                case "UL":
+                                case "LI":
+                                    t = "unordered";
+                            }
+                            var r = {
+                                style: t,
+                                items: []
+                            };
+                            if ("LI" === n) r.items = [
+                                e5.innerHTML
+                            ];
+                            else {
+                                var i = Array.from(e5.querySelectorAll("LI"));
+                                r.items = i.map(function(e) {
+                                    return e.innerHTML;
+                                }).filter(function(e) {
+                                    return !!e.trim();
+                                });
+                            }
+                            return r;
+                        }
+                    },
+                    {
+                        key: "CSS",
+                        get: function() {
+                            return {
+                                baseBlock: this.api.styles.block,
+                                wrapper: "cdx-list",
+                                wrapperOrdered: "cdx-list--ordered",
+                                wrapperUnordered: "cdx-list--unordered",
+                                item: "cdx-list__item",
+                                settingsWrapper: "cdx-list-settings",
+                                settingsButton: this.api.styles.settingsButton,
+                                settingsButtonActive: this.api.styles.settingsButtonActive
+                            };
+                        }
+                    },
+                    {
+                        key: "data",
+                        set: function(e6) {
+                            e6 || (e6 = {
+                            }), this._data.style = e6.style || this.settings.find(function(e) {
+                                return !0 === e.default;
+                            }).name, this._data.items = e6.items || [];
+                            var t = this._elements.wrapper;
+                            t && t.parentNode.replaceChild(this.render(), t);
+                        },
+                        get: function() {
+                            this._data.items = [];
+                            for(var e = this._elements.wrapper.querySelectorAll(".".concat(this.CSS.item)), t = 0; t < e.length; t++)e[t].innerHTML.replace("<br>", " ").trim() && this._data.items.push(e[t].innerHTML);
+                            return this._data;
+                        }
+                    },
+                    {
+                        key: "currentItem",
+                        get: function() {
+                            var e = window.getSelection().anchorNode;
+                            return e.nodeType !== Node.ELEMENT_NODE && (e = e.parentNode), e.closest(".".concat(this.CSS.item));
+                        }
+                    }
+                ], [
+                    {
+                        key: "conversionConfig",
+                        get: function() {
+                            return {
+                                export: function(e) {
+                                    return e.items.join(". ");
+                                },
+                                import: function(e) {
+                                    return {
+                                        items: [
+                                            e
+                                        ],
+                                        style: "unordered"
+                                    };
+                                }
+                            };
+                        }
+                    },
+                    {
+                        key: "sanitize",
+                        get: function() {
+                            return {
+                                style: {
+                                },
+                                items: {
+                                    br: !0
+                                }
+                            };
+                        }
+                    },
+                    {
+                        key: "pasteConfig",
+                        get: function() {
+                            return {
+                                tags: [
+                                    "OL",
+                                    "UL",
+                                    "LI"
+                                ]
+                            };
+                        }
+                    }
+                ]), e4;
+            }();
+            e2.exports = s;
+        },
+        function(e, t, n) {
+            var r = n(2), i = n(3);
+            "string" == typeof (i = i.__esModule ? i.default : i) && (i = [
+                [
+                    e.i,
+                    i,
+                    ""
+                ]
+            ]);
+            var a = {
+                insert: "head",
+                singleton: !1
+            };
+            r(i, a);
+            e.exports = i.locals || {
+            };
+        },
+        function(e7, t6, n2) {
+            "use strict";
+            var r2, i2 = function() {
+                return void 0 === r2 && (r2 = Boolean(window && document && document.all && !window.atob)), r2;
+            }, a2 = function() {
+                var e = {
+                };
+                return function(t) {
+                    if (void 0 === e[t]) {
+                        var n = document.querySelector(t);
+                        if (window.HTMLIFrameElement && n instanceof window.HTMLIFrameElement) try {
+                            n = n.contentDocument.head;
+                        } catch (e8) {
+                            n = null;
+                        }
+                        e[t] = n;
+                    }
+                    return e[t];
+                };
+            }(), o1 = [];
+            function s(e) {
+                for(var t = -1, n = 0; n < o1.length; n++)if (o1[n].identifier === e) {
+                    t = n;
+                    break;
+                }
+                return t;
+            }
+            function c1(e, t) {
+                for(var n = {
+                }, r = [], i = 0; i < e.length; i++){
+                    var a = e[i], c = t.base ? a[0] + t.base : a[0], l = n[c] || 0, u = "".concat(c, " ").concat(l);
+                    n[c] = l + 1;
+                    var d = s(u), f = {
+                        css: a[1],
+                        media: a[2],
+                        sourceMap: a[3]
+                    };
+                    -1 !== d ? (o1[d].references++, o1[d].updater(f)) : o1.push({
+                        identifier: u,
+                        updater: v(f, t),
+                        references: 1
+                    }), r.push(u);
+                }
+                return r;
+            }
+            function l1(e10) {
+                var t = document.createElement("style"), r = e10.attributes || {
+                };
+                if (void 0 === r.nonce) {
+                    var i = n2.nc;
+                    i && (r.nonce = i);
+                }
+                if (Object.keys(r).forEach(function(e) {
+                    t.setAttribute(e, r[e]);
+                }), "function" == typeof e10.insert) e10.insert(t);
+                else {
+                    var o = a2(e10.insert || "head");
+                    if (!o) throw new Error("Couldn't find a style target. This probably means that the value for the 'insert' parameter is invalid.");
+                    o.appendChild(t);
+                }
+                return t;
+            }
+            var u1, d1 = (u1 = [], function(e, t) {
+                return u1[e] = t, u1.filter(Boolean).join("\n");
+            });
+            function f1(e, t, n, r) {
+                var i = n ? "" : r.media ? "@media ".concat(r.media, " {").concat(r.css, "}") : r.css;
+                if (e.styleSheet) e.styleSheet.cssText = d1(t, i);
+                else {
+                    var a = document.createTextNode(i), o = e.childNodes;
+                    o[t] && e.removeChild(o[t]), o.length ? e.insertBefore(a, o[t]) : e.appendChild(a);
+                }
+            }
+            function p(e, t, n) {
+                var r = n.css, i = n.media, a = n.sourceMap;
+                if (i ? e.setAttribute("media", i) : e.removeAttribute("media"), a && btoa && (r += "\n/*# sourceMappingURL=data:application/json;base64,".concat(btoa(unescape(encodeURIComponent(JSON.stringify(a)))), " */")), e.styleSheet) e.styleSheet.cssText = r;
+                else {
+                    for(; e.firstChild;)e.removeChild(e.firstChild);
+                    e.appendChild(document.createTextNode(r));
+                }
+            }
+            var h = null, m = 0;
+            function v(e11, t7) {
+                var n, r, i;
+                if (t7.singleton) {
+                    var a = m++;
+                    n = h || (h = l1(t7)), r = f1.bind(null, n, a, !1), i = f1.bind(null, n, a, !0);
+                } else n = l1(t7), r = p.bind(null, n, t7), i = function() {
+                    !function(e) {
+                        if (null === e.parentNode) return !1;
+                        e.parentNode.removeChild(e);
+                    }(n);
+                };
+                return r(e11), function(t) {
+                    if (t) {
+                        if (t.css === e11.css && t.media === e11.media && t.sourceMap === e11.sourceMap) return;
+                        r(e11 = t);
+                    } else i();
+                };
+            }
+            e7.exports = function(e12, t) {
+                (t = t || {
+                }).singleton || "boolean" == typeof t.singleton || (t.singleton = i2());
+                var n = c1(e12 = e12 || [], t);
+                return function(e) {
+                    if (e = e || [], "[object Array]" === Object.prototype.toString.call(e)) {
+                        for(var r = 0; r < n.length; r++){
+                            var i = s(n[r]);
+                            o1[i].references--;
+                        }
+                        for(var a = c1(e, t), l = 0; l < n.length; l++){
+                            var u = s(n[l]);
+                            0 === o1[u].references && (o1[u].updater(), o1.splice(u, 1));
+                        }
+                        n = a;
+                    }
+                };
+            };
+        },
+        function(e, t, n) {
+            (t = n(4)(!1)).push([
+                e.i,
+                ".cdx-list {\n    margin: 0;\n    padding-left: 40px;\n    outline: none;\n}\n\n    .cdx-list__item {\n        padding: 5.5px 0 5.5px 3px;\n        line-height: 1.6em;\n    }\n\n    .cdx-list--unordered {\n        list-style: disc;\n    }\n\n    .cdx-list--ordered {\n        list-style: decimal;\n    }\n\n    .cdx-list-settings {\n        display: flex;\n    }\n\n    .cdx-list-settings .cdx-settings-button {\n            width: 50%;\n        }\n",
+                ""
+            ]), e.exports = t;
+        },
+        function(e13, t8, n3) {
+            "use strict";
+            e13.exports = function(e14) {
+                var t9 = [];
+                return t9.toString = function() {
+                    return this.map(function(t10) {
+                        var n4 = function(e15, t) {
+                            var n = e15[1] || "", r = e15[3];
+                            if (!r) return n;
+                            if (t && "function" == typeof btoa) {
+                                var i = (o = r, s = btoa(unescape(encodeURIComponent(JSON.stringify(o)))), c = "sourceMappingURL=data:application/json;charset=utf-8;base64,".concat(s), "/*# ".concat(c, " */")), a = r.sources.map(function(e) {
+                                    return "/*# sourceURL=".concat(r.sourceRoot || "").concat(e, " */");
+                                });
+                                return [
+                                    n
+                                ].concat(a).concat([
+                                    i
+                                ]).join("\n");
+                            }
+                            var o, s, c;
+                            return [
+                                n
+                            ].join("\n");
+                        }(t10, e14);
+                        return t10[2] ? "@media ".concat(t10[2], " {").concat(n4, "}") : n4;
+                    }).join("");
+                }, t9.i = function(e, n, r) {
+                    "string" == typeof e && (e = [
+                        [
+                            null,
+                            e,
+                            ""
+                        ]
+                    ]);
+                    var i = {
+                    };
+                    if (r) for(var a = 0; a < this.length; a++){
+                        var o = this[a][0];
+                        null != o && (i[o] = !0);
+                    }
+                    for(var s = 0; s < e.length; s++){
+                        var c = [].concat(e[s]);
+                        r && i[c[0]] || (n && (c[2] ? c[2] = "".concat(n, " and ").concat(c[2]) : c[2] = n), t9.push(c));
+                    }
+                }, t9;
+            };
+        }
+    ]);
+});
+
+},{}],"l0hGJ":[function(require,module,exports) {
+!function(t, e) {
+    "object" == typeof exports && "object" == typeof module ? module.exports = e() : "function" == typeof define && define.amd ? define([], e) : "object" == typeof exports ? exports.Quote = e() : t.Quote = e();
+}(window, function() {
+    return (function(t1) {
+        var e1 = {
+        };
+        function n(r) {
+            if (e1[r]) return e1[r].exports;
+            var o = e1[r] = {
+                i: r,
+                l: !1,
+                exports: {
+                }
+            };
+            return t1[r].call(o.exports, o, o.exports, n), o.l = !0, o.exports;
+        }
+        return n.m = t1, n.c = e1, n.d = function(t, e, r) {
+            n.o(t, e) || Object.defineProperty(t, e, {
+                enumerable: !0,
+                get: r
+            });
+        }, n.r = function(t) {
+            "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(t, Symbol.toStringTag, {
+                value: "Module"
+            }), Object.defineProperty(t, "__esModule", {
+                value: !0
+            });
+        }, n.t = function(t, e) {
+            if (1 & e && (t = n(t)), 8 & e) return t;
+            if (4 & e && "object" == typeof t && t && t.__esModule) return t;
+            var r = Object.create(null);
+            if (n.r(r), Object.defineProperty(r, "default", {
+                enumerable: !0,
+                value: t
+            }), 2 & e && "string" != typeof t) for(var o in t)n.d(r, o, (function(e) {
+                return t[e];
+            }).bind(null, o));
+            return r;
+        }, n.n = function(t) {
+            var e = t && t.__esModule ? function() {
+                return t.default;
+            } : function() {
+                return t;
+            };
+            return n.d(e, "a", e), e;
+        }, n.o = function(t, e) {
+            return Object.prototype.hasOwnProperty.call(t, e);
+        }, n.p = "/", n(n.s = 0);
+    })([
+        function(t2, e2, n1) {
+            function r1(t3) {
+                return (function(t) {
+                    if (Array.isArray(t)) {
+                        for(var e = 0, n = new Array(t.length); e < t.length; e++)n[e] = t[e];
+                        return n;
+                    }
+                })(t3) || (function(t) {
+                    if (Symbol.iterator in Object(t) || "[object Arguments]" === Object.prototype.toString.call(t)) return Array.from(t);
+                })(t3) || (function() {
+                    throw new TypeError("Invalid attempt to spread non-iterable instance");
+                })();
+            }
+            function o1(t, e) {
+                for(var n = 0; n < e.length; n++){
+                    var r = e[n];
+                    r.enumerable = r.enumerable || !1, r.configurable = !0, "value" in r && (r.writable = !0), Object.defineProperty(t, r.key, r);
+                }
+            }
+            function i1(t, e, n) {
+                return e && o1(t.prototype, e), n && o1(t, n), t;
+            }
+            n1(1).toString();
+            var a1 = function() {
+                function t4(e3) {
+                    var n = e3.data, r = e3.config, o = e3.api, i = e3.readOnly;
+                    !function(t, e) {
+                        if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function");
+                    }(this, t4);
+                    var a = t4.ALIGNMENTS, s = t4.DEFAULT_ALIGNMENT;
+                    this.api = o, this.readOnly = i, this.quotePlaceholder = r.quotePlaceholder || t4.DEFAULT_QUOTE_PLACEHOLDER, this.captionPlaceholder = r.captionPlaceholder || t4.DEFAULT_CAPTION_PLACEHOLDER, this.data = {
+                        text: n.text || "",
+                        caption: n.caption || "",
+                        alignment: Object.values(a).includes(n.alignment) && n.alignment || r.defaultAlignment || s
+                    };
+                }
+                return i1(t4, [
+                    {
+                        key: "CSS",
+                        get: function() {
+                            return {
+                                baseClass: this.api.styles.block,
+                                wrapper: "cdx-quote",
+                                text: "cdx-quote__text",
+                                input: this.api.styles.input,
+                                caption: "cdx-quote__caption",
+                                settingsWrapper: "cdx-quote-settings",
+                                settingsButton: this.api.styles.settingsButton,
+                                settingsButtonActive: this.api.styles.settingsButtonActive
+                            };
+                        }
+                    },
+                    {
+                        key: "settings",
+                        get: function() {
+                            return [
+                                {
+                                    name: "left",
+                                    icon: '<svg width="16" height="11" viewBox="0 0 16 11" xmlns="http://www.w3.org/2000/svg" ><path d="M1.069 0H13.33a1.069 1.069 0 0 1 0 2.138H1.07a1.069 1.069 0 1 1 0-2.138zm0 4.275H9.03a1.069 1.069 0 1 1 0 2.137H1.07a1.069 1.069 0 1 1 0-2.137zm0 4.275h9.812a1.069 1.069 0 0 1 0 2.137H1.07a1.069 1.069 0 0 1 0-2.137z" /></svg>'
+                                },
+                                {
+                                    name: "center",
+                                    icon: '<svg width="16" height="11" viewBox="0 0 16 11" xmlns="http://www.w3.org/2000/svg" ><path d="M1.069 0H13.33a1.069 1.069 0 0 1 0 2.138H1.07a1.069 1.069 0 1 1 0-2.138zm3.15 4.275h5.962a1.069 1.069 0 0 1 0 2.137H4.22a1.069 1.069 0 1 1 0-2.137zM1.069 8.55H13.33a1.069 1.069 0 0 1 0 2.137H1.07a1.069 1.069 0 0 1 0-2.137z"/></svg>'
+                                }
+                            ];
+                        }
+                    }
+                ], [
+                    {
+                        key: "isReadOnlySupported",
+                        get: function() {
+                            return !0;
+                        }
+                    },
+                    {
+                        key: "toolbox",
+                        get: function() {
+                            return {
+                                icon: '<svg width="15" height="14" viewBox="0 0 15 14" xmlns="http://www.w3.org/2000/svg"><path d="M13.53 6.185l.027.025a1.109 1.109 0 0 1 0 1.568l-5.644 5.644a1.109 1.109 0 1 1-1.569-1.568l4.838-4.837L6.396 2.23A1.125 1.125 0 1 1 7.986.64l5.52 5.518.025.027zm-5.815 0l.026.025a1.109 1.109 0 0 1 0 1.568l-5.644 5.644a1.109 1.109 0 1 1-1.568-1.568l4.837-4.837L.58 2.23A1.125 1.125 0 0 1 2.171.64L7.69 6.158l.025.027z" /></svg>',
+                                title: "Quote"
+                            };
+                        }
+                    },
+                    {
+                        key: "contentless",
+                        get: function() {
+                            return !0;
+                        }
+                    },
+                    {
+                        key: "enableLineBreaks",
+                        get: function() {
+                            return !0;
+                        }
+                    },
+                    {
+                        key: "DEFAULT_QUOTE_PLACEHOLDER",
+                        get: function() {
+                            return "Enter a quote";
+                        }
+                    },
+                    {
+                        key: "DEFAULT_CAPTION_PLACEHOLDER",
+                        get: function() {
+                            return "Enter a caption";
+                        }
+                    },
+                    {
+                        key: "ALIGNMENTS",
+                        get: function() {
+                            return {
+                                left: "left",
+                                center: "center"
+                            };
+                        }
+                    },
+                    {
+                        key: "DEFAULT_ALIGNMENT",
+                        get: function() {
+                            return t4.ALIGNMENTS.left;
+                        }
+                    },
+                    {
+                        key: "conversionConfig",
+                        get: function() {
+                            return {
+                                import: "text",
+                                export: function(t) {
+                                    return t.caption ? "".concat(t.text, " — ").concat(t.caption) : t.text;
+                                }
+                            };
+                        }
+                    }
+                ]), i1(t4, [
+                    {
+                        key: "render",
+                        value: function() {
+                            var t = this._make("blockquote", [
+                                this.CSS.baseClass,
+                                this.CSS.wrapper
+                            ]), e = this._make("div", [
+                                this.CSS.input,
+                                this.CSS.text
+                            ], {
+                                contentEditable: !this.readOnly,
+                                innerHTML: this.data.text
+                            }), n = this._make("div", [
+                                this.CSS.input,
+                                this.CSS.caption
+                            ], {
+                                contentEditable: !this.readOnly,
+                                innerHTML: this.data.caption
+                            });
+                            return e.dataset.placeholder = this.quotePlaceholder, n.dataset.placeholder = this.captionPlaceholder, t.appendChild(e), t.appendChild(n), t;
+                        }
+                    },
+                    {
+                        key: "save",
+                        value: function(t) {
+                            var e = t.querySelector(".".concat(this.CSS.text)), n = t.querySelector(".".concat(this.CSS.caption));
+                            return Object.assign(this.data, {
+                                text: e.innerHTML,
+                                caption: n.innerHTML
+                            });
+                        }
+                    },
+                    {
+                        key: "renderSettings",
+                        value: function() {
+                            var t = this, e4 = this._make("div", [
+                                this.CSS.settingsWrapper
+                            ], {
+                            });
+                            return this.settings.map(function(n) {
+                                var r, o = t._make("div", t.CSS.settingsButton, {
+                                    innerHTML: n.icon,
+                                    title: "".concat((r = n.name, r[0].toUpperCase() + r.substr(1)), " alignment")
+                                });
+                                return o.classList.toggle(t.CSS.settingsButtonActive, n.name === t.data.alignment), e4.appendChild(o), o;
+                            }).forEach(function(e5, n, r2) {
+                                e5.addEventListener("click", function() {
+                                    t._toggleTune(t.settings[n].name), r2.forEach(function(e, n) {
+                                        var r = t.settings[n].name;
+                                        e.classList.toggle(t.CSS.settingsButtonActive, r === t.data.alignment);
+                                    });
+                                });
+                            }), e4;
+                        }
+                    },
+                    {
+                        key: "_toggleTune",
+                        value: function(t) {
+                            this.data.alignment = t;
+                        }
+                    },
+                    {
+                        key: "_make",
+                        value: function(t) {
+                            var e, n = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : null, o = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {
+                            }, i = document.createElement(t);
+                            Array.isArray(n) ? (e = i.classList).add.apply(e, r1(n)) : n && i.classList.add(n);
+                            for(var a in o)i[a] = o[a];
+                            return i;
+                        }
+                    }
+                ], [
+                    {
+                        key: "sanitize",
+                        get: function() {
+                            return {
+                                text: {
+                                    br: !0
+                                },
+                                caption: {
+                                    br: !0
+                                },
+                                alignment: {
+                                }
+                            };
+                        }
+                    }
+                ]), t4;
+            }();
+            t2.exports = a1;
+        },
+        function(t, e, n) {
+            var r = n(2);
+            "string" == typeof r && (r = [
+                [
+                    t.i,
+                    r,
+                    ""
+                ]
+            ]);
+            var o = {
+                hmr: !0,
+                transform: void 0,
+                insertInto: void 0
+            };
+            n(4)(r, o);
+            r.locals && (t.exports = r.locals);
+        },
+        function(t, e, n) {
+            (t.exports = n(3)(!1)).push([
+                t.i,
+                ".cdx-quote-icon svg {\n  transform: rotate(180deg);\n}\n\n.cdx-quote {\n  margin: 0;\n}\n\n.cdx-quote__text {\n  min-height: 158px;\n  margin-bottom: 10px;\n}\n\n.cdx-quote__caption {}\n\n.cdx-quote [contentEditable=true][data-placeholder]::before{\n  position: absolute;\n  content: attr(data-placeholder);\n  color: #707684;\n  font-weight: normal;\n  opacity: 0;\n}\n\n.cdx-quote [contentEditable=true][data-placeholder]:empty::before {\n  opacity: 1;\n}\n\n.cdx-quote [contentEditable=true][data-placeholder]:empty:focus::before {\n  opacity: 0;\n}\n\n\n.cdx-quote-settings {\n  display: flex;\n}\n\n.cdx-quote-settings .cdx-settings-button {\n  width: 50%;\n}\n",
+                ""
+            ]);
+        },
+        function(t5, e6) {
+            t5.exports = function(t6) {
+                var e7 = [];
+                return e7.toString = function() {
+                    return this.map(function(e8) {
+                        var n2 = function(t7, e) {
+                            var n = t7[1] || "", r = t7[3];
+                            if (!r) return n;
+                            if (e && "function" == typeof btoa) {
+                                var o = (a = r, "/*# sourceMappingURL=data:application/json;charset=utf-8;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(a)))) + " */"), i = r.sources.map(function(t) {
+                                    return "/*# sourceURL=" + r.sourceRoot + t + " */";
+                                });
+                                return [
+                                    n
+                                ].concat(i).concat([
+                                    o
+                                ]).join("\n");
+                            }
+                            var a;
+                            return [
+                                n
+                            ].join("\n");
+                        }(e8, t6);
+                        return e8[2] ? "@media " + e8[2] + "{" + n2 + "}" : n2;
+                    }).join("");
+                }, e7.i = function(t, n) {
+                    "string" == typeof t && (t = [
+                        [
+                            null,
+                            t,
+                            ""
+                        ]
+                    ]);
+                    for(var r = {
+                    }, o = 0; o < this.length; o++){
+                        var i = this[o][0];
+                        "number" == typeof i && (r[i] = !0);
+                    }
+                    for(o = 0; o < t.length; o++){
+                        var a = t[o];
+                        "number" == typeof a[0] && r[a[0]] || (n && !a[2] ? a[2] = n : n && (a[2] = "(" + a[2] + ") and (" + n + ")"), e7.push(a));
+                    }
+                }, e7;
+            };
+        },
+        function(t8, e9, n3) {
+            var r3, o2, i2 = {
+            }, a2 = (r3 = function() {
+                return window && document && document.all && !window.atob;
+            }, function() {
+                return void 0 === o2 && (o2 = r3.apply(this, arguments)), o2;
+            }), s1 = function(t9) {
+                var e = {
+                };
+                return function(t10) {
+                    if ("function" == typeof t10) return t10();
+                    if (void 0 === e[t10]) {
+                        var n = (function(t) {
+                            return document.querySelector(t);
+                        }).call(this, t10);
+                        if (window.HTMLIFrameElement && n instanceof window.HTMLIFrameElement) try {
+                            n = n.contentDocument.head;
+                        } catch (t) {
+                            n = null;
+                        }
+                        e[t10] = n;
+                    }
+                    return e[t10];
+                };
+            }(), c1 = null, u = 0, l = [], f = n3(5);
+            function p(t, e) {
+                for(var n = 0; n < t.length; n++){
+                    var r = t[n], o = i2[r.id];
+                    if (o) {
+                        o.refs++;
+                        for(var a = 0; a < o.parts.length; a++)o.parts[a](r.parts[a]);
+                        for(; a < r.parts.length; a++)o.parts.push(m(r.parts[a], e));
+                    } else {
+                        var s = [];
+                        for(a = 0; a < r.parts.length; a++)s.push(m(r.parts[a], e));
+                        i2[r.id] = {
+                            id: r.id,
+                            refs: 1,
+                            parts: s
+                        };
+                    }
+                }
+            }
+            function d(t, e) {
+                for(var n = [], r = {
+                }, o = 0; o < t.length; o++){
+                    var i = t[o], a = e.base ? i[0] + e.base : i[0], s = {
+                        css: i[1],
+                        media: i[2],
+                        sourceMap: i[3]
+                    };
+                    r[a] ? r[a].parts.push(s) : n.push(r[a] = {
+                        id: a,
+                        parts: [
+                            s
+                        ]
+                    });
+                }
+                return n;
+            }
+            function h(t, e) {
+                var n = s1(t.insertInto);
+                if (!n) throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
+                var r = l[l.length - 1];
+                if ("top" === t.insertAt) r ? r.nextSibling ? n.insertBefore(e, r.nextSibling) : n.appendChild(e) : n.insertBefore(e, n.firstChild), l.push(e);
+                else if ("bottom" === t.insertAt) n.appendChild(e);
+                else {
+                    if ("object" != typeof t.insertAt || !t.insertAt.before) throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");
+                    var o = s1(t.insertInto + " " + t.insertAt.before);
+                    n.insertBefore(e, o);
+                }
+            }
+            function g(t) {
+                if (null === t.parentNode) return !1;
+                t.parentNode.removeChild(t);
+                var e = l.indexOf(t);
+                e >= 0 && l.splice(e, 1);
+            }
+            function v(t) {
+                var e = document.createElement("style");
+                return void 0 === t.attrs.type && (t.attrs.type = "text/css"), y(e, t.attrs), h(t, e), e;
+            }
+            function y(t, e) {
+                Object.keys(e).forEach(function(n) {
+                    t.setAttribute(n, e[n]);
+                });
+            }
+            function m(t11, e10) {
+                var n4, r4, o3, i3;
+                if (e10.transform && t11.css) {
+                    if (!(i3 = e10.transform(t11.css))) return function() {
+                    };
+                    t11.css = i3;
+                }
+                if (e10.singleton) {
+                    var a = u++;
+                    n4 = c1 || (c1 = v(e10)), r4 = w.bind(null, n4, a, !1), o3 = w.bind(null, n4, a, !0);
+                } else t11.sourceMap && "function" == typeof URL && "function" == typeof URL.createObjectURL && "function" == typeof URL.revokeObjectURL && "function" == typeof Blob && "function" == typeof btoa ? (n4 = (function(t) {
+                    var e = document.createElement("link");
+                    return void 0 === t.attrs.type && (t.attrs.type = "text/css"), t.attrs.rel = "stylesheet", y(e, t.attrs), h(t, e), e;
+                })(e10), r4 = (function(t, e, n) {
+                    var r = n.css, o = n.sourceMap, i = void 0 === e.convertToAbsoluteUrls && o;
+                    (e.convertToAbsoluteUrls || i) && (r = f(r));
+                    o && (r += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(o)))) + " */");
+                    var a = new Blob([
+                        r
+                    ], {
+                        type: "text/css"
+                    }), s = t.href;
+                    t.href = URL.createObjectURL(a), s && URL.revokeObjectURL(s);
+                }).bind(null, n4, e10), o3 = function() {
+                    g(n4), n4.href && URL.revokeObjectURL(n4.href);
+                }) : (n4 = v(e10), r4 = (function(t, e) {
+                    var n = e.css, r = e.media;
+                    r && t.setAttribute("media", r);
+                    if (t.styleSheet) t.styleSheet.cssText = n;
+                    else {
+                        for(; t.firstChild;)t.removeChild(t.firstChild);
+                        t.appendChild(document.createTextNode(n));
+                    }
+                }).bind(null, n4), o3 = function() {
+                    g(n4);
+                });
+                return r4(t11), function(e) {
+                    if (e) {
+                        if (e.css === t11.css && e.media === t11.media && e.sourceMap === t11.sourceMap) return;
+                        r4(t11 = e);
+                    } else o3();
+                };
+            }
+            t8.exports = function(t12, e) {
+                if ("undefined" != typeof DEBUG && DEBUG && "object" != typeof document) throw new Error("The style-loader cannot be used in a non-browser environment");
+                (e = e || {
+                }).attrs = "object" == typeof e.attrs ? e.attrs : {
+                }, e.singleton || "boolean" == typeof e.singleton || (e.singleton = a2()), e.insertInto || (e.insertInto = "head"), e.insertAt || (e.insertAt = "bottom");
+                var n = d(t12, e);
+                return p(n, e), function(t) {
+                    for(var r = [], o = 0; o < n.length; o++){
+                        var a = n[o];
+                        (s = i2[a.id]).refs--, r.push(s);
+                    }
+                    t && p(d(t, e), e);
+                    for(o = 0; o < r.length; o++){
+                        var s;
+                        if (0 === (s = r[o]).refs) {
+                            for(var c = 0; c < s.parts.length; c++)s.parts[c]();
+                            delete i2[s.id];
+                        }
+                    }
+                };
+            };
+            var b, x = (b = [], function(t, e) {
+                return b[t] = e, b.filter(Boolean).join("\n");
+            });
+            function w(t, e, n, r) {
+                var o = n ? "" : r.css;
+                if (t.styleSheet) t.styleSheet.cssText = x(e, o);
+                else {
+                    var i = document.createTextNode(o), a = t.childNodes;
+                    a[e] && t.removeChild(a[e]), a.length ? t.insertBefore(i, a[e]) : t.appendChild(i);
+                }
+            }
+        },
+        function(t13, e11) {
+            t13.exports = function(t14) {
+                var e12 = "undefined" != typeof window && window.location;
+                if (!e12) throw new Error("fixUrls requires window.location");
+                if (!t14 || "string" != typeof t14) return t14;
+                var n = e12.protocol + "//" + e12.host, r = n + e12.pathname.replace(/\/[^\/]*$/, "/");
+                return t14.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function(t, e13) {
+                    var o, i = e13.trim().replace(/^"(.*)"$/, function(t, e) {
+                        return e;
+                    }).replace(/^'(.*)'$/, function(t, e) {
+                        return e;
+                    });
+                    return /^(#|data:|http:\/\/|https:\/\/|file:\/\/\/|\s*$)/i.test(i) ? t : (o = 0 === i.indexOf("//") ? i : 0 === i.indexOf("/") ? n + i : r + i.replace(/^\.\//, ""), "url(" + JSON.stringify(o) + ")");
+                });
+            };
+        }
+    ]);
+});
+
+},{}],"4Jy6l":[function(require,module,exports) {
+!function(e, t) {
+    "object" == typeof exports && "object" == typeof module ? module.exports = t() : "function" == typeof define && define.amd ? define([], t) : "object" == typeof exports ? exports.CodeTool = t() : e.CodeTool = t();
+}(window, function() {
+    return (function(e1) {
+        var t1 = {
+        };
+        function n(r) {
+            if (t1[r]) return t1[r].exports;
+            var o = t1[r] = {
+                i: r,
+                l: !1,
+                exports: {
+                }
+            };
+            return e1[r].call(o.exports, o, o.exports, n), o.l = !0, o.exports;
+        }
+        return n.m = e1, n.c = t1, n.d = function(e, t, r) {
+            n.o(e, t) || Object.defineProperty(e, t, {
+                enumerable: !0,
+                get: r
+            });
+        }, n.r = function(e) {
+            "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(e, Symbol.toStringTag, {
+                value: "Module"
+            }), Object.defineProperty(e, "__esModule", {
+                value: !0
+            });
+        }, n.t = function(e, t) {
+            if (1 & t && (e = n(e)), 8 & t) return e;
+            if (4 & t && "object" == typeof e && e && e.__esModule) return e;
+            var r = Object.create(null);
+            if (n.r(r), Object.defineProperty(r, "default", {
+                enumerable: !0,
+                value: e
+            }), 2 & t && "string" != typeof e) for(var o in e)n.d(r, o, (function(t) {
+                return e[t];
+            }).bind(null, o));
+            return r;
+        }, n.n = function(e) {
+            var t = e && e.__esModule ? function() {
+                return e.default;
+            } : function() {
+                return e;
+            };
+            return n.d(t, "a", t), t;
+        }, n.o = function(e, t) {
+            return Object.prototype.hasOwnProperty.call(e, t);
+        }, n.p = "/", n(n.s = 4);
+    })([
+        function(e, t, n) {
+            var r = n(1), o = n(2);
+            "string" == typeof (o = o.__esModule ? o.default : o) && (o = [
+                [
+                    e.i,
+                    o,
+                    ""
+                ]
+            ]);
+            var a = {
+                insert: "head",
+                singleton: !1
+            };
+            r(o, a);
+            e.exports = o.locals || {
+            };
+        },
+        function(e2, t2, n1) {
+            "use strict";
+            var r1, o1 = function() {
+                return void 0 === r1 && (r1 = Boolean(window && document && document.all && !window.atob)), r1;
+            }, a1 = function() {
+                var e = {
+                };
+                return function(t) {
+                    if (void 0 === e[t]) {
+                        var n = document.querySelector(t);
+                        if (window.HTMLIFrameElement && n instanceof window.HTMLIFrameElement) try {
+                            n = n.contentDocument.head;
+                        } catch (e3) {
+                            n = null;
+                        }
+                        e[t] = n;
+                    }
+                    return e[t];
+                };
+            }(), i1 = [];
+            function c(e) {
+                for(var t = -1, n = 0; n < i1.length; n++)if (i1[n].identifier === e) {
+                    t = n;
+                    break;
+                }
+                return t;
+            }
+            function u1(e, t) {
+                for(var n = {
+                }, r = [], o = 0; o < e.length; o++){
+                    var a = e[o], u = t.base ? a[0] + t.base : a[0], s = n[u] || 0, l = "".concat(u, " ").concat(s);
+                    n[u] = s + 1;
+                    var d = c(l), f = {
+                        css: a[1],
+                        media: a[2],
+                        sourceMap: a[3]
+                    };
+                    -1 !== d ? (i1[d].references++, i1[d].updater(f)) : i1.push({
+                        identifier: l,
+                        updater: b(f, t),
+                        references: 1
+                    }), r.push(l);
+                }
+                return r;
+            }
+            function s1(e5) {
+                var t = document.createElement("style"), r = e5.attributes || {
+                };
+                if (void 0 === r.nonce) {
+                    var o = n1.nc;
+                    o && (r.nonce = o);
+                }
+                if (Object.keys(r).forEach(function(e) {
+                    t.setAttribute(e, r[e]);
+                }), "function" == typeof e5.insert) e5.insert(t);
+                else {
+                    var i = a1(e5.insert || "head");
+                    if (!i) throw new Error("Couldn't find a style target. This probably means that the value for the 'insert' parameter is invalid.");
+                    i.appendChild(t);
+                }
+                return t;
+            }
+            var l1, d1 = (l1 = [], function(e, t) {
+                return l1[e] = t, l1.filter(Boolean).join("\n");
+            });
+            function f1(e, t, n, r) {
+                var o = n ? "" : r.media ? "@media ".concat(r.media, " {").concat(r.css, "}") : r.css;
+                if (e.styleSheet) e.styleSheet.cssText = d1(t, o);
+                else {
+                    var a = document.createTextNode(o), i = e.childNodes;
+                    i[t] && e.removeChild(i[t]), i.length ? e.insertBefore(a, i[t]) : e.appendChild(a);
+                }
+            }
+            function p(e, t, n) {
+                var r = n.css, o = n.media, a = n.sourceMap;
+                if (o ? e.setAttribute("media", o) : e.removeAttribute("media"), a && btoa && (r += "\n/*# sourceMappingURL=data:application/json;base64,".concat(btoa(unescape(encodeURIComponent(JSON.stringify(a)))), " */")), e.styleSheet) e.styleSheet.cssText = r;
+                else {
+                    for(; e.firstChild;)e.removeChild(e.firstChild);
+                    e.appendChild(document.createTextNode(r));
+                }
+            }
+            var h = null, v = 0;
+            function b(e6, t3) {
+                var n, r, o;
+                if (t3.singleton) {
+                    var a = v++;
+                    n = h || (h = s1(t3)), r = f1.bind(null, n, a, !1), o = f1.bind(null, n, a, !0);
+                } else n = s1(t3), r = p.bind(null, n, t3), o = function() {
+                    !function(e) {
+                        if (null === e.parentNode) return !1;
+                        e.parentNode.removeChild(e);
+                    }(n);
+                };
+                return r(e6), function(t) {
+                    if (t) {
+                        if (t.css === e6.css && t.media === e6.media && t.sourceMap === e6.sourceMap) return;
+                        r(e6 = t);
+                    } else o();
+                };
+            }
+            e2.exports = function(e7, t) {
+                (t = t || {
+                }).singleton || "boolean" == typeof t.singleton || (t.singleton = o1());
+                var n = u1(e7 = e7 || [], t);
+                return function(e) {
+                    if (e = e || [], "[object Array]" === Object.prototype.toString.call(e)) {
+                        for(var r = 0; r < n.length; r++){
+                            var o = c(n[r]);
+                            i1[o].references--;
+                        }
+                        for(var a = u1(e, t), s = 0; s < n.length; s++){
+                            var l = c(n[s]);
+                            0 === i1[l].references && (i1[l].updater(), i1.splice(l, 1));
+                        }
+                        n = a;
+                    }
+                };
+            };
+        },
+        function(e, t, n) {
+            (t = n(3)(!1)).push([
+                e.i,
+                ".ce-code__textarea {\n    min-height: 200px;\n    font-family: Menlo, Monaco, Consolas, Courier New, monospace;\n    color: #41314e;\n    line-height: 1.6em;\n    font-size: 12px;\n    background: #f8f7fa;\n    border: 1px solid #f1f1f4;\n    box-shadow: none;\n    white-space: pre;\n    word-wrap: normal;\n    overflow-x: auto;\n    resize: vertical;\n}\n",
+                ""
+            ]), e.exports = t;
+        },
+        function(e8, t4, n2) {
+            "use strict";
+            e8.exports = function(e9) {
+                var t5 = [];
+                return t5.toString = function() {
+                    return this.map(function(t6) {
+                        var n3 = function(e10, t) {
+                            var n = e10[1] || "", r = e10[3];
+                            if (!r) return n;
+                            if (t && "function" == typeof btoa) {
+                                var o = (i = r, c = btoa(unescape(encodeURIComponent(JSON.stringify(i)))), u = "sourceMappingURL=data:application/json;charset=utf-8;base64,".concat(c), "/*# ".concat(u, " */")), a = r.sources.map(function(e) {
+                                    return "/*# sourceURL=".concat(r.sourceRoot || "").concat(e, " */");
+                                });
+                                return [
+                                    n
+                                ].concat(a).concat([
+                                    o
+                                ]).join("\n");
+                            }
+                            var i, c, u;
+                            return [
+                                n
+                            ].join("\n");
+                        }(t6, e9);
+                        return t6[2] ? "@media ".concat(t6[2], " {").concat(n3, "}") : n3;
+                    }).join("");
+                }, t5.i = function(e, n, r) {
+                    "string" == typeof e && (e = [
+                        [
+                            null,
+                            e,
+                            ""
+                        ]
+                    ]);
+                    var o = {
+                    };
+                    if (r) for(var a = 0; a < this.length; a++){
+                        var i = this[a][0];
+                        null != i && (o[i] = !0);
+                    }
+                    for(var c = 0; c < e.length; c++){
+                        var u = [].concat(e[c]);
+                        r && o[u[0]] || (n && (u[2] ? u[2] = "".concat(n, " and ").concat(u[2]) : u[2] = n), t5.push(u));
+                    }
+                }, t5;
+            };
+        },
+        function(e11, t7, n4) {
+            "use strict";
+            n4.r(t7), n4.d(t7, "default", function() {
+                return a2;
+            });
+            n4(0);
+            function r2(e, t) {
+                for(var n = 0; n < t.length; n++){
+                    var r = t[n];
+                    r.enumerable = r.enumerable || !1, r.configurable = !0, "value" in r && (r.writable = !0), Object.defineProperty(e, r.key, r);
+                }
+            }
+            function o2(e, t, n) {
+                return t && r2(e.prototype, t), n && r2(e, n), e;
+            }
+            /**
+ * CodeTool for Editor.js
+ *
+ * @author CodeX (team@ifmo.su)
+ * @copyright CodeX 2018
+ * @license MIT
+ * @version 2.0.0
+ */ var a2 = function() {
+                function e12(t8) {
+                    var n = t8.data, r = t8.config, o = t8.api, a = t8.readOnly;
+                    !function(e, t) {
+                        if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function");
+                    }(this, e12), this.api = o, this.readOnly = a, this.placeholder = this.api.i18n.t(r.placeholder || e12.DEFAULT_PLACEHOLDER), this.CSS = {
+                        baseClass: this.api.styles.block,
+                        input: this.api.styles.input,
+                        wrapper: "ce-code",
+                        textarea: "ce-code__textarea"
+                    }, this.nodes = {
+                        holder: null,
+                        textarea: null
+                    }, this.data = {
+                        code: n.code || ""
+                    }, this.nodes.holder = this.drawView();
+                }
+                return o2(e12, null, [
+                    {
+                        key: "isReadOnlySupported",
+                        get: function() {
+                            return !0;
+                        }
+                    },
+                    {
+                        key: "enableLineBreaks",
+                        get: function() {
+                            return !0;
+                        }
+                    }
+                ]), o2(e12, [
+                    {
+                        key: "drawView",
+                        value: function() {
+                            var e = this, t9 = document.createElement("div"), n = document.createElement("textarea");
+                            return t9.classList.add(this.CSS.baseClass, this.CSS.wrapper), n.classList.add(this.CSS.textarea, this.CSS.input), n.textContent = this.data.code, n.placeholder = this.placeholder, this.readOnly && (n.disabled = !0), t9.appendChild(n), n.addEventListener("keydown", function(t) {
+                                switch(t.code){
+                                    case "Tab":
+                                        e.tabHandler(t);
+                                }
+                            }), this.nodes.textarea = n, t9;
+                        }
+                    },
+                    {
+                        key: "render",
+                        value: function() {
+                            return this.nodes.holder;
+                        }
+                    },
+                    {
+                        key: "save",
+                        value: function(e) {
+                            return {
+                                code: e.querySelector("textarea").value
+                            };
+                        }
+                    },
+                    {
+                        key: "onPaste",
+                        value: function(e) {
+                            var t = e.detail.data;
+                            this.data = {
+                                code: t.textContent
+                            };
+                        }
+                    },
+                    {
+                        key: "tabHandler",
+                        value: function(e13) {
+                            e13.stopPropagation(), e13.preventDefault();
+                            var t10, n5 = e13.target, r = e13.shiftKey, o = n5.selectionStart, a = n5.value;
+                            if (r) {
+                                var i = function(e, t) {
+                                    for(var n = ""; "\n" !== n && t > 0;)t -= 1, n = e.substr(t, 1);
+                                    return "\n" === n && (t += 1), t;
+                                }(a, o);
+                                if ("  " !== a.substr(i, 2)) return;
+                                n5.value = a.substring(0, i) + a.substring(i + 2), t10 = o - 2;
+                            } else t10 = o + 2, n5.value = a.substring(0, o) + "  " + a.substring(o);
+                            n5.setSelectionRange(t10, t10);
+                        }
+                    },
+                    {
+                        key: "data",
+                        get: function() {
+                            return this._data;
+                        },
+                        set: function(e) {
+                            this._data = e, this.nodes.textarea && (this.nodes.textarea.textContent = e.code);
+                        }
+                    }
+                ], [
+                    {
+                        key: "toolbox",
+                        get: function() {
+                            return {
+                                icon: '<svg width="14" height="14" viewBox="0 -1 14 14" xmlns="http://www.w3.org/2000/svg" > <path d="M3.177 6.852c.205.253.347.572.427.954.078.372.117.844.117 1.417 0 .418.01.725.03.92.02.18.057.314.107.396.046.075.093.117.14.134.075.027.218.056.42.083a.855.855 0 0 1 .56.297c.145.167.215.38.215.636 0 .612-.432.934-1.216.934-.457 0-.87-.087-1.233-.262a1.995 1.995 0 0 1-.853-.751 2.09 2.09 0 0 1-.305-1.097c-.014-.648-.029-1.168-.043-1.56-.013-.383-.034-.631-.06-.733-.064-.263-.158-.455-.276-.578a2.163 2.163 0 0 0-.505-.376c-.238-.134-.41-.256-.519-.371C.058 6.76 0 6.567 0 6.315c0-.37.166-.657.493-.846.329-.186.56-.342.693-.466a.942.942 0 0 0 .26-.447c.056-.2.088-.42.097-.658.01-.25.024-.85.043-1.802.015-.629.239-1.14.672-1.522C2.691.19 3.268 0 3.977 0c.783 0 1.216.317 1.216.921 0 .264-.069.48-.211.643a.858.858 0 0 1-.563.29c-.249.03-.417.076-.498.126-.062.04-.112.134-.139.291-.031.187-.052.562-.061 1.119a8.828 8.828 0 0 1-.112 1.378 2.24 2.24 0 0 1-.404.963c-.159.212-.373.406-.64.583.25.163.454.342.612.538zm7.34 0c.157-.196.362-.375.612-.538a2.544 2.544 0 0 1-.641-.583 2.24 2.24 0 0 1-.404-.963 8.828 8.828 0 0 1-.112-1.378c-.009-.557-.03-.932-.061-1.119-.027-.157-.077-.251-.14-.29-.08-.051-.248-.096-.496-.127a.858.858 0 0 1-.564-.29C8.57 1.401 8.5 1.185 8.5.921 8.5.317 8.933 0 9.716 0c.71 0 1.286.19 1.72.574.432.382.656.893.671 1.522.02.952.033 1.553.043 1.802.009.238.041.458.097.658a.942.942 0 0 0 .26.447c.133.124.364.28.693.466a.926.926 0 0 1 .493.846c0 .252-.058.446-.183.58-.109.115-.281.237-.52.371-.21.118-.377.244-.504.376-.118.123-.212.315-.277.578-.025.102-.045.35-.06.733-.013.392-.027.912-.042 1.56a2.09 2.09 0 0 1-.305 1.097c-.2.323-.486.574-.853.75a2.811 2.811 0 0 1-1.233.263c-.784 0-1.216-.322-1.216-.934 0-.256.07-.47.214-.636a.855.855 0 0 1 .562-.297c.201-.027.344-.056.418-.083.048-.017.096-.06.14-.134a.996.996 0 0 0 .107-.396c.02-.195.031-.502.031-.92 0-.573.039-1.045.117-1.417.08-.382.222-.701.427-.954z" /> </svg>',
+                                title: "Code"
+                            };
+                        }
+                    },
+                    {
+                        key: "DEFAULT_PLACEHOLDER",
+                        get: function() {
+                            return "Enter a code";
+                        }
+                    },
+                    {
+                        key: "pasteConfig",
+                        get: function() {
+                            return {
+                                tags: [
+                                    "pre"
+                                ]
+                            };
+                        }
+                    },
+                    {
+                        key: "sanitize",
+                        get: function() {
+                            return {
+                                code: !0
+                            };
+                        }
+                    }
+                ]), e12;
+            }();
+        }
+    ]).default;
+});
+
+},{}],"8lX7A":[function(require,module,exports) {
+!function(e, t) {
+    "object" == typeof exports && "object" == typeof module ? module.exports = t() : "function" == typeof define && define.amd ? define([], t) : "object" == typeof exports ? exports.Checklist = t() : e.Checklist = t();
+}(window, function() {
+    return (function(e1) {
+        var t1 = {
+        };
+        function n(r) {
+            if (t1[r]) return t1[r].exports;
+            var o = t1[r] = {
+                i: r,
+                l: !1,
+                exports: {
+                }
+            };
+            return e1[r].call(o.exports, o, o.exports, n), o.l = !0, o.exports;
+        }
+        return n.m = e1, n.c = t1, n.d = function(e, t, r) {
+            n.o(e, t) || Object.defineProperty(e, t, {
+                enumerable: !0,
+                get: r
+            });
+        }, n.r = function(e) {
+            "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(e, Symbol.toStringTag, {
+                value: "Module"
+            }), Object.defineProperty(e, "__esModule", {
+                value: !0
+            });
+        }, n.t = function(e, t) {
+            if (1 & t && (e = n(e)), 8 & t) return e;
+            if (4 & t && "object" == typeof e && e && e.__esModule) return e;
+            var r = Object.create(null);
+            if (n.r(r), Object.defineProperty(r, "default", {
+                enumerable: !0,
+                value: e
+            }), 2 & t && "string" != typeof e) for(var o in e)n.d(r, o, (function(t) {
+                return e[t];
+            }).bind(null, o));
+            return r;
+        }, n.n = function(e) {
+            var t = e && e.__esModule ? function() {
+                return e.default;
+            } : function() {
+                return e;
+            };
+            return n.d(t, "a", t), t;
+        }, n.o = function(e, t) {
+            return Object.prototype.hasOwnProperty.call(e, t);
+        }, n.p = "/", n(n.s = 6);
+    })([
+        function(e, t, n) {
+            var r = n(1);
+            "string" == typeof r && (r = [
+                [
+                    e.i,
+                    r,
+                    ""
+                ]
+            ]);
+            var o = {
+                hmr: !0,
+                transform: void 0,
+                insertInto: void 0
+            };
+            n(3)(r, o);
+            r.locals && (e.exports = r.locals);
+        },
+        function(e, t, n) {
+            (e.exports = n(2)(!1)).push([
+                e.i,
+                ".cdx-checklist__item {\n        display: flex;\n        box-sizing: content-box;\n    }\n\n        .cdx-checklist__item-text {\n            outline: none;\n            flex-grow: 1;\n            padding: 5px 0;\n        }\n\n        .cdx-checklist__item-checkbox {\n            display: inline-block;\n            flex-shrink: 0;\n            position: relative;\n            width: 20px;\n            height: 20px;\n            margin:  5px;\n            margin-left: 0;\n            margin-right: 7px;\n            border-radius: 50%;\n            border: 1px solid #d0d0d0;\n            background: #fff;\n            cursor: pointer;\n            user-select: none;\n        }\n\n        .cdx-checklist__item-checkbox:hover {\n                border-color: #b5b5b5;\n            }\n\n        .cdx-checklist__item-checkbox::after {\n                position: absolute;\n                top: 6px;\n                left: 5px;\n                width: 9px;\n                height: 4px;\n                border: 2px solid #fff;\n                border-top: none;\n                border-right: none;\n                background: transparent;\n                content: '';\n                opacity: 0;\n                transform: rotate(-45deg);\n            }\n\n        .cdx-checklist__item--checked .cdx-checklist__item-checkbox {\n                background: #388ae5;\n                border-color: #388ae5;\n            }\n\n        .cdx-checklist__item--checked .cdx-checklist__item-checkbox:hover {\n                    background: #307cd1;\n                }\n\n        .cdx-checklist__item--checked .cdx-checklist__item-checkbox::after {\n                    opacity: 1;\n                }\n",
+                ""
+            ]);
+        },
+        function(e2, t2) {
+            e2.exports = function(e3) {
+                var t3 = [];
+                return t3.toString = function() {
+                    return this.map(function(t4) {
+                        var n1 = function(e4, t) {
+                            var n = e4[1] || "", r = e4[3];
+                            if (!r) return n;
+                            if (t && "function" == typeof btoa) {
+                                var o = (c = r, "/*# sourceMappingURL=data:application/json;charset=utf-8;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(c)))) + " */"), i = r.sources.map(function(e) {
+                                    return "/*# sourceURL=" + r.sourceRoot + e + " */";
+                                });
+                                return [
+                                    n
+                                ].concat(i).concat([
+                                    o
+                                ]).join("\n");
+                            }
+                            var c;
+                            return [
+                                n
+                            ].join("\n");
+                        }(t4, e3);
+                        return t4[2] ? "@media " + t4[2] + "{" + n1 + "}" : n1;
+                    }).join("");
+                }, t3.i = function(e, n) {
+                    "string" == typeof e && (e = [
+                        [
+                            null,
+                            e,
+                            ""
+                        ]
+                    ]);
+                    for(var r = {
+                    }, o = 0; o < this.length; o++){
+                        var i = this[o][0];
+                        "number" == typeof i && (r[i] = !0);
+                    }
+                    for(o = 0; o < e.length; o++){
+                        var c = e[o];
+                        "number" == typeof c[0] && r[c[0]] || (n && !c[2] ? c[2] = n : n && (c[2] = "(" + c[2] + ") and (" + n + ")"), t3.push(c));
+                    }
+                }, t3;
+            };
+        },
+        function(e5, t5, n2) {
+            var r1, o1, i1 = {
+            }, c1 = (r1 = function() {
+                return window && document && document.all && !window.atob;
+            }, function() {
+                return void 0 === o1 && (o1 = r1.apply(this, arguments)), o1;
+            }), s1 = function(e) {
+                return document.querySelector(e);
+            }, a1 = function(e6) {
+                var t = {
+                };
+                return function(e) {
+                    if ("function" == typeof e) return e();
+                    if (void 0 === t[e]) {
+                        var n = s1.call(this, e);
+                        if (window.HTMLIFrameElement && n instanceof window.HTMLIFrameElement) try {
+                            n = n.contentDocument.head;
+                        } catch (e) {
+                            n = null;
+                        }
+                        t[e] = n;
+                    }
+                    return t[e];
+                };
+            }(), l = null, u = 0, f = [], d = n2(4);
+            function p(e, t) {
+                for(var n = 0; n < e.length; n++){
+                    var r = e[n], o = i1[r.id];
+                    if (o) {
+                        o.refs++;
+                        for(var c = 0; c < o.parts.length; c++)o.parts[c](r.parts[c]);
+                        for(; c < r.parts.length; c++)o.parts.push(g(r.parts[c], t));
+                    } else {
+                        var s = [];
+                        for(c = 0; c < r.parts.length; c++)s.push(g(r.parts[c], t));
+                        i1[r.id] = {
+                            id: r.id,
+                            refs: 1,
+                            parts: s
+                        };
+                    }
+                }
+            }
+            function h(e, t) {
+                for(var n = [], r = {
+                }, o = 0; o < e.length; o++){
+                    var i = e[o], c = t.base ? i[0] + t.base : i[0], s = {
+                        css: i[1],
+                        media: i[2],
+                        sourceMap: i[3]
+                    };
+                    r[c] ? r[c].parts.push(s) : n.push(r[c] = {
+                        id: c,
+                        parts: [
+                            s
+                        ]
+                    });
+                }
+                return n;
+            }
+            function m(e, t) {
+                var n = a1(e.insertInto);
+                if (!n) throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
+                var r = f[f.length - 1];
+                if ("top" === e.insertAt) r ? r.nextSibling ? n.insertBefore(t, r.nextSibling) : n.appendChild(t) : n.insertBefore(t, n.firstChild), f.push(t);
+                else if ("bottom" === e.insertAt) n.appendChild(t);
+                else {
+                    if ("object" != typeof e.insertAt || !e.insertAt.before) throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");
+                    var o = a1(e.insertInto + " " + e.insertAt.before);
+                    n.insertBefore(t, o);
+                }
+            }
+            function v(e) {
+                if (null === e.parentNode) return !1;
+                e.parentNode.removeChild(e);
+                var t = f.indexOf(e);
+                t >= 0 && f.splice(t, 1);
+            }
+            function b(e) {
+                var t = document.createElement("style");
+                return void 0 === e.attrs.type && (e.attrs.type = "text/css"), y(t, e.attrs), m(e, t), t;
+            }
+            function y(e, t) {
+                Object.keys(t).forEach(function(n) {
+                    e.setAttribute(n, t[n]);
+                });
+            }
+            function g(e7, t6) {
+                var n, r, o, i;
+                if (t6.transform && e7.css) {
+                    if (!(i = t6.transform(e7.css))) return function() {
+                    };
+                    e7.css = i;
+                }
+                if (t6.singleton) {
+                    var c = u++;
+                    n = l || (l = b(t6)), r = S.bind(null, n, c, !1), o = S.bind(null, n, c, !0);
+                } else e7.sourceMap && "function" == typeof URL && "function" == typeof URL.createObjectURL && "function" == typeof URL.revokeObjectURL && "function" == typeof Blob && "function" == typeof btoa ? (n = (function(e) {
+                    var t = document.createElement("link");
+                    return void 0 === e.attrs.type && (e.attrs.type = "text/css"), e.attrs.rel = "stylesheet", y(t, e.attrs), m(e, t), t;
+                })(t6), r = C.bind(null, n, t6), o = function() {
+                    v(n), n.href && URL.revokeObjectURL(n.href);
+                }) : (n = b(t6), r = w.bind(null, n), o = function() {
+                    v(n);
+                });
+                return r(e7), function(t) {
+                    if (t) {
+                        if (t.css === e7.css && t.media === e7.media && t.sourceMap === e7.sourceMap) return;
+                        r(e7 = t);
+                    } else o();
+                };
+            }
+            e5.exports = function(e8, t) {
+                if ("undefined" != typeof DEBUG && DEBUG && "object" != typeof document) throw new Error("The style-loader cannot be used in a non-browser environment");
+                (t = t || {
+                }).attrs = "object" == typeof t.attrs ? t.attrs : {
+                }, t.singleton || "boolean" == typeof t.singleton || (t.singleton = c1()), t.insertInto || (t.insertInto = "head"), t.insertAt || (t.insertAt = "bottom");
+                var n = h(e8, t);
+                return p(n, t), function(e) {
+                    for(var r = [], o = 0; o < n.length; o++){
+                        var c = n[o];
+                        (s = i1[c.id]).refs--, r.push(s);
+                    }
+                    e && p(h(e, t), t);
+                    for(o = 0; o < r.length; o++){
+                        var s;
+                        if (0 === (s = r[o]).refs) {
+                            for(var a = 0; a < s.parts.length; a++)s.parts[a]();
+                            delete i1[s.id];
+                        }
+                    }
+                };
+            };
+            var x, k = (x = [], function(e, t) {
+                return x[e] = t, x.filter(Boolean).join("\n");
+            });
+            function S(e, t, n, r) {
+                var o = n ? "" : r.css;
+                if (e.styleSheet) e.styleSheet.cssText = k(t, o);
+                else {
+                    var i = document.createTextNode(o), c = e.childNodes;
+                    c[t] && e.removeChild(c[t]), c.length ? e.insertBefore(i, c[t]) : e.appendChild(i);
+                }
+            }
+            function w(e, t) {
+                var n = t.css, r = t.media;
+                if (r && e.setAttribute("media", r), e.styleSheet) e.styleSheet.cssText = n;
+                else {
+                    for(; e.firstChild;)e.removeChild(e.firstChild);
+                    e.appendChild(document.createTextNode(n));
+                }
+            }
+            function C(e, t, n) {
+                var r = n.css, o = n.sourceMap, i = void 0 === t.convertToAbsoluteUrls && o;
+                (t.convertToAbsoluteUrls || i) && (r = d(r)), o && (r += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(o)))) + " */");
+                var c = new Blob([
+                    r
+                ], {
+                    type: "text/css"
+                }), s = e.href;
+                e.href = URL.createObjectURL(c), s && URL.revokeObjectURL(s);
+            }
+        },
+        function(e9, t7) {
+            e9.exports = function(e10) {
+                var t8 = "undefined" != typeof window && window.location;
+                if (!t8) throw new Error("fixUrls requires window.location");
+                if (!e10 || "string" != typeof e10) return e10;
+                var n = t8.protocol + "//" + t8.host, r = n + t8.pathname.replace(/\/[^\/]*$/, "/");
+                return e10.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function(e, t9) {
+                    var o, i = t9.trim().replace(/^"(.*)"$/, function(e, t) {
+                        return t;
+                    }).replace(/^'(.*)'$/, function(e, t) {
+                        return t;
+                    });
+                    return /^(#|data:|http:\/\/|https:\/\/|file:\/\/\/|\s*$)/i.test(i) ? e : (o = 0 === i.indexOf("//") ? i : 0 === i.indexOf("/") ? n + i : r + i.replace(/^\.\//, ""), "url(" + JSON.stringify(o) + ")");
+                });
+            };
+        },
+        function(e11, t10, n) {
+            "use strict";
+            Element.prototype.matches || (Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector), Element.prototype.closest || (Element.prototype.closest = function(e) {
+                var t = this;
+                if (!document.documentElement.contains(t)) return null;
+                do {
+                    if (t.matches(e)) return t;
+                    t = t.parentElement || t.parentNode;
+                }while (null !== t && 1 === t.nodeType)
+                return null;
+            });
+        },
+        function(e12, t11, n3) {
+            "use strict";
+            function r2(e13) {
+                return (function(e) {
+                    if (Array.isArray(e)) return o2(e);
+                })(e13) || (function(e) {
+                    if ("undefined" != typeof Symbol && Symbol.iterator in Object(e)) return Array.from(e);
+                })(e13) || (function(e, t) {
+                    if (!e) return;
+                    if ("string" == typeof e) return o2(e, t);
+                    var n = Object.prototype.toString.call(e).slice(8, -1);
+                    "Object" === n && e.constructor && (n = e.constructor.name);
+                    if ("Map" === n || "Set" === n) return Array.from(e);
+                    if ("Arguments" === n || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return o2(e, t);
+                })(e13) || (function() {
+                    throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+                })();
+            }
+            function o2(e, t) {
+                (null == t || t > e.length) && (t = e.length);
+                for(var n = 0, r = new Array(t); n < t; n++)r[n] = e[n];
+                return r;
+            }
+            function i2() {
+                var e = document.activeElement, t = window.getSelection().getRangeAt(0), n = t.cloneRange();
+                return n.selectNodeContents(e), n.setStart(t.endContainer, t.endOffset), n.extractContents();
+            }
+            function c2(e) {
+                var t, n = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : null, o = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {
+                }, i = document.createElement(e);
+                Array.isArray(n) ? (t = i.classList).add.apply(t, r2(n)) : n && i.classList.add(n);
+                for(var c in o)i[c] = o[c];
+                return i;
+            }
+            function s2(e) {
+                return e.innerHTML.replace("<br>", " ").trim();
+            }
+            function a(e) {
+                var t = arguments.length > 1 && void 0 !== arguments[1] && arguments[1], n = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : void 0, r = document.createRange(), o = window.getSelection();
+                r.selectNodeContents(e), void 0 !== n && (r.setStart(e, n), r.setEnd(e, n)), r.collapse(t), o.removeAllRanges(), o.addRange(r);
+            }
+            n3.r(t11), n3.d(t11, "default", function() {
+                return f1;
+            });
+            n3(0), n3(5);
+            function l1(e, t) {
+                for(var n = 0; n < t.length; n++){
+                    var r = t[n];
+                    r.enumerable = r.enumerable || !1, r.configurable = !0, "value" in r && (r.writable = !0), Object.defineProperty(e, r.key, r);
+                }
+            }
+            function u1(e, t, n) {
+                return t && l1(e.prototype, t), n && l1(e, n), e;
+            }
+            var f1 = function() {
+                function e14(t12) {
+                    var n = t12.data, r = (t12.config, t12.api), o = t12.readOnly;
+                    !function(e, t) {
+                        if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function");
+                    }(this, e14), this._elements = {
+                        wrapper: null,
+                        items: []
+                    }, this.readOnly = o, this.api = r, this.data = n || {
+                    };
+                }
+                return u1(e14, null, [
+                    {
+                        key: "isReadOnlySupported",
+                        get: function() {
+                            return !0;
+                        }
+                    },
+                    {
+                        key: "enableLineBreaks",
+                        get: function() {
+                            return !0;
+                        }
+                    },
+                    {
+                        key: "toolbox",
+                        get: function() {
+                            return {
+                                icon: '<svg width="15" height="15" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg"><path d="M7.5 15a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15zm0-2.394a5.106 5.106 0 1 0 0-10.212 5.106 5.106 0 0 0 0 10.212zm-.675-4.665l2.708-2.708 1.392 1.392-2.708 2.708-1.392 1.391-2.971-2.971L5.245 6.36l1.58 1.58z"/></svg>',
+                                title: "Checklist"
+                            };
+                        }
+                    },
+                    {
+                        key: "conversionConfig",
+                        get: function() {
+                            return {
+                                export: function(e15) {
+                                    return e15.items.map(function(e) {
+                                        return e.text;
+                                    }).join(". ");
+                                },
+                                import: function(e) {
+                                    return {
+                                        items: [
+                                            {
+                                                text: e,
+                                                checked: !1
+                                            }
+                                        ]
+                                    };
+                                }
+                            };
+                        }
+                    }
+                ]), u1(e14, [
+                    {
+                        key: "render",
+                        value: function() {
+                            var e = this;
+                            return this._elements.wrapper = c2("div", [
+                                this.CSS.baseBlock,
+                                this.CSS.wrapper
+                            ]), this.data.items || (this.data.items = [
+                                {
+                                    text: "",
+                                    checked: !1
+                                }
+                            ]), this.data.items.forEach(function(t) {
+                                var n = e.createChecklistItem(t);
+                                e._elements.wrapper.appendChild(n);
+                            }), this.readOnly || (this._elements.wrapper.addEventListener("keydown", function(t) {
+                                switch(t.keyCode){
+                                    case 13:
+                                        e.enterPressed(t);
+                                        break;
+                                    case 8:
+                                        e.backspace(t);
+                                }
+                            }, !1), this._elements.wrapper.addEventListener("click", function(t) {
+                                e.toggleCheckbox(t);
+                            })), this._elements.wrapper;
+                        }
+                    },
+                    {
+                        key: "save",
+                        value: function() {
+                            var e16 = this, t13 = this.items.map(function(t) {
+                                return {
+                                    text: s2(e16.getItemInput(t)),
+                                    checked: t.classList.contains(e16.CSS.itemChecked)
+                                };
+                            });
+                            return {
+                                items: t13 = t13.filter(function(e) {
+                                    return 0 !== e.text.trim().length;
+                                })
+                            };
+                        }
+                    },
+                    {
+                        key: "validate",
+                        value: function(e) {
+                            return !!e.items.length;
+                        }
+                    },
+                    {
+                        key: "toggleCheckbox",
+                        value: function(e) {
+                            var t = e.target.closest(".".concat(this.CSS.item));
+                            t.querySelector(".".concat(this.CSS.checkbox)).contains(e.target) && t.classList.toggle(this.CSS.itemChecked);
+                        }
+                    },
+                    {
+                        key: "createChecklistItem",
+                        value: function() {
+                            var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {
+                            }, t = c2("div", this.CSS.item), n = c2("span", this.CSS.checkbox), r = c2("div", this.CSS.textField, {
+                                innerHTML: e.text ? e.text : "",
+                                contentEditable: !this.readOnly
+                            });
+                            return e.checked && t.classList.add(this.CSS.itemChecked), t.appendChild(n), t.appendChild(r), t;
+                        }
+                    },
+                    {
+                        key: "enterPressed",
+                        value: function(e) {
+                            e.preventDefault();
+                            var t = this.items, n = document.activeElement.closest(".".concat(this.CSS.item));
+                            if (t.indexOf(n) === t.length - 1 && 0 === s2(this.getItemInput(n)).length) {
+                                var r = this.api.blocks.getCurrentBlockIndex();
+                                return n.remove(), this.api.blocks.insert(), void this.api.caret.setToBlock(r + 1);
+                            }
+                            var o, c, l = i2(), u = (o = l, (c = document.createElement("div")).appendChild(o), c.innerHTML), f = this.createChecklistItem({
+                                text: u,
+                                checked: !1
+                            });
+                            this._elements.wrapper.insertBefore(f, n.nextSibling), a(this.getItemInput(f), !0);
+                        }
+                    },
+                    {
+                        key: "backspace",
+                        value: function(e) {
+                            var t = e.target.closest(".".concat(this.CSS.item)), n = this.items.indexOf(t), r = this.items[n - 1];
+                            if (r && 0 === window.getSelection().focusOffset) {
+                                e.preventDefault();
+                                var o = i2(), c = this.getItemInput(r), s = c.childNodes.length;
+                                c.appendChild(o), a(c, void 0, s), t.remove();
+                            }
+                        }
+                    },
+                    {
+                        key: "getItemInput",
+                        value: function(e) {
+                            return e.querySelector(".".concat(this.CSS.textField));
+                        }
+                    },
+                    {
+                        key: "CSS",
+                        get: function() {
+                            return {
+                                baseBlock: this.api.styles.block,
+                                wrapper: "cdx-checklist",
+                                item: "cdx-checklist__item",
+                                itemChecked: "cdx-checklist__item--checked",
+                                checkbox: "cdx-checklist__item-checkbox",
+                                textField: "cdx-checklist__item-text"
+                            };
+                        }
+                    },
+                    {
+                        key: "items",
+                        get: function() {
+                            return Array.from(this._elements.wrapper.querySelectorAll(".".concat(this.CSS.item)));
+                        }
+                    }
+                ]), e14;
+            }();
+        }
+    ]).default;
+});
+
+},{}],"2kInA":[function(require,module,exports) {
+!function(t, e) {
+    "object" == typeof exports && "object" == typeof module ? module.exports = e() : "function" == typeof define && define.amd ? define([], e) : "object" == typeof exports ? exports.Warning = e() : t.Warning = e();
+}(window, function() {
+    return (function(t1) {
+        var e1 = {
+        };
+        function n(r) {
+            if (e1[r]) return e1[r].exports;
+            var o = e1[r] = {
+                i: r,
+                l: !1,
+                exports: {
+                }
+            };
+            return t1[r].call(o.exports, o, o.exports, n), o.l = !0, o.exports;
+        }
+        return n.m = t1, n.c = e1, n.d = function(t, e, r) {
+            n.o(t, e) || Object.defineProperty(t, e, {
+                enumerable: !0,
+                get: r
+            });
+        }, n.r = function(t) {
+            "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(t, Symbol.toStringTag, {
+                value: "Module"
+            }), Object.defineProperty(t, "__esModule", {
+                value: !0
+            });
+        }, n.t = function(t, e) {
+            if (1 & e && (t = n(t)), 8 & e) return t;
+            if (4 & e && "object" == typeof t && t && t.__esModule) return t;
+            var r = Object.create(null);
+            if (n.r(r), Object.defineProperty(r, "default", {
+                enumerable: !0,
+                value: t
+            }), 2 & e && "string" != typeof t) for(var o in t)n.d(r, o, (function(e) {
+                return t[e];
+            }).bind(null, o));
+            return r;
+        }, n.n = function(t) {
+            var e = t && t.__esModule ? function() {
+                return t.default;
+            } : function() {
+                return t;
+            };
+            return n.d(e, "a", e), e;
+        }, n.o = function(t, e) {
+            return Object.prototype.hasOwnProperty.call(t, e);
+        }, n.p = "/", n(n.s = 1);
+    })([
+        function(t, e) {
+            t.exports = '<svg width="16" height="17" viewBox="0 0 320 294" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M160.5 97c12.426 0 22.5 10.074 22.5 22.5v28c0 12.426-10.074 22.5-22.5 22.5S138 159.926 138 147.5v-28c0-12.426 10.074-22.5 22.5-22.5zm0 83c14.636 0 26.5 11.864 26.5 26.5S175.136 233 160.5 233 134 221.136 134 206.5s11.864-26.5 26.5-26.5zm-.02-135c-6.102 0-14.05 8.427-23.842 25.28l-74.73 127.605c-12.713 21.444-17.806 35.025-15.28 40.742 2.527 5.717 8.519 9.175 17.974 10.373h197.255c5.932-1.214 10.051-4.671 12.357-10.373 2.307-5.702-1.812-16.903-12.357-33.603L184.555 70.281C174.608 53.427 166.583 45 160.48 45zm154.61 165.418c2.216 6.027 3.735 11.967 4.393 18.103.963 8.977.067 18.035-3.552 26.98-7.933 19.612-24.283 33.336-45.054 37.586l-4.464.913H61.763l-2.817-.357c-10.267-1.3-19.764-4.163-28.422-9.16-11.051-6.377-19.82-15.823-25.055-27.664-4.432-10.03-5.235-19.952-3.914-29.887.821-6.175 2.486-12.239 4.864-18.58 3.616-9.64 9.159-20.55 16.718-33.309L97.77 47.603c6.469-11.125 12.743-20.061 19.436-27.158 4.62-4.899 9.562-9.07 15.206-12.456C140.712 3.01 150.091 0 160.481 0c10.358 0 19.703 2.99 27.989 7.933 5.625 3.356 10.563 7.492 15.193 12.354 6.735 7.072 13.08 15.997 19.645 27.12l.142.24 76.986 134.194c6.553 10.46 11.425 19.799 14.654 28.577z"></path></svg>';
+        },
+        function(t2, e2, n1) {
+            "use strict";
+            n1.r(e2), n1.d(e2, "default", function() {
+                return c;
+            });
+            var r1 = n1(0), o1 = n1.n(r1);
+            function i1(t3) {
+                return (function(t) {
+                    if (Array.isArray(t)) {
+                        for(var e = 0, n = new Array(t.length); e < t.length; e++)n[e] = t[e];
+                        return n;
+                    }
+                })(t3) || (function(t) {
+                    if (Symbol.iterator in Object(t) || "[object Arguments]" === Object.prototype.toString.call(t)) return Array.from(t);
+                })(t3) || (function() {
+                    throw new TypeError("Invalid attempt to spread non-iterable instance");
+                })();
+            }
+            function a(t, e) {
+                for(var n = 0; n < e.length; n++){
+                    var r = e[n];
+                    r.enumerable = r.enumerable || !1, r.configurable = !0, "value" in r && (r.writable = !0), Object.defineProperty(t, r.key, r);
+                }
+            }
+            function s(t, e, n) {
+                return e && a(t.prototype, e), n && a(t, n), t;
+            }
+            n1(2).toString();
+            var c = function() {
+                function t4(e3) {
+                    var n = e3.data, r = e3.config, o = e3.api, i = e3.readOnly;
+                    !function(t, e) {
+                        if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function");
+                    }(this, t4), this.api = o, this.readOnly = i, this.titlePlaceholder = r.titlePlaceholder || t4.DEFAULT_TITLE_PLACEHOLDER, this.messagePlaceholder = r.messagePlaceholder || t4.DEFAULT_MESSAGE_PLACEHOLDER, this.data = {
+                        title: n.title || "",
+                        message: n.message || ""
+                    };
+                }
+                return s(t4, [
+                    {
+                        key: "CSS",
+                        get: function() {
+                            return {
+                                baseClass: this.api.styles.block,
+                                wrapper: "cdx-warning",
+                                title: "cdx-warning__title",
+                                input: this.api.styles.input,
+                                message: "cdx-warning__message"
+                            };
+                        }
+                    }
+                ], [
+                    {
+                        key: "isReadOnlySupported",
+                        get: function() {
+                            return !0;
+                        }
+                    },
+                    {
+                        key: "toolbox",
+                        get: function() {
+                            return {
+                                icon: o1.a,
+                                title: "Warning"
+                            };
+                        }
+                    },
+                    {
+                        key: "enableLineBreaks",
+                        get: function() {
+                            return !0;
+                        }
+                    },
+                    {
+                        key: "DEFAULT_TITLE_PLACEHOLDER",
+                        get: function() {
+                            return "Title";
+                        }
+                    },
+                    {
+                        key: "DEFAULT_MESSAGE_PLACEHOLDER",
+                        get: function() {
+                            return "Message";
+                        }
+                    }
+                ]), s(t4, [
+                    {
+                        key: "render",
+                        value: function() {
+                            var t = this._make("div", [
+                                this.CSS.baseClass,
+                                this.CSS.wrapper
+                            ]), e = this._make("div", [
+                                this.CSS.input,
+                                this.CSS.title
+                            ], {
+                                contentEditable: !this.readOnly,
+                                innerHTML: this.data.title
+                            }), n = this._make("div", [
+                                this.CSS.input,
+                                this.CSS.message
+                            ], {
+                                contentEditable: !this.readOnly,
+                                innerHTML: this.data.message
+                            });
+                            return e.dataset.placeholder = this.titlePlaceholder, n.dataset.placeholder = this.messagePlaceholder, t.appendChild(e), t.appendChild(n), t;
+                        }
+                    },
+                    {
+                        key: "save",
+                        value: function(t) {
+                            var e = t.querySelector(".".concat(this.CSS.title)), n = t.querySelector(".".concat(this.CSS.message));
+                            return Object.assign(this.data, {
+                                title: e.innerHTML,
+                                message: n.innerHTML
+                            });
+                        }
+                    },
+                    {
+                        key: "_make",
+                        value: function(t) {
+                            var e, n = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : null, r = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {
+                            }, o = document.createElement(t);
+                            Array.isArray(n) ? (e = o.classList).add.apply(e, i1(n)) : n && o.classList.add(n);
+                            for(var a in r)o[a] = r[a];
+                            return o;
+                        }
+                    }
+                ], [
+                    {
+                        key: "sanitize",
+                        get: function() {
+                            return {
+                                title: {
+                                },
+                                message: {
+                                }
+                            };
+                        }
+                    }
+                ]), t4;
+            }();
+        },
+        function(t, e, n) {
+            var r = n(3);
+            "string" == typeof r && (r = [
+                [
+                    t.i,
+                    r,
+                    ""
+                ]
+            ]);
+            var o = {
+                hmr: !0,
+                transform: void 0,
+                insertInto: void 0
+            };
+            n(5)(r, o);
+            r.locals && (t.exports = r.locals);
+        },
+        function(t, e, n) {
+            (t.exports = n(4)(!1)).push([
+                t.i,
+                ".cdx-warning {\n  position: relative;\n}\n\n.cdx-warning [contentEditable=true][data-placeholder]::before{\n  position: absolute;\n  content: attr(data-placeholder);\n  color: #707684;\n  font-weight: normal;\n  opacity: 0;\n}\n\n.cdx-warning [contentEditable=true][data-placeholder]:empty::before {\n  opacity: 1;\n}\n\n.cdx-warning [contentEditable=true][data-placeholder]:empty:focus::before {\n  opacity: 0;\n}\n\n\n.cdx-warning::before {\n  content: '';\n  background-image: url(\"data:image/svg+xml,%3Csvg width='16' height='17' viewBox='0 0 320 294' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Cpath fill='%237B7E89' d='M160.5 97c12.426 0 22.5 10.074 22.5 22.5v28c0 12.426-10.074 22.5-22.5 22.5S138 159.926 138 147.5v-28c0-12.426 10.074-22.5 22.5-22.5zm0 83c14.636 0 26.5 11.864 26.5 26.5S175.136 233 160.5 233 134 221.136 134 206.5s11.864-26.5 26.5-26.5zm-.02-135c-6.102 0-14.05 8.427-23.842 25.28l-74.73 127.605c-12.713 21.444-17.806 35.025-15.28 40.742 2.527 5.717 8.519 9.175 17.974 10.373h197.255c5.932-1.214 10.051-4.671 12.357-10.373 2.307-5.702-1.812-16.903-12.357-33.603L184.555 70.281C174.608 53.427 166.583 45 160.48 45zm154.61 165.418c2.216 6.027 3.735 11.967 4.393 18.103.963 8.977.067 18.035-3.552 26.98-7.933 19.612-24.283 33.336-45.054 37.586l-4.464.913H61.763l-2.817-.357c-10.267-1.3-19.764-4.163-28.422-9.16-11.051-6.377-19.82-15.823-25.055-27.664-4.432-10.03-5.235-19.952-3.914-29.887.821-6.175 2.486-12.239 4.864-18.58 3.616-9.64 9.159-20.55 16.718-33.309L97.77 47.603c6.469-11.125 12.743-20.061 19.436-27.158 4.62-4.899 9.562-9.07 15.206-12.456C140.712 3.01 150.091 0 160.481 0c10.358 0 19.703 2.99 27.989 7.933 5.625 3.356 10.563 7.492 15.193 12.354 6.735 7.072 13.08 15.997 19.645 27.12l.142.24 76.986 134.194c6.553 10.46 11.425 19.799 14.654 28.577z'/%3E%3C/svg%3E\");\n  width: 18px;\n  height: 18px;\n  background-size: 18px 18px;\n  position: absolute;\n  margin-top: 12px;\n  left: -30px;\n}\n\n@media all and (max-width: 735px) {\n  .cdx-warning::before {\n    display: none;\n  }\n}\n\n.cdx-warning__message {\n  min-height: 85px;\n}\n\n.cdx-warning__title {\n  margin-bottom: 6px;\n}\n",
+                ""
+            ]);
+        },
+        function(t5, e4, n2) {
+            "use strict";
+            t5.exports = function(t6) {
+                var e5 = [];
+                return e5.toString = function() {
+                    return this.map(function(e6) {
+                        var n3 = function(t7, e) {
+                            var n = t7[1] || "", r = t7[3];
+                            if (!r) return n;
+                            if (e && "function" == typeof btoa) {
+                                var o = (a = r, "/*# sourceMappingURL=data:application/json;charset=utf-8;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(a)))) + " */"), i = r.sources.map(function(t) {
+                                    return "/*# sourceURL=" + r.sourceRoot + t + " */";
+                                });
+                                return [
+                                    n
+                                ].concat(i).concat([
+                                    o
+                                ]).join("\n");
+                            }
+                            var a;
+                            return [
+                                n
+                            ].join("\n");
+                        }(e6, t6);
+                        return e6[2] ? "@media " + e6[2] + "{" + n3 + "}" : n3;
+                    }).join("");
+                }, e5.i = function(t, n) {
+                    "string" == typeof t && (t = [
+                        [
+                            null,
+                            t,
+                            ""
+                        ]
+                    ]);
+                    for(var r = {
+                    }, o = 0; o < this.length; o++){
+                        var i = this[o][0];
+                        null != i && (r[i] = !0);
+                    }
+                    for(o = 0; o < t.length; o++){
+                        var a = t[o];
+                        null != a[0] && r[a[0]] || (n && !a[2] ? a[2] = n : n && (a[2] = "(" + a[2] + ") and (" + n + ")"), e5.push(a));
+                    }
+                }, e5;
+            };
+        },
+        function(t8, e7, n4) {
+            var r2, o2, i2 = {
+            }, a1 = (r2 = function() {
+                return window && document && document.all && !window.atob;
+            }, function() {
+                return void 0 === o2 && (o2 = r2.apply(this, arguments)), o2;
+            }), s1 = function(t9) {
+                var e8 = {
+                };
+                return function(t10, n) {
+                    if ("function" == typeof t10) return t10();
+                    if (void 0 === e8[t10]) {
+                        var r = (function(t, e) {
+                            return e ? e.querySelector(t) : document.querySelector(t);
+                        }).call(this, t10, n);
+                        if (window.HTMLIFrameElement && r instanceof window.HTMLIFrameElement) try {
+                            r = r.contentDocument.head;
+                        } catch (t) {
+                            r = null;
+                        }
+                        e8[t10] = r;
+                    }
+                    return e8[t10];
+                };
+            }(), c1 = null, l = 0, u = [], f = n4(6);
+            function d(t, e) {
+                for(var n = 0; n < t.length; n++){
+                    var r = t[n], o = i2[r.id];
+                    if (o) {
+                        o.refs++;
+                        for(var a = 0; a < o.parts.length; a++)o.parts[a](r.parts[a]);
+                        for(; a < r.parts.length; a++)o.parts.push(y(r.parts[a], e));
+                    } else {
+                        var s = [];
+                        for(a = 0; a < r.parts.length; a++)s.push(y(r.parts[a], e));
+                        i2[r.id] = {
+                            id: r.id,
+                            refs: 1,
+                            parts: s
+                        };
+                    }
+                }
+            }
+            function p(t, e) {
+                for(var n = [], r = {
+                }, o = 0; o < t.length; o++){
+                    var i = t[o], a = e.base ? i[0] + e.base : i[0], s = {
+                        css: i[1],
+                        media: i[2],
+                        sourceMap: i[3]
+                    };
+                    r[a] ? r[a].parts.push(s) : n.push(r[a] = {
+                        id: a,
+                        parts: [
+                            s
+                        ]
+                    });
+                }
+                return n;
+            }
+            function h(t, e) {
+                var n = s1(t.insertInto);
+                if (!n) throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
+                var r = u[u.length - 1];
+                if ("top" === t.insertAt) r ? r.nextSibling ? n.insertBefore(e, r.nextSibling) : n.appendChild(e) : n.insertBefore(e, n.firstChild), u.push(e);
+                else if ("bottom" === t.insertAt) n.appendChild(e);
+                else {
+                    if ("object" != typeof t.insertAt || !t.insertAt.before) throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");
+                    var o = s1(t.insertAt.before, n);
+                    n.insertBefore(e, o);
+                }
+            }
+            function v(t) {
+                if (null === t.parentNode) return !1;
+                t.parentNode.removeChild(t);
+                var e = u.indexOf(t);
+                e >= 0 && u.splice(e, 1);
+            }
+            function g(t) {
+                var e = document.createElement("style");
+                if (void 0 === t.attrs.type && (t.attrs.type = "text/css"), void 0 === t.attrs.nonce) {
+                    var r = function() {
+                        return n4.nc;
+                    }();
+                    r && (t.attrs.nonce = r);
+                }
+                return m(e, t.attrs), h(t, e), e;
+            }
+            function m(t, e) {
+                Object.keys(e).forEach(function(n) {
+                    t.setAttribute(n, e[n]);
+                });
+            }
+            function y(t11, e9) {
+                var n5, r3, o3, i3;
+                if (e9.transform && t11.css) {
+                    if (!(i3 = "function" == typeof e9.transform ? e9.transform(t11.css) : e9.transform.default(t11.css))) return function() {
+                    };
+                    t11.css = i3;
+                }
+                if (e9.singleton) {
+                    var a = l++;
+                    n5 = c1 || (c1 = g(e9)), r3 = x.bind(null, n5, a, !1), o3 = x.bind(null, n5, a, !0);
+                } else t11.sourceMap && "function" == typeof URL && "function" == typeof URL.createObjectURL && "function" == typeof URL.revokeObjectURL && "function" == typeof Blob && "function" == typeof btoa ? (n5 = (function(t) {
+                    var e = document.createElement("link");
+                    return void 0 === t.attrs.type && (t.attrs.type = "text/css"), t.attrs.rel = "stylesheet", m(e, t.attrs), h(t, e), e;
+                })(e9), r3 = (function(t, e, n) {
+                    var r = n.css, o = n.sourceMap, i = void 0 === e.convertToAbsoluteUrls && o;
+                    (e.convertToAbsoluteUrls || i) && (r = f(r));
+                    o && (r += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(o)))) + " */");
+                    var a = new Blob([
+                        r
+                    ], {
+                        type: "text/css"
+                    }), s = t.href;
+                    t.href = URL.createObjectURL(a), s && URL.revokeObjectURL(s);
+                }).bind(null, n5, e9), o3 = function() {
+                    v(n5), n5.href && URL.revokeObjectURL(n5.href);
+                }) : (n5 = g(e9), r3 = (function(t, e) {
+                    var n = e.css, r = e.media;
+                    r && t.setAttribute("media", r);
+                    if (t.styleSheet) t.styleSheet.cssText = n;
+                    else {
+                        for(; t.firstChild;)t.removeChild(t.firstChild);
+                        t.appendChild(document.createTextNode(n));
+                    }
+                }).bind(null, n5), o3 = function() {
+                    v(n5);
+                });
+                return r3(t11), function(e) {
+                    if (e) {
+                        if (e.css === t11.css && e.media === t11.media && e.sourceMap === t11.sourceMap) return;
+                        r3(t11 = e);
+                    } else o3();
+                };
+            }
+            t8.exports = function(t12, e) {
+                if ("undefined" != typeof DEBUG && DEBUG && "object" != typeof document) throw new Error("The style-loader cannot be used in a non-browser environment");
+                (e = e || {
+                }).attrs = "object" == typeof e.attrs ? e.attrs : {
+                }, e.singleton || "boolean" == typeof e.singleton || (e.singleton = a1()), e.insertInto || (e.insertInto = "head"), e.insertAt || (e.insertAt = "bottom");
+                var n = p(t12, e);
+                return d(n, e), function(t) {
+                    for(var r = [], o = 0; o < n.length; o++){
+                        var a = n[o];
+                        (s = i2[a.id]).refs--, r.push(s);
+                    }
+                    t && d(p(t, e), e);
+                    for(o = 0; o < r.length; o++){
+                        var s;
+                        if (0 === (s = r[o]).refs) {
+                            for(var c = 0; c < s.parts.length; c++)s.parts[c]();
+                            delete i2[s.id];
+                        }
+                    }
+                };
+            };
+            var b, w = (b = [], function(t, e) {
+                return b[t] = e, b.filter(Boolean).join("\n");
+            });
+            function x(t, e, n, r) {
+                var o = n ? "" : r.css;
+                if (t.styleSheet) t.styleSheet.cssText = w(e, o);
+                else {
+                    var i = document.createTextNode(o), a = t.childNodes;
+                    a[e] && t.removeChild(a[e]), a.length ? t.insertBefore(i, a[e]) : t.appendChild(i);
+                }
+            }
+        },
+        function(t13, e10) {
+            t13.exports = function(t14) {
+                var e11 = "undefined" != typeof window && window.location;
+                if (!e11) throw new Error("fixUrls requires window.location");
+                if (!t14 || "string" != typeof t14) return t14;
+                var n = e11.protocol + "//" + e11.host, r = n + e11.pathname.replace(/\/[^\/]*$/, "/");
+                return t14.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function(t, e12) {
+                    var o, i = e12.trim().replace(/^"(.*)"$/, function(t, e) {
+                        return e;
+                    }).replace(/^'(.*)'$/, function(t, e) {
+                        return e;
+                    });
+                    return /^(#|data:|http:\/\/|https:\/\/|file:\/\/\/|\s*$)/i.test(i) ? t : (o = 0 === i.indexOf("//") ? i : 0 === i.indexOf("/") ? n + i : r + i.replace(/^\.\//, ""), "url(" + JSON.stringify(o) + ")");
+                });
+            };
+        }
+    ]).default;
+});
+
+},{}],"hVtvH":[function(require,module,exports) {
+!function(t, e) {
+    "object" == typeof exports && "object" == typeof module ? module.exports = e() : "function" == typeof define && define.amd ? define([], e) : "object" == typeof exports ? exports.Marker = e() : t.Marker = e();
+}(window, function() {
+    return (function(t1) {
+        var e1 = {
+        };
+        function n(r) {
+            if (e1[r]) return e1[r].exports;
+            var o = e1[r] = {
+                i: r,
+                l: !1,
+                exports: {
+                }
+            };
+            return t1[r].call(o.exports, o, o.exports, n), o.l = !0, o.exports;
+        }
+        return n.m = t1, n.c = e1, n.d = function(t, e, r) {
+            n.o(t, e) || Object.defineProperty(t, e, {
+                enumerable: !0,
+                get: r
+            });
+        }, n.r = function(t) {
+            "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(t, Symbol.toStringTag, {
+                value: "Module"
+            }), Object.defineProperty(t, "__esModule", {
+                value: !0
+            });
+        }, n.t = function(t, e) {
+            if (1 & e && (t = n(t)), 8 & e) return t;
+            if (4 & e && "object" == typeof t && t && t.__esModule) return t;
+            var r = Object.create(null);
+            if (n.r(r), Object.defineProperty(r, "default", {
+                enumerable: !0,
+                value: t
+            }), 2 & e && "string" != typeof t) for(var o in t)n.d(r, o, (function(e) {
+                return t[e];
+            }).bind(null, o));
+            return r;
+        }, n.n = function(t) {
+            var e = t && t.__esModule ? function() {
+                return t.default;
+            } : function() {
+                return t;
+            };
+            return n.d(e, "a", e), e;
+        }, n.o = function(t, e) {
+            return Object.prototype.hasOwnProperty.call(t, e);
+        }, n.p = "/", n(n.s = 0);
+    })([
+        function(t2, e2, n1) {
+            function r1(t, e) {
+                for(var n = 0; n < e.length; n++){
+                    var r = e[n];
+                    r.enumerable = r.enumerable || !1, r.configurable = !0, "value" in r && (r.writable = !0), Object.defineProperty(t, r.key, r);
+                }
+            }
+            function o(t, e, n) {
+                return e && r1(t.prototype, e), n && r1(t, n), t;
+            }
+            n1(1).toString();
+            var i = function() {
+                function t3(e3) {
+                    var n = e3.api;
+                    !function(t, e) {
+                        if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function");
+                    }(this, t3), this.api = n, this.button = null, this.tag = "MARK", this.iconClasses = {
+                        base: this.api.styles.inlineToolButton,
+                        active: this.api.styles.inlineToolButtonActive
+                    };
+                }
+                return o(t3, null, [
+                    {
+                        key: "CSS",
+                        get: function() {
+                            return "cdx-marker";
+                        }
+                    }
+                ]), o(t3, [
+                    {
+                        key: "render",
+                        value: function() {
+                            return this.button = document.createElement("button"), this.button.type = "button", this.button.classList.add(this.iconClasses.base), this.button.innerHTML = this.toolboxIcon, this.button;
+                        }
+                    },
+                    {
+                        key: "surround",
+                        value: function(e) {
+                            if (e) {
+                                var n = this.api.selection.findParentTag(this.tag, t3.CSS);
+                                n ? this.unwrap(n) : this.wrap(e);
+                            }
+                        }
+                    },
+                    {
+                        key: "wrap",
+                        value: function(e) {
+                            var n = document.createElement(this.tag);
+                            n.classList.add(t3.CSS), n.appendChild(e.extractContents()), e.insertNode(n), this.api.selection.expandToTag(n);
+                        }
+                    },
+                    {
+                        key: "unwrap",
+                        value: function(t) {
+                            this.api.selection.expandToTag(t);
+                            var e = window.getSelection(), n = e.getRangeAt(0), r = n.extractContents();
+                            t.parentNode.removeChild(t), n.insertNode(r), e.removeAllRanges(), e.addRange(n);
+                        }
+                    },
+                    {
+                        key: "checkState",
+                        value: function() {
+                            var e = this.api.selection.findParentTag(this.tag, t3.CSS);
+                            this.button.classList.toggle(this.iconClasses.active, !!e);
+                        }
+                    },
+                    {
+                        key: "toolboxIcon",
+                        get: function() {
+                            return n1(6).default;
+                        }
+                    }
+                ], [
+                    {
+                        key: "isInline",
+                        get: function() {
+                            return !0;
+                        }
+                    },
+                    {
+                        key: "sanitize",
+                        get: function() {
+                            return {
+                                mark: {
+                                    class: t3.CSS
+                                }
+                            };
+                        }
+                    }
+                ]), t3;
+            }();
+            t2.exports = i;
+        },
+        function(t, e, n) {
+            var r = n(2);
+            "string" == typeof r && (r = [
+                [
+                    t.i,
+                    r,
+                    ""
+                ]
+            ]);
+            var o = {
+                hmr: !0,
+                transform: void 0,
+                insertInto: void 0
+            };
+            n(4)(r, o);
+            r.locals && (t.exports = r.locals);
+        },
+        function(t, e, n) {
+            (t.exports = n(3)(!1)).push([
+                t.i,
+                ".cdx-marker {\n  background: rgba(245,235,111,0.29);\n  padding: 3px 0;\n}",
+                ""
+            ]);
+        },
+        function(t4, e4) {
+            t4.exports = function(t5) {
+                var e5 = [];
+                return e5.toString = function() {
+                    return this.map(function(e6) {
+                        var n2 = function(t6, e) {
+                            var n = t6[1] || "", r = t6[3];
+                            if (!r) return n;
+                            if (e && "function" == typeof btoa) {
+                                var o = (a = r, "/*# sourceMappingURL=data:application/json;charset=utf-8;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(a)))) + " */"), i = r.sources.map(function(t) {
+                                    return "/*# sourceURL=" + r.sourceRoot + t + " */";
+                                });
+                                return [
+                                    n
+                                ].concat(i).concat([
+                                    o
+                                ]).join("\n");
+                            }
+                            var a;
+                            return [
+                                n
+                            ].join("\n");
+                        }(e6, t5);
+                        return e6[2] ? "@media " + e6[2] + "{" + n2 + "}" : n2;
+                    }).join("");
+                }, e5.i = function(t, n) {
+                    "string" == typeof t && (t = [
+                        [
+                            null,
+                            t,
+                            ""
+                        ]
+                    ]);
+                    for(var r = {
+                    }, o = 0; o < this.length; o++){
+                        var i = this[o][0];
+                        "number" == typeof i && (r[i] = !0);
+                    }
+                    for(o = 0; o < t.length; o++){
+                        var a = t[o];
+                        "number" == typeof a[0] && r[a[0]] || (n && !a[2] ? a[2] = n : n && (a[2] = "(" + a[2] + ") and (" + n + ")"), e5.push(a));
+                    }
+                }, e5;
+            };
+        },
+        function(t7, e7, n3) {
+            var r2, o1, i1 = {
+            }, a1 = (r2 = function() {
+                return window && document && document.all && !window.atob;
+            }, function() {
+                return void 0 === o1 && (o1 = r2.apply(this, arguments)), o1;
+            }), s1 = function(t8) {
+                var e = {
+                };
+                return function(t9) {
+                    if ("function" == typeof t9) return t9();
+                    if (void 0 === e[t9]) {
+                        var n = (function(t) {
+                            return document.querySelector(t);
+                        }).call(this, t9);
+                        if (window.HTMLIFrameElement && n instanceof window.HTMLIFrameElement) try {
+                            n = n.contentDocument.head;
+                        } catch (t) {
+                            n = null;
+                        }
+                        e[t9] = n;
+                    }
+                    return e[t9];
+                };
+            }(), u1 = null, c = 0, f = [], l = n3(5);
+            function p(t, e) {
+                for(var n = 0; n < t.length; n++){
+                    var r = t[n], o = i1[r.id];
+                    if (o) {
+                        o.refs++;
+                        for(var a = 0; a < o.parts.length; a++)o.parts[a](r.parts[a]);
+                        for(; a < r.parts.length; a++)o.parts.push(g(r.parts[a], e));
+                    } else {
+                        var s = [];
+                        for(a = 0; a < r.parts.length; a++)s.push(g(r.parts[a], e));
+                        i1[r.id] = {
+                            id: r.id,
+                            refs: 1,
+                            parts: s
+                        };
+                    }
+                }
+            }
+            function d(t, e) {
+                for(var n = [], r = {
+                }, o = 0; o < t.length; o++){
+                    var i = t[o], a = e.base ? i[0] + e.base : i[0], s = {
+                        css: i[1],
+                        media: i[2],
+                        sourceMap: i[3]
+                    };
+                    r[a] ? r[a].parts.push(s) : n.push(r[a] = {
+                        id: a,
+                        parts: [
+                            s
+                        ]
+                    });
+                }
+                return n;
+            }
+            function h(t, e) {
+                var n = s1(t.insertInto);
+                if (!n) throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
+                var r = f[f.length - 1];
+                if ("top" === t.insertAt) r ? r.nextSibling ? n.insertBefore(e, r.nextSibling) : n.appendChild(e) : n.insertBefore(e, n.firstChild), f.push(e);
+                else if ("bottom" === t.insertAt) n.appendChild(e);
+                else {
+                    if ("object" != typeof t.insertAt || !t.insertAt.before) throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");
+                    var o = s1(t.insertInto + " " + t.insertAt.before);
+                    n.insertBefore(e, o);
+                }
+            }
+            function v(t) {
+                if (null === t.parentNode) return !1;
+                t.parentNode.removeChild(t);
+                var e = f.indexOf(t);
+                e >= 0 && f.splice(e, 1);
+            }
+            function b(t) {
+                var e = document.createElement("style");
+                return void 0 === t.attrs.type && (t.attrs.type = "text/css"), y(e, t.attrs), h(t, e), e;
+            }
+            function y(t, e) {
+                Object.keys(e).forEach(function(n) {
+                    t.setAttribute(n, e[n]);
+                });
+            }
+            function g(t10, e8) {
+                var n4, r3, o2, i2;
+                if (e8.transform && t10.css) {
+                    if (!(i2 = e8.transform(t10.css))) return function() {
+                    };
+                    t10.css = i2;
+                }
+                if (e8.singleton) {
+                    var a = c++;
+                    n4 = u1 || (u1 = b(e8)), r3 = x.bind(null, n4, a, !1), o2 = x.bind(null, n4, a, !0);
+                } else t10.sourceMap && "function" == typeof URL && "function" == typeof URL.createObjectURL && "function" == typeof URL.revokeObjectURL && "function" == typeof Blob && "function" == typeof btoa ? (n4 = (function(t) {
+                    var e = document.createElement("link");
+                    return void 0 === t.attrs.type && (t.attrs.type = "text/css"), t.attrs.rel = "stylesheet", y(e, t.attrs), h(t, e), e;
+                })(e8), r3 = (function(t, e, n) {
+                    var r = n.css, o = n.sourceMap, i = void 0 === e.convertToAbsoluteUrls && o;
+                    (e.convertToAbsoluteUrls || i) && (r = l(r));
+                    o && (r += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(o)))) + " */");
+                    var a = new Blob([
+                        r
+                    ], {
+                        type: "text/css"
+                    }), s = t.href;
+                    t.href = URL.createObjectURL(a), s && URL.revokeObjectURL(s);
+                }).bind(null, n4, e8), o2 = function() {
+                    v(n4), n4.href && URL.revokeObjectURL(n4.href);
+                }) : (n4 = b(e8), r3 = (function(t, e) {
+                    var n = e.css, r = e.media;
+                    r && t.setAttribute("media", r);
+                    if (t.styleSheet) t.styleSheet.cssText = n;
+                    else {
+                        for(; t.firstChild;)t.removeChild(t.firstChild);
+                        t.appendChild(document.createTextNode(n));
+                    }
+                }).bind(null, n4), o2 = function() {
+                    v(n4);
+                });
+                return r3(t10), function(e) {
+                    if (e) {
+                        if (e.css === t10.css && e.media === t10.media && e.sourceMap === t10.sourceMap) return;
+                        r3(t10 = e);
+                    } else o2();
+                };
+            }
+            t7.exports = function(t11, e) {
+                if ("undefined" != typeof DEBUG && DEBUG && "object" != typeof document) throw new Error("The style-loader cannot be used in a non-browser environment");
+                (e = e || {
+                }).attrs = "object" == typeof e.attrs ? e.attrs : {
+                }, e.singleton || "boolean" == typeof e.singleton || (e.singleton = a1()), e.insertInto || (e.insertInto = "head"), e.insertAt || (e.insertAt = "bottom");
+                var n = d(t11, e);
+                return p(n, e), function(t) {
+                    for(var r = [], o = 0; o < n.length; o++){
+                        var a = n[o];
+                        (s = i1[a.id]).refs--, r.push(s);
+                    }
+                    t && p(d(t, e), e);
+                    for(o = 0; o < r.length; o++){
+                        var s;
+                        if (0 === (s = r[o]).refs) {
+                            for(var u = 0; u < s.parts.length; u++)s.parts[u]();
+                            delete i1[s.id];
+                        }
+                    }
+                };
+            };
+            var m, w = (m = [], function(t, e) {
+                return m[t] = e, m.filter(Boolean).join("\n");
+            });
+            function x(t, e, n, r) {
+                var o = n ? "" : r.css;
+                if (t.styleSheet) t.styleSheet.cssText = w(e, o);
+                else {
+                    var i = document.createTextNode(o), a = t.childNodes;
+                    a[e] && t.removeChild(a[e]), a.length ? t.insertBefore(i, a[e]) : t.appendChild(i);
+                }
+            }
+        },
+        function(t12, e9) {
+            t12.exports = function(t13) {
+                var e10 = "undefined" != typeof window && window.location;
+                if (!e10) throw new Error("fixUrls requires window.location");
+                if (!t13 || "string" != typeof t13) return t13;
+                var n = e10.protocol + "//" + e10.host, r = n + e10.pathname.replace(/\/[^\/]*$/, "/");
+                return t13.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function(t, e11) {
+                    var o, i = e11.trim().replace(/^"(.*)"$/, function(t, e) {
+                        return e;
+                    }).replace(/^'(.*)'$/, function(t, e) {
+                        return e;
+                    });
+                    return /^(#|data:|http:\/\/|https:\/\/|file:\/\/\/|\s*$)/i.test(i) ? t : (o = 0 === i.indexOf("//") ? i : 0 === i.indexOf("/") ? n + i : r + i.replace(/^\.\//, ""), "url(" + JSON.stringify(o) + ")");
+                });
+            };
+        },
+        function(t, e, n) {
+            "use strict";
+            n.r(e), e.default = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="1 2 13 12" width="13" height="12"><path d="M8.367 9.633L10.7 10.98l-.624 1.135-.787-.025-.78 1.35H6.94l1.193-2.066-.407-.62.642-1.121zm.436-.763l2.899-5.061a1.278 1.278 0 011.746-.472c.617.355.835 1.138.492 1.76l-2.815 5.114-2.322-1.34zM2.62 11.644H5.39a.899.899 0 110 1.798H2.619a.899.899 0 010-1.798z"/></svg>\n';
+        }
+    ]);
+});
+
+},{}],"63vxr":[function(require,module,exports) {
+!function(e, t) {
+    "object" == typeof exports && "object" == typeof module ? module.exports = t() : "function" == typeof define && define.amd ? define([], t) : "object" == typeof exports ? exports.Delimiter = t() : e.Delimiter = t();
+}(window, function() {
+    return (function(e1) {
+        var t1 = {
+        };
+        function n(r) {
+            if (t1[r]) return t1[r].exports;
+            var o = t1[r] = {
+                i: r,
+                l: !1,
+                exports: {
+                }
+            };
+            return e1[r].call(o.exports, o, o.exports, n), o.l = !0, o.exports;
+        }
+        return n.m = e1, n.c = t1, n.d = function(e, t, r) {
+            n.o(e, t) || Object.defineProperty(e, t, {
+                enumerable: !0,
+                get: r
+            });
+        }, n.r = function(e) {
+            "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(e, Symbol.toStringTag, {
+                value: "Module"
+            }), Object.defineProperty(e, "__esModule", {
+                value: !0
+            });
+        }, n.t = function(e, t) {
+            if (1 & t && (e = n(e)), 8 & t) return e;
+            if (4 & t && "object" == typeof e && e && e.__esModule) return e;
+            var r = Object.create(null);
+            if (n.r(r), Object.defineProperty(r, "default", {
+                enumerable: !0,
+                value: e
+            }), 2 & t && "string" != typeof e) for(var o in e)n.d(r, o, (function(t) {
+                return e[t];
+            }).bind(null, o));
+            return r;
+        }, n.n = function(e) {
+            var t = e && e.__esModule ? function() {
+                return e.default;
+            } : function() {
+                return e;
+            };
+            return n.d(t, "a", t), t;
+        }, n.o = function(e, t) {
+            return Object.prototype.hasOwnProperty.call(e, t);
+        }, n.p = "/", n(n.s = 0);
+    })([
+        function(e2, t2, n1) {
+            function r1(e, t) {
+                for(var n = 0; n < t.length; n++){
+                    var r = t[n];
+                    r.enumerable = r.enumerable || !1, r.configurable = !0, "value" in r && (r.writable = !0), Object.defineProperty(e, r.key, r);
+                }
+            }
+            function o(e, t, n) {
+                return t && r1(e.prototype, t), n && r1(e, n), e;
+            }
+            n1(1).toString();
+            /**
+ * Delimiter Block for the Editor.js.
+ *
+ * @author CodeX (team@ifmo.su)
+ * @copyright CodeX 2018
+ * @license The MIT License (MIT)
+ * @version 2.0.0
+ */ var i = function() {
+                function e3(t3) {
+                    var n = t3.data, r = (t3.config, t3.api);
+                    !function(e, t) {
+                        if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function");
+                    }(this, e3), this.api = r, this._CSS = {
+                        block: this.api.styles.block,
+                        wrapper: "ce-delimiter"
+                    }, this._data = {
+                    }, this._element = this.drawView(), this.data = n;
+                }
+                return o(e3, null, [
+                    {
+                        key: "isReadOnlySupported",
+                        get: function() {
+                            return !0;
+                        }
+                    },
+                    {
+                        key: "contentless",
+                        get: function() {
+                            return !0;
+                        }
+                    }
+                ]), o(e3, [
+                    {
+                        key: "drawView",
+                        value: function() {
+                            var e = document.createElement("DIV");
+                            return e.classList.add(this._CSS.wrapper, this._CSS.block), e;
+                        }
+                    },
+                    {
+                        key: "render",
+                        value: function() {
+                            return this._element;
+                        }
+                    },
+                    {
+                        key: "save",
+                        value: function(e) {
+                            return {
+                            };
+                        }
+                    }
+                ], [
+                    {
+                        key: "toolbox",
+                        get: function() {
+                            return {
+                                icon: '<svg width="19" height="4" viewBox="0 0 19 4" xmlns="http://www.w3.org/2000/svg"><path d="M1.25 0H7a1.25 1.25 0 1 1 0 2.5H1.25a1.25 1.25 0 1 1 0-2.5zM11 0h5.75a1.25 1.25 0 0 1 0 2.5H11A1.25 1.25 0 0 1 11 0z"/></svg>',
+                                title: "Delimiter"
+                            };
+                        }
+                    }
+                ]), e3;
+            }();
+            e2.exports = i;
+        },
+        function(e, t, n) {
+            var r = n(2);
+            "string" == typeof r && (r = [
+                [
+                    e.i,
+                    r,
+                    ""
+                ]
+            ]);
+            var o = {
+                hmr: !0,
+                transform: void 0,
+                insertInto: void 0
+            };
+            n(4)(r, o);
+            r.locals && (e.exports = r.locals);
+        },
+        function(e, t, n) {
+            (e.exports = n(3)(!1)).push([
+                e.i,
+                '.ce-delimiter {\n    line-height: 1.6em;\n    width: 100%;\n    text-align: center;\n}\n\n.ce-delimiter:before {\n    display: inline-block;\n    content: "***";\n    font-size: 30px;\n    line-height: 65px;\n    height: 30px;\n    letter-spacing: 0.2em;\n}',
+                ""
+            ]);
+        },
+        function(e4, t4) {
+            e4.exports = function(e5) {
+                var t5 = [];
+                return t5.toString = function() {
+                    return this.map(function(t6) {
+                        var n2 = function(e6, t) {
+                            var n = e6[1] || "", r = e6[3];
+                            if (!r) return n;
+                            if (t && "function" == typeof btoa) {
+                                var o = (a = r, "/*# sourceMappingURL=data:application/json;charset=utf-8;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(a)))) + " */"), i = r.sources.map(function(e) {
+                                    return "/*# sourceURL=" + r.sourceRoot + e + " */";
+                                });
+                                return [
+                                    n
+                                ].concat(i).concat([
+                                    o
+                                ]).join("\n");
+                            }
+                            var a;
+                            return [
+                                n
+                            ].join("\n");
+                        }(t6, e5);
+                        return t6[2] ? "@media " + t6[2] + "{" + n2 + "}" : n2;
+                    }).join("");
+                }, t5.i = function(e, n) {
+                    "string" == typeof e && (e = [
+                        [
+                            null,
+                            e,
+                            ""
+                        ]
+                    ]);
+                    for(var r = {
+                    }, o = 0; o < this.length; o++){
+                        var i = this[o][0];
+                        "number" == typeof i && (r[i] = !0);
+                    }
+                    for(o = 0; o < e.length; o++){
+                        var a = e[o];
+                        "number" == typeof a[0] && r[a[0]] || (n && !a[2] ? a[2] = n : n && (a[2] = "(" + a[2] + ") and (" + n + ")"), t5.push(a));
+                    }
+                }, t5;
+            };
+        },
+        function(e7, t7, n3) {
+            var r2, o1, i1 = {
+            }, a1 = (r2 = function() {
+                return window && document && document.all && !window.atob;
+            }, function() {
+                return void 0 === o1 && (o1 = r2.apply(this, arguments)), o1;
+            }), s1 = function(e8) {
+                var t = {
+                };
+                return function(e9) {
+                    if ("function" == typeof e9) return e9();
+                    if (void 0 === t[e9]) {
+                        var n = (function(e) {
+                            return document.querySelector(e);
+                        }).call(this, e9);
+                        if (window.HTMLIFrameElement && n instanceof window.HTMLIFrameElement) try {
+                            n = n.contentDocument.head;
+                        } catch (e) {
+                            n = null;
+                        }
+                        t[e9] = n;
+                    }
+                    return t[e9];
+                };
+            }(), u1 = null, c = 0, f = [], l = n3(5);
+            function p(e, t) {
+                for(var n = 0; n < e.length; n++){
+                    var r = e[n], o = i1[r.id];
+                    if (o) {
+                        o.refs++;
+                        for(var a = 0; a < o.parts.length; a++)o.parts[a](r.parts[a]);
+                        for(; a < r.parts.length; a++)o.parts.push(m(r.parts[a], t));
+                    } else {
+                        var s = [];
+                        for(a = 0; a < r.parts.length; a++)s.push(m(r.parts[a], t));
+                        i1[r.id] = {
+                            id: r.id,
+                            refs: 1,
+                            parts: s
+                        };
+                    }
+                }
+            }
+            function d(e, t) {
+                for(var n = [], r = {
+                }, o = 0; o < e.length; o++){
+                    var i = e[o], a = t.base ? i[0] + t.base : i[0], s = {
+                        css: i[1],
+                        media: i[2],
+                        sourceMap: i[3]
+                    };
+                    r[a] ? r[a].parts.push(s) : n.push(r[a] = {
+                        id: a,
+                        parts: [
+                            s
+                        ]
+                    });
+                }
+                return n;
+            }
+            function h(e, t) {
+                var n = s1(e.insertInto);
+                if (!n) throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
+                var r = f[f.length - 1];
+                if ("top" === e.insertAt) r ? r.nextSibling ? n.insertBefore(t, r.nextSibling) : n.appendChild(t) : n.insertBefore(t, n.firstChild), f.push(t);
+                else if ("bottom" === e.insertAt) n.appendChild(t);
+                else {
+                    if ("object" != typeof e.insertAt || !e.insertAt.before) throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");
+                    var o = s1(e.insertInto + " " + e.insertAt.before);
+                    n.insertBefore(t, o);
+                }
+            }
+            function v(e) {
+                if (null === e.parentNode) return !1;
+                e.parentNode.removeChild(e);
+                var t = f.indexOf(e);
+                t >= 0 && f.splice(t, 1);
+            }
+            function b(e) {
+                var t = document.createElement("style");
+                return void 0 === e.attrs.type && (e.attrs.type = "text/css"), y(t, e.attrs), h(e, t), t;
+            }
+            function y(e, t) {
+                Object.keys(t).forEach(function(n) {
+                    e.setAttribute(n, t[n]);
+                });
+            }
+            function m(e10, t8) {
+                var n4, r3, o2, i2;
+                if (t8.transform && e10.css) {
+                    if (!(i2 = t8.transform(e10.css))) return function() {
+                    };
+                    e10.css = i2;
+                }
+                if (t8.singleton) {
+                    var a = c++;
+                    n4 = u1 || (u1 = b(t8)), r3 = x.bind(null, n4, a, !1), o2 = x.bind(null, n4, a, !0);
+                } else e10.sourceMap && "function" == typeof URL && "function" == typeof URL.createObjectURL && "function" == typeof URL.revokeObjectURL && "function" == typeof Blob && "function" == typeof btoa ? (n4 = (function(e) {
+                    var t = document.createElement("link");
+                    return void 0 === e.attrs.type && (e.attrs.type = "text/css"), e.attrs.rel = "stylesheet", y(t, e.attrs), h(e, t), t;
+                })(t8), r3 = (function(e, t, n) {
+                    var r = n.css, o = n.sourceMap, i = void 0 === t.convertToAbsoluteUrls && o;
+                    (t.convertToAbsoluteUrls || i) && (r = l(r));
+                    o && (r += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(o)))) + " */");
+                    var a = new Blob([
+                        r
+                    ], {
+                        type: "text/css"
+                    }), s = e.href;
+                    e.href = URL.createObjectURL(a), s && URL.revokeObjectURL(s);
+                }).bind(null, n4, t8), o2 = function() {
+                    v(n4), n4.href && URL.revokeObjectURL(n4.href);
+                }) : (n4 = b(t8), r3 = (function(e, t) {
+                    var n = t.css, r = t.media;
+                    r && e.setAttribute("media", r);
+                    if (e.styleSheet) e.styleSheet.cssText = n;
+                    else {
+                        for(; e.firstChild;)e.removeChild(e.firstChild);
+                        e.appendChild(document.createTextNode(n));
+                    }
+                }).bind(null, n4), o2 = function() {
+                    v(n4);
+                });
+                return r3(e10), function(t) {
+                    if (t) {
+                        if (t.css === e10.css && t.media === e10.media && t.sourceMap === e10.sourceMap) return;
+                        r3(e10 = t);
+                    } else o2();
+                };
+            }
+            e7.exports = function(e11, t) {
+                if ("undefined" != typeof DEBUG && DEBUG && "object" != typeof document) throw new Error("The style-loader cannot be used in a non-browser environment");
+                (t = t || {
+                }).attrs = "object" == typeof t.attrs ? t.attrs : {
+                }, t.singleton || "boolean" == typeof t.singleton || (t.singleton = a1()), t.insertInto || (t.insertInto = "head"), t.insertAt || (t.insertAt = "bottom");
+                var n = d(e11, t);
+                return p(n, t), function(e) {
+                    for(var r = [], o = 0; o < n.length; o++){
+                        var a = n[o];
+                        (s = i1[a.id]).refs--, r.push(s);
+                    }
+                    e && p(d(e, t), t);
+                    for(o = 0; o < r.length; o++){
+                        var s;
+                        if (0 === (s = r[o]).refs) {
+                            for(var u = 0; u < s.parts.length; u++)s.parts[u]();
+                            delete i1[s.id];
+                        }
+                    }
+                };
+            };
+            var g, w = (g = [], function(e, t) {
+                return g[e] = t, g.filter(Boolean).join("\n");
+            });
+            function x(e, t, n, r) {
+                var o = n ? "" : r.css;
+                if (e.styleSheet) e.styleSheet.cssText = w(t, o);
+                else {
+                    var i = document.createTextNode(o), a = e.childNodes;
+                    a[t] && e.removeChild(a[t]), a.length ? e.insertBefore(i, a[t]) : e.appendChild(i);
+                }
+            }
+        },
+        function(e12, t9) {
+            e12.exports = function(e13) {
+                var t10 = "undefined" != typeof window && window.location;
+                if (!t10) throw new Error("fixUrls requires window.location");
+                if (!e13 || "string" != typeof e13) return e13;
+                var n = t10.protocol + "//" + t10.host, r = n + t10.pathname.replace(/\/[^\/]*$/, "/");
+                return e13.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function(e, t11) {
+                    var o, i = t11.trim().replace(/^"(.*)"$/, function(e, t) {
+                        return t;
+                    }).replace(/^'(.*)'$/, function(e, t) {
+                        return t;
+                    });
+                    return /^(#|data:|http:\/\/|https:\/\/|file:\/\/\/|\s*$)/i.test(i) ? e : (o = 0 === i.indexOf("//") ? i : 0 === i.indexOf("/") ? n + i : r + i.replace(/^\.\//, ""), "url(" + JSON.stringify(o) + ")");
+                });
+            };
+        }
+    ]);
+});
+
 },{}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
@@ -18330,6 +21590,3781 @@ exports.export = function(dest, destName, get) {
         get: get
     });
 };
+
+},{}],"k0Dv8":[function(require,module,exports) {
+!function(t, e) {
+    "object" == typeof exports && "object" == typeof module ? module.exports = e() : "function" == typeof define && define.amd ? define([], e) : "object" == typeof exports ? exports.InlineCode = e() : t.InlineCode = e();
+}(window, function() {
+    return (function(t1) {
+        var e1 = {
+        };
+        function n(r) {
+            if (e1[r]) return e1[r].exports;
+            var o = e1[r] = {
+                i: r,
+                l: !1,
+                exports: {
+                }
+            };
+            return t1[r].call(o.exports, o, o.exports, n), o.l = !0, o.exports;
+        }
+        return n.m = t1, n.c = e1, n.d = function(t, e, r) {
+            n.o(t, e) || Object.defineProperty(t, e, {
+                enumerable: !0,
+                get: r
+            });
+        }, n.r = function(t) {
+            "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(t, Symbol.toStringTag, {
+                value: "Module"
+            }), Object.defineProperty(t, "__esModule", {
+                value: !0
+            });
+        }, n.t = function(t, e) {
+            if (1 & e && (t = n(t)), 8 & e) return t;
+            if (4 & e && "object" == typeof t && t && t.__esModule) return t;
+            var r = Object.create(null);
+            if (n.r(r), Object.defineProperty(r, "default", {
+                enumerable: !0,
+                value: t
+            }), 2 & e && "string" != typeof t) for(var o in t)n.d(r, o, (function(e) {
+                return t[e];
+            }).bind(null, o));
+            return r;
+        }, n.n = function(t) {
+            var e = t && t.__esModule ? function() {
+                return t.default;
+            } : function() {
+                return t;
+            };
+            return n.d(e, "a", e), e;
+        }, n.o = function(t, e) {
+            return Object.prototype.hasOwnProperty.call(t, e);
+        }, n.p = "/", n(n.s = 0);
+    })([
+        function(t2, e2, n1) {
+            function r1(t, e) {
+                for(var n = 0; n < e.length; n++){
+                    var r = e[n];
+                    r.enumerable = r.enumerable || !1, r.configurable = !0, "value" in r && (r.writable = !0), Object.defineProperty(t, r.key, r);
+                }
+            }
+            function o(t, e, n) {
+                return e && r1(t.prototype, e), n && r1(t, n), t;
+            }
+            n1(1).toString();
+            var i = function() {
+                function t3(e3) {
+                    var n = e3.api;
+                    !function(t, e) {
+                        if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function");
+                    }(this, t3), this.api = n, this.button = null, this.tag = "CODE", this.iconClasses = {
+                        base: this.api.styles.inlineToolButton,
+                        active: this.api.styles.inlineToolButtonActive
+                    };
+                }
+                return o(t3, null, [
+                    {
+                        key: "CSS",
+                        get: function() {
+                            return "inline-code";
+                        }
+                    }
+                ]), o(t3, [
+                    {
+                        key: "render",
+                        value: function() {
+                            return this.button = document.createElement("button"), this.button.type = "button", this.button.classList.add(this.iconClasses.base), this.button.innerHTML = this.toolboxIcon, this.button;
+                        }
+                    },
+                    {
+                        key: "surround",
+                        value: function(e) {
+                            if (e) {
+                                var n = this.api.selection.findParentTag(this.tag, t3.CSS);
+                                n ? this.unwrap(n) : this.wrap(e);
+                            }
+                        }
+                    },
+                    {
+                        key: "wrap",
+                        value: function(e) {
+                            var n = document.createElement(this.tag);
+                            n.classList.add(t3.CSS), n.appendChild(e.extractContents()), e.insertNode(n), this.api.selection.expandToTag(n);
+                        }
+                    },
+                    {
+                        key: "unwrap",
+                        value: function(t) {
+                            this.api.selection.expandToTag(t);
+                            var e = window.getSelection(), n = e.getRangeAt(0), r = n.extractContents();
+                            t.parentNode.removeChild(t), n.insertNode(r), e.removeAllRanges(), e.addRange(n);
+                        }
+                    },
+                    {
+                        key: "checkState",
+                        value: function() {
+                            var e = this.api.selection.findParentTag(this.tag, t3.CSS);
+                            this.button.classList.toggle(this.iconClasses.active, !!e);
+                        }
+                    },
+                    {
+                        key: "toolboxIcon",
+                        get: function() {
+                            return n1(6).default;
+                        }
+                    }
+                ], [
+                    {
+                        key: "isInline",
+                        get: function() {
+                            return !0;
+                        }
+                    },
+                    {
+                        key: "sanitize",
+                        get: function() {
+                            return {
+                                code: {
+                                    class: t3.CSS
+                                }
+                            };
+                        }
+                    }
+                ]), t3;
+            }();
+            t2.exports = i;
+        },
+        function(t, e, n) {
+            var r = n(2);
+            "string" == typeof r && (r = [
+                [
+                    t.i,
+                    r,
+                    ""
+                ]
+            ]);
+            var o = {
+                hmr: !0,
+                transform: void 0,
+                insertInto: void 0
+            };
+            n(4)(r, o);
+            r.locals && (t.exports = r.locals);
+        },
+        function(t, e, n) {
+            (t.exports = n(3)(!1)).push([
+                t.i,
+                ".inline-code {\n  background: rgba(250, 239, 240, 0.78);\n  color: #b44437;\n  padding: 3px 4px;\n  border-radius: 5px;\n  margin: 0 1px;\n  font-family: inherit;\n  font-size: 0.86em;\n  font-weight: 500;\n  letter-spacing: 0.3px;\n}\n",
+                ""
+            ]);
+        },
+        function(t4, e4) {
+            t4.exports = function(t5) {
+                var e5 = [];
+                return e5.toString = function() {
+                    return this.map(function(e6) {
+                        var n2 = function(t6, e) {
+                            var n = t6[1] || "", r = t6[3];
+                            if (!r) return n;
+                            if (e && "function" == typeof btoa) {
+                                var o = (a = r, "/*# sourceMappingURL=data:application/json;charset=utf-8;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(a)))) + " */"), i = r.sources.map(function(t) {
+                                    return "/*# sourceURL=" + r.sourceRoot + t + " */";
+                                });
+                                return [
+                                    n
+                                ].concat(i).concat([
+                                    o
+                                ]).join("\n");
+                            }
+                            var a;
+                            return [
+                                n
+                            ].join("\n");
+                        }(e6, t5);
+                        return e6[2] ? "@media " + e6[2] + "{" + n2 + "}" : n2;
+                    }).join("");
+                }, e5.i = function(t, n) {
+                    "string" == typeof t && (t = [
+                        [
+                            null,
+                            t,
+                            ""
+                        ]
+                    ]);
+                    for(var r = {
+                    }, o = 0; o < this.length; o++){
+                        var i = this[o][0];
+                        "number" == typeof i && (r[i] = !0);
+                    }
+                    for(o = 0; o < t.length; o++){
+                        var a = t[o];
+                        "number" == typeof a[0] && r[a[0]] || (n && !a[2] ? a[2] = n : n && (a[2] = "(" + a[2] + ") and (" + n + ")"), e5.push(a));
+                    }
+                }, e5;
+            };
+        },
+        function(t7, e7, n3) {
+            var r2, o1, i1 = {
+            }, a1 = (r2 = function() {
+                return window && document && document.all && !window.atob;
+            }, function() {
+                return void 0 === o1 && (o1 = r2.apply(this, arguments)), o1;
+            }), s1 = function(t8) {
+                var e = {
+                };
+                return function(t9) {
+                    if ("function" == typeof t9) return t9();
+                    if (void 0 === e[t9]) {
+                        var n = (function(t) {
+                            return document.querySelector(t);
+                        }).call(this, t9);
+                        if (window.HTMLIFrameElement && n instanceof window.HTMLIFrameElement) try {
+                            n = n.contentDocument.head;
+                        } catch (t) {
+                            n = null;
+                        }
+                        e[t9] = n;
+                    }
+                    return e[t9];
+                };
+            }(), u1 = null, c = 0, f = [], l = n3(5);
+            function p(t, e) {
+                for(var n = 0; n < t.length; n++){
+                    var r = t[n], o = i1[r.id];
+                    if (o) {
+                        o.refs++;
+                        for(var a = 0; a < o.parts.length; a++)o.parts[a](r.parts[a]);
+                        for(; a < r.parts.length; a++)o.parts.push(g(r.parts[a], e));
+                    } else {
+                        var s = [];
+                        for(a = 0; a < r.parts.length; a++)s.push(g(r.parts[a], e));
+                        i1[r.id] = {
+                            id: r.id,
+                            refs: 1,
+                            parts: s
+                        };
+                    }
+                }
+            }
+            function d(t, e) {
+                for(var n = [], r = {
+                }, o = 0; o < t.length; o++){
+                    var i = t[o], a = e.base ? i[0] + e.base : i[0], s = {
+                        css: i[1],
+                        media: i[2],
+                        sourceMap: i[3]
+                    };
+                    r[a] ? r[a].parts.push(s) : n.push(r[a] = {
+                        id: a,
+                        parts: [
+                            s
+                        ]
+                    });
+                }
+                return n;
+            }
+            function h(t, e) {
+                var n = s1(t.insertInto);
+                if (!n) throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
+                var r = f[f.length - 1];
+                if ("top" === t.insertAt) r ? r.nextSibling ? n.insertBefore(e, r.nextSibling) : n.appendChild(e) : n.insertBefore(e, n.firstChild), f.push(e);
+                else if ("bottom" === t.insertAt) n.appendChild(e);
+                else {
+                    if ("object" != typeof t.insertAt || !t.insertAt.before) throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");
+                    var o = s1(t.insertInto + " " + t.insertAt.before);
+                    n.insertBefore(e, o);
+                }
+            }
+            function v(t) {
+                if (null === t.parentNode) return !1;
+                t.parentNode.removeChild(t);
+                var e = f.indexOf(t);
+                e >= 0 && f.splice(e, 1);
+            }
+            function b(t) {
+                var e = document.createElement("style");
+                return void 0 === t.attrs.type && (t.attrs.type = "text/css"), y(e, t.attrs), h(t, e), e;
+            }
+            function y(t, e) {
+                Object.keys(e).forEach(function(n) {
+                    t.setAttribute(n, e[n]);
+                });
+            }
+            function g(t10, e8) {
+                var n4, r3, o2, i2;
+                if (e8.transform && t10.css) {
+                    if (!(i2 = e8.transform(t10.css))) return function() {
+                    };
+                    t10.css = i2;
+                }
+                if (e8.singleton) {
+                    var a = c++;
+                    n4 = u1 || (u1 = b(e8)), r3 = x.bind(null, n4, a, !1), o2 = x.bind(null, n4, a, !0);
+                } else t10.sourceMap && "function" == typeof URL && "function" == typeof URL.createObjectURL && "function" == typeof URL.revokeObjectURL && "function" == typeof Blob && "function" == typeof btoa ? (n4 = (function(t) {
+                    var e = document.createElement("link");
+                    return void 0 === t.attrs.type && (t.attrs.type = "text/css"), t.attrs.rel = "stylesheet", y(e, t.attrs), h(t, e), e;
+                })(e8), r3 = (function(t, e, n) {
+                    var r = n.css, o = n.sourceMap, i = void 0 === e.convertToAbsoluteUrls && o;
+                    (e.convertToAbsoluteUrls || i) && (r = l(r));
+                    o && (r += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(o)))) + " */");
+                    var a = new Blob([
+                        r
+                    ], {
+                        type: "text/css"
+                    }), s = t.href;
+                    t.href = URL.createObjectURL(a), s && URL.revokeObjectURL(s);
+                }).bind(null, n4, e8), o2 = function() {
+                    v(n4), n4.href && URL.revokeObjectURL(n4.href);
+                }) : (n4 = b(e8), r3 = (function(t, e) {
+                    var n = e.css, r = e.media;
+                    r && t.setAttribute("media", r);
+                    if (t.styleSheet) t.styleSheet.cssText = n;
+                    else {
+                        for(; t.firstChild;)t.removeChild(t.firstChild);
+                        t.appendChild(document.createTextNode(n));
+                    }
+                }).bind(null, n4), o2 = function() {
+                    v(n4);
+                });
+                return r3(t10), function(e) {
+                    if (e) {
+                        if (e.css === t10.css && e.media === t10.media && e.sourceMap === t10.sourceMap) return;
+                        r3(t10 = e);
+                    } else o2();
+                };
+            }
+            t7.exports = function(t11, e) {
+                if ("undefined" != typeof DEBUG && DEBUG && "object" != typeof document) throw new Error("The style-loader cannot be used in a non-browser environment");
+                (e = e || {
+                }).attrs = "object" == typeof e.attrs ? e.attrs : {
+                }, e.singleton || "boolean" == typeof e.singleton || (e.singleton = a1()), e.insertInto || (e.insertInto = "head"), e.insertAt || (e.insertAt = "bottom");
+                var n = d(t11, e);
+                return p(n, e), function(t) {
+                    for(var r = [], o = 0; o < n.length; o++){
+                        var a = n[o];
+                        (s = i1[a.id]).refs--, r.push(s);
+                    }
+                    t && p(d(t, e), e);
+                    for(o = 0; o < r.length; o++){
+                        var s;
+                        if (0 === (s = r[o]).refs) {
+                            for(var u = 0; u < s.parts.length; u++)s.parts[u]();
+                            delete i1[s.id];
+                        }
+                    }
+                };
+            };
+            var m, w = (m = [], function(t, e) {
+                return m[t] = e, m.filter(Boolean).join("\n");
+            });
+            function x(t, e, n, r) {
+                var o = n ? "" : r.css;
+                if (t.styleSheet) t.styleSheet.cssText = w(e, o);
+                else {
+                    var i = document.createTextNode(o), a = t.childNodes;
+                    a[e] && t.removeChild(a[e]), a.length ? t.insertBefore(i, a[e]) : t.appendChild(i);
+                }
+            }
+        },
+        function(t12, e9) {
+            t12.exports = function(t13) {
+                var e10 = "undefined" != typeof window && window.location;
+                if (!e10) throw new Error("fixUrls requires window.location");
+                if (!t13 || "string" != typeof t13) return t13;
+                var n = e10.protocol + "//" + e10.host, r = n + e10.pathname.replace(/\/[^\/]*$/, "/");
+                return t13.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function(t, e11) {
+                    var o, i = e11.trim().replace(/^"(.*)"$/, function(t, e) {
+                        return e;
+                    }).replace(/^'(.*)'$/, function(t, e) {
+                        return e;
+                    });
+                    return /^(#|data:|http:\/\/|https:\/\/|file:\/\/\/|\s*$)/i.test(i) ? t : (o = 0 === i.indexOf("//") ? i : 0 === i.indexOf("/") ? n + i : r + i.replace(/^\.\//, ""), "url(" + JSON.stringify(o) + ")");
+                });
+            };
+        },
+        function(t, e, n) {
+            "use strict";
+            n.r(e), e.default = '<svg width="17" height="12" viewBox="1 -1 16 15" xmlns="http://www.w3.org/2000/svg"><path d="M17.839 5.525a1.105 1.105 0 0 1-.015 1.547l-4.943 4.943a1.105 1.105 0 1 1-1.562-1.562l4.137-4.137-4.078-4.078A1.125 1.125 0 1 1 12.97.648l4.796 4.796c.026.026.05.053.074.08zm-14.952.791l4.137 4.137a1.105 1.105 0 1 1-1.562 1.562L.519 7.072a1.105 1.105 0 0 1-.015-1.547c.023-.028.048-.055.074-.081L5.374.647a1.125 1.125 0 0 1 1.591 1.591L2.887 6.316z" id="a"/></svg>\n';
+        }
+    ]);
+});
+
+},{}],"3KqSZ":[function(require,module,exports) {
+!function(t, e) {
+    "object" == typeof exports && "object" == typeof module ? module.exports = e() : "function" == typeof define && define.amd ? define([], e) : "object" == typeof exports ? exports.LinkTool = e() : t.LinkTool = e();
+}(window, function() {
+    return (function(t1) {
+        var e1 = {
+        };
+        function n(r) {
+            if (e1[r]) return e1[r].exports;
+            var o = e1[r] = {
+                i: r,
+                l: !1,
+                exports: {
+                }
+            };
+            return t1[r].call(o.exports, o, o.exports, n), o.l = !0, o.exports;
+        }
+        return n.m = t1, n.c = e1, n.d = function(t, e, r) {
+            n.o(t, e) || Object.defineProperty(t, e, {
+                enumerable: !0,
+                get: r
+            });
+        }, n.r = function(t) {
+            "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(t, Symbol.toStringTag, {
+                value: "Module"
+            }), Object.defineProperty(t, "__esModule", {
+                value: !0
+            });
+        }, n.t = function(t, e) {
+            if (1 & e && (t = n(t)), 8 & e) return t;
+            if (4 & e && "object" == typeof t && t && t.__esModule) return t;
+            var r = Object.create(null);
+            if (n.r(r), Object.defineProperty(r, "default", {
+                enumerable: !0,
+                value: t
+            }), 2 & e && "string" != typeof t) for(var o in t)n.d(r, o, (function(e) {
+                return t[e];
+            }).bind(null, o));
+            return r;
+        }, n.n = function(t) {
+            var e = t && t.__esModule ? function() {
+                return t.default;
+            } : function() {
+                return t;
+            };
+            return n.d(e, "a", e), e;
+        }, n.o = function(t, e) {
+            return Object.prototype.hasOwnProperty.call(t, e);
+        }, n.p = "/", n(n.s = 8);
+    })([
+        function(t, e, n) {
+            t.exports = n(13);
+        },
+        function(t2, e2) {
+            function n1(t, e) {
+                for(var n = 0; n < e.length; n++){
+                    var r = e[n];
+                    r.enumerable = r.enumerable || !1, r.configurable = !0, "value" in r && (r.writable = !0), Object.defineProperty(t, r.key, r);
+                }
+            }
+            t2.exports = function(t, e, r) {
+                return e && n1(t.prototype, e), r && n1(t, r), t;
+            };
+        },
+        function(t3, e3) {
+            t3.exports = function(t, e) {
+                (null == e || e > t.length) && (e = t.length);
+                for(var n = 0, r = new Array(e); n < e; n++)r[n] = t[n];
+                return r;
+            };
+        },
+        function(t4, e, n) {
+            var r = n(9), o = n(10), i = n(11), a = n(12);
+            t4.exports = function(t) {
+                return r(t) || o(t) || i(t) || a();
+            };
+        },
+        function(t5, e4) {
+            function n2(t, e, n, r, o, i, a) {
+                try {
+                    var s = t[i](a), c = s.value;
+                } catch (t6) {
+                    return void n(t6);
+                }
+                s.done ? e(c) : Promise.resolve(c).then(r, o);
+            }
+            t5.exports = function(t7) {
+                return function() {
+                    var e = this, r = arguments;
+                    return new Promise(function(o, i) {
+                        var a = t7.apply(e, r);
+                        function s(t) {
+                            n2(a, o, i, s, c, "next", t);
+                        }
+                        function c(t) {
+                            n2(a, o, i, s, c, "throw", t);
+                        }
+                        s(void 0);
+                    });
+                };
+            };
+        },
+        function(t8, e5) {
+            t8.exports = function(t, e) {
+                if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function");
+            };
+        },
+        function(t, e) {
+            t.exports = '<svg width="13" height="14" xmlns="http://www.w3.org/2000/svg"><path d="M8.567 13.629c.728.464 1.581.65 2.41.558l-.873.873A3.722 3.722 0 1 1 4.84 9.794L6.694 7.94a3.722 3.722 0 0 1 5.256-.008L10.484 9.4a5.209 5.209 0 0 1-.017.016 1.625 1.625 0 0 0-2.29.009l-1.854 1.854a1.626 1.626 0 0 0 2.244 2.35zm2.766-7.358a3.722 3.722 0 0 0-2.41-.558l.873-.873a3.722 3.722 0 1 1 5.264 5.266l-1.854 1.854a3.722 3.722 0 0 1-5.256.008L9.416 10.5a5.2 5.2 0 0 1 .017-.016 1.625 1.625 0 0 0 2.29-.009l1.854-1.854a1.626 1.626 0 0 0-2.244-2.35z" transform="translate(-3.667 -2.7)"></path></svg>';
+        },
+        function(t9, e6, n3) {
+            t9.exports = (function(t10) {
+                var e7 = {
+                };
+                function n(r) {
+                    if (e7[r]) return e7[r].exports;
+                    var o = e7[r] = {
+                        i: r,
+                        l: !1,
+                        exports: {
+                        }
+                    };
+                    return t10[r].call(o.exports, o, o.exports, n), o.l = !0, o.exports;
+                }
+                return n.m = t10, n.c = e7, n.d = function(t, e, r) {
+                    n.o(t, e) || Object.defineProperty(t, e, {
+                        enumerable: !0,
+                        get: r
+                    });
+                }, n.r = function(t) {
+                    "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(t, Symbol.toStringTag, {
+                        value: "Module"
+                    }), Object.defineProperty(t, "__esModule", {
+                        value: !0
+                    });
+                }, n.t = function(t, e) {
+                    if (1 & e && (t = n(t)), 8 & e) return t;
+                    if (4 & e && "object" == typeof t && t && t.__esModule) return t;
+                    var r = Object.create(null);
+                    if (n.r(r), Object.defineProperty(r, "default", {
+                        enumerable: !0,
+                        value: t
+                    }), 2 & e && "string" != typeof t) for(var o in t)n.d(r, o, (function(e) {
+                        return t[e];
+                    }).bind(null, o));
+                    return r;
+                }, n.n = function(t) {
+                    var e = t && t.__esModule ? function() {
+                        return t.default;
+                    } : function() {
+                        return t;
+                    };
+                    return n.d(e, "a", e), e;
+                }, n.o = function(t, e) {
+                    return Object.prototype.hasOwnProperty.call(t, e);
+                }, n.p = "", n(n.s = 3);
+            })([
+                function(t, e) {
+                    var n;
+                    n = (function() {
+                        return this;
+                    })();
+                    try {
+                        n = n || new Function("return this")();
+                    } catch (t11) {
+                        "object" == typeof window && (n = window);
+                    }
+                    t.exports = n;
+                },
+                function(t12, e8, n4) {
+                    "use strict";
+                    (function(t13) {
+                        var r1 = n4(2), o1 = setTimeout;
+                        function i1() {
+                        }
+                        function a1(t) {
+                            if (!(this instanceof a1)) throw new TypeError("Promises must be constructed via new");
+                            if ("function" != typeof t) throw new TypeError("not a function");
+                            this._state = 0, this._handled = !1, this._value = void 0, this._deferreds = [], h(t, this);
+                        }
+                        function s1(t14, e) {
+                            for(; 3 === t14._state;)t14 = t14._value;
+                            0 !== t14._state ? (t14._handled = !0, a1._immediateFn(function() {
+                                var n = 1 === t14._state ? e.onFulfilled : e.onRejected;
+                                if (null !== n) {
+                                    var r;
+                                    try {
+                                        r = n(t14._value);
+                                    } catch (t) {
+                                        return void u(e.promise, t);
+                                    }
+                                    c(e.promise, r);
+                                } else (1 === t14._state ? c : u)(e.promise, t14._value);
+                            })) : t14._deferreds.push(e);
+                        }
+                        function c(t, e) {
+                            try {
+                                if (e === t) throw new TypeError("A promise cannot be resolved with itself.");
+                                if (e && ("object" == typeof e || "function" == typeof e)) {
+                                    var n = e.then;
+                                    if (e instanceof a1) return t._state = 3, t._value = e, void l(t);
+                                    if ("function" == typeof n) return void h((r = n, o = e, function() {
+                                        r.apply(o, arguments);
+                                    }), t);
+                                }
+                                t._state = 1, t._value = e, l(t);
+                            } catch (e9) {
+                                u(t, e9);
+                            }
+                            var r, o;
+                        }
+                        function u(t, e) {
+                            t._state = 2, t._value = e, l(t);
+                        }
+                        function l(t) {
+                            2 === t._state && 0 === t._deferreds.length && a1._immediateFn(function() {
+                                t._handled || a1._unhandledRejectionFn(t._value);
+                            });
+                            for(var e = 0, n = t._deferreds.length; e < n; e++)s1(t, t._deferreds[e]);
+                            t._deferreds = null;
+                        }
+                        function f(t, e, n) {
+                            this.onFulfilled = "function" == typeof t ? t : null, this.onRejected = "function" == typeof e ? e : null, this.promise = n;
+                        }
+                        function h(t15, e) {
+                            var n = !1;
+                            try {
+                                t15(function(t) {
+                                    n || (n = !0, c(e, t));
+                                }, function(t) {
+                                    n || (n = !0, u(e, t));
+                                });
+                            } catch (t) {
+                                if (n) return;
+                                n = !0, u(e, t);
+                            }
+                        }
+                        a1.prototype.catch = function(t) {
+                            return this.then(null, t);
+                        }, a1.prototype.then = function(t, e) {
+                            var n = new this.constructor(i1);
+                            return s1(this, new f(t, e, n)), n;
+                        }, a1.prototype.finally = r1.a, a1.all = function(t16) {
+                            return new a1(function(e10, n) {
+                                if (!t16 || void 0 === t16.length) throw new TypeError("Promise.all accepts an array");
+                                var r = Array.prototype.slice.call(t16);
+                                if (0 === r.length) return e10([]);
+                                var o = r.length;
+                                function i(t, a) {
+                                    try {
+                                        if (a && ("object" == typeof a || "function" == typeof a)) {
+                                            var s = a.then;
+                                            if ("function" == typeof s) return void s.call(a, function(e) {
+                                                i(t, e);
+                                            }, n);
+                                        }
+                                        r[t] = a, 0 == --o && e10(r);
+                                    } catch (t17) {
+                                        n(t17);
+                                    }
+                                }
+                                for(var a2 = 0; a2 < r.length; a2++)i(a2, r[a2]);
+                            });
+                        }, a1.resolve = function(t) {
+                            return t && "object" == typeof t && t.constructor === a1 ? t : new a1(function(e) {
+                                e(t);
+                            });
+                        }, a1.reject = function(t) {
+                            return new a1(function(e, n) {
+                                n(t);
+                            });
+                        }, a1.race = function(t) {
+                            return new a1(function(e, n) {
+                                for(var r = 0, o = t.length; r < o; r++)t[r].then(e, n);
+                            });
+                        }, a1._immediateFn = "function" == typeof t13 && function(e) {
+                            t13(e);
+                        } || function(t) {
+                            o1(t, 0);
+                        }, a1._unhandledRejectionFn = function(t) {
+                            "undefined" != typeof console && console && console.warn("Possible Unhandled Promise Rejection:", t);
+                        }, e8.a = a1;
+                    }).call(this, n4(5).setImmediate);
+                },
+                function(t18, e11, n5) {
+                    "use strict";
+                    e11.a = function(t) {
+                        var e = this.constructor;
+                        return this.then(function(n) {
+                            return e.resolve(t()).then(function() {
+                                return n;
+                            });
+                        }, function(n) {
+                            return e.resolve(t()).then(function() {
+                                return e.reject(n);
+                            });
+                        });
+                    };
+                },
+                function(t19, e12, n6) {
+                    "use strict";
+                    function r2(t20) {
+                        return (r2 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(t) {
+                            return typeof t;
+                        } : function(t) {
+                            return t && "function" == typeof Symbol && t.constructor === Symbol && t !== Symbol.prototype ? "symbol" : typeof t;
+                        })(t20);
+                    }
+                    n6(4);
+                    var o2, i2, a, s, c, u, l = n6(8), f = (i2 = function(t21) {
+                        return new Promise(function(e13, n7) {
+                            t21 = s(t21), t21 = c(t21);
+                            var r3 = window.XMLHttpRequest ? new window.XMLHttpRequest : new window.ActiveXObject("Microsoft.XMLHTTP");
+                            r3.open(t21.method, t21.url), r3.setRequestHeader("X-Requested-With", "XMLHttpRequest"), Object.keys(t21.headers).forEach(function(e) {
+                                var n = t21.headers[e];
+                                r3.setRequestHeader(e, n);
+                            });
+                            var o3 = t21.ratio;
+                            r3.upload.addEventListener("progress", function(e) {
+                                var n = Math.round(e.loaded / e.total * 100), r = Math.ceil(n * o3 / 100);
+                                t21.progress(r);
+                            }, !1), r3.addEventListener("progress", function(e) {
+                                var n = Math.round(e.loaded / e.total * 100), r = Math.ceil(n * (100 - o3) / 100) + o3;
+                                t21.progress(r);
+                            }, !1), r3.onreadystatechange = function() {
+                                if (4 === r3.readyState) {
+                                    var t = r3.response;
+                                    try {
+                                        t = JSON.parse(t);
+                                    } catch (t22) {
+                                    }
+                                    var o = l.parseHeaders(r3.getAllResponseHeaders()), i = {
+                                        body: t,
+                                        code: r3.status,
+                                        headers: o
+                                    };
+                                    200 === r3.status ? e13(i) : n7(i);
+                                }
+                            }, r3.send(t21.data);
+                        });
+                    }, a = function(t) {
+                        return t.method = "POST", i2(t);
+                    }, s = function() {
+                        var t = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {
+                        };
+                        if (t.url && "string" != typeof t.url) throw new Error("Url must be a string");
+                        if (t.url = t.url || "", t.method && "string" != typeof t.method) throw new Error("`method` must be a string or null");
+                        if (t.method = t.method ? t.method.toUpperCase() : "GET", t.headers && "object" !== r2(t.headers)) throw new Error("`headers` must be an object or null");
+                        if (t.headers = t.headers || {
+                        }, t.type && ("string" != typeof t.type || !Object.values(o2).includes(t.type))) throw new Error("`type` must be taken from module's «contentType» library");
+                        if (t.progress && "function" != typeof t.progress) throw new Error("`progress` must be a function or null");
+                        if (t.progress = t.progress || function(t) {
+                        }, t.beforeSend = t.beforeSend || function(t) {
+                        }, t.ratio && "number" != typeof t.ratio) throw new Error("`ratio` must be a number");
+                        if (t.ratio < 0 || t.ratio > 100) throw new Error("`ratio` must be in a 0-100 interval");
+                        if (t.ratio = t.ratio || 90, t.accept && "string" != typeof t.accept) throw new Error("`accept` must be a string with a list of allowed mime-types");
+                        if (t.accept = t.accept || "*/*", t.multiple && "boolean" != typeof t.multiple) throw new Error("`multiple` must be a true or false");
+                        if (t.multiple = t.multiple || !1, t.fieldName && "string" != typeof t.fieldName) throw new Error("`fieldName` must be a string");
+                        return t.fieldName = t.fieldName || "files", t;
+                    }, c = function(t) {
+                        switch(t.method){
+                            case "GET":
+                                var e = u(t.data, o2.URLENCODED);
+                                delete t.data, t.url = /\?/.test(t.url) ? t.url + "&" + e : t.url + "?" + e;
+                                break;
+                            case "POST":
+                            case "PUT":
+                            case "DELETE":
+                            case "UPDATE":
+                                var n = function() {
+                                    return (arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {
+                                    }).type || o2.JSON;
+                                }(t);
+                                (l.isFormData(t.data) || l.isFormElement(t.data)) && (n = o2.FORM), t.data = u(t.data, n), n !== f.contentType.FORM && (t.headers["content-type"] = n);
+                        }
+                        return t;
+                    }, u = function() {
+                        var t = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {
+                        };
+                        switch(arguments.length > 1 ? arguments[1] : void 0){
+                            case o2.URLENCODED:
+                                return l.urlEncode(t);
+                            case o2.JSON:
+                                return l.jsonEncode(t);
+                            case o2.FORM:
+                                return l.formEncode(t);
+                            default:
+                                return t;
+                        }
+                    }, {
+                        contentType: o2 = {
+                            URLENCODED: "application/x-www-form-urlencoded; charset=utf-8",
+                            FORM: "multipart/form-data",
+                            JSON: "application/json; charset=utf-8"
+                        },
+                        request: i2,
+                        get: function(t) {
+                            return t.method = "GET", i2(t);
+                        },
+                        post: a,
+                        transport: function(t) {
+                            return t = s(t), l.selectFiles(t).then(function(e14) {
+                                for(var n = new FormData, r4 = 0; r4 < e14.length; r4++)n.append(t.fieldName, e14[r4], e14[r4].name);
+                                return l.isObject(t.data) && Object.keys(t.data).forEach(function(e) {
+                                    var r = t.data[e];
+                                    n.append(e, r);
+                                }), t.beforeSend && t.beforeSend(e14), t.data = n, a(t);
+                            });
+                        },
+                        selectFiles: function(t) {
+                            return delete (t = s(t)).beforeSend, l.selectFiles(t);
+                        }
+                    });
+                    t19.exports = f;
+                },
+                function(t, e, n) {
+                    "use strict";
+                    n.r(e);
+                    var r = n(1);
+                    window.Promise = window.Promise || r.a;
+                },
+                function(t23, e15, n) {
+                    (function(t24) {
+                        var r = void 0 !== t24 && t24 || "undefined" != typeof self && self || window, o = Function.prototype.apply;
+                        function i(t, e) {
+                            this._id = t, this._clearFn = e;
+                        }
+                        e15.setTimeout = function() {
+                            return new i(o.call(setTimeout, r, arguments), clearTimeout);
+                        }, e15.setInterval = function() {
+                            return new i(o.call(setInterval, r, arguments), clearInterval);
+                        }, e15.clearTimeout = e15.clearInterval = function(t) {
+                            t && t.close();
+                        }, i.prototype.unref = i.prototype.ref = function() {
+                        }, i.prototype.close = function() {
+                            this._clearFn.call(r, this._id);
+                        }, e15.enroll = function(t, e) {
+                            clearTimeout(t._idleTimeoutId), t._idleTimeout = e;
+                        }, e15.unenroll = function(t) {
+                            clearTimeout(t._idleTimeoutId), t._idleTimeout = -1;
+                        }, e15._unrefActive = e15.active = function(t) {
+                            clearTimeout(t._idleTimeoutId);
+                            var e = t._idleTimeout;
+                            e >= 0 && (t._idleTimeoutId = setTimeout(function() {
+                                t._onTimeout && t._onTimeout();
+                            }, e));
+                        }, n(6), e15.setImmediate = "undefined" != typeof self && self.setImmediate || void 0 !== t24 && t24.setImmediate || this && this.setImmediate, e15.clearImmediate = "undefined" != typeof self && self.clearImmediate || void 0 !== t24 && t24.clearImmediate || this && this.clearImmediate;
+                    }).call(this, n(0));
+                },
+                function(t25, e16, n8) {
+                    (function(t26, e17) {
+                        !function(t27, n9) {
+                            if (!t27.setImmediate) {
+                                var r, o4, i, a, s, c = 1, u = {
+                                }, l = !1, f = t27.document, h = Object.getPrototypeOf && Object.getPrototypeOf(t27);
+                                h = h && h.setTimeout ? h : t27, "[object process]" === ({
+                                }).toString.call(t27.process) ? r = function(t) {
+                                    e17.nextTick(function() {
+                                        p(t);
+                                    });
+                                } : (function() {
+                                    if (t27.postMessage && !t27.importScripts) {
+                                        var e = !0, n = t27.onmessage;
+                                        return t27.onmessage = function() {
+                                            e = !1;
+                                        }, t27.postMessage("", "*"), t27.onmessage = n, e;
+                                    }
+                                })() ? (a = "setImmediate$" + Math.random() + "$", s = function(e) {
+                                    e.source === t27 && "string" == typeof e.data && 0 === e.data.indexOf(a) && p(+e.data.slice(a.length));
+                                }, t27.addEventListener ? t27.addEventListener("message", s, !1) : t27.attachEvent("onmessage", s), r = function(e) {
+                                    t27.postMessage(a + e, "*");
+                                }) : t27.MessageChannel ? ((i = new MessageChannel).port1.onmessage = function(t) {
+                                    p(t.data);
+                                }, r = function(t) {
+                                    i.port2.postMessage(t);
+                                }) : f && "onreadystatechange" in f.createElement("script") ? (o4 = f.documentElement, r = function(t) {
+                                    var e = f.createElement("script");
+                                    e.onreadystatechange = function() {
+                                        p(t), e.onreadystatechange = null, o4.removeChild(e), e = null;
+                                    }, o4.appendChild(e);
+                                }) : r = function(t) {
+                                    setTimeout(p, 0, t);
+                                }, h.setImmediate = function(t) {
+                                    "function" != typeof t && (t = new Function("" + t));
+                                    for(var e = new Array(arguments.length - 1), n = 0; n < e.length; n++)e[n] = arguments[n + 1];
+                                    var o = {
+                                        callback: t,
+                                        args: e
+                                    };
+                                    return u[c] = o, r(c), c++;
+                                }, h.clearImmediate = d;
+                            }
+                            function d(t) {
+                                delete u[t];
+                            }
+                            function p(t28) {
+                                if (l) setTimeout(p, 0, t28);
+                                else {
+                                    var e18 = u[t28];
+                                    if (e18) {
+                                        l = !0;
+                                        try {
+                                            !function(t) {
+                                                var e = t.callback, n = t.args;
+                                                switch(n.length){
+                                                    case 0:
+                                                        e();
+                                                        break;
+                                                    case 1:
+                                                        e(n[0]);
+                                                        break;
+                                                    case 2:
+                                                        e(n[0], n[1]);
+                                                        break;
+                                                    case 3:
+                                                        e(n[0], n[1], n[2]);
+                                                        break;
+                                                    default:
+                                                        e.apply(void 0, n);
+                                                }
+                                            }(e18);
+                                        } finally{
+                                            d(t28), l = !1;
+                                        }
+                                    }
+                                }
+                            }
+                        }("undefined" == typeof self ? void 0 === t26 ? this : t26 : self);
+                    }).call(this, n8(0), n8(7));
+                },
+                function(t29, e20) {
+                    var n10, r, o = t29.exports = {
+                    };
+                    function i() {
+                        throw new Error("setTimeout has not been defined");
+                    }
+                    function a() {
+                        throw new Error("clearTimeout has not been defined");
+                    }
+                    function s(t) {
+                        if (n10 === setTimeout) return setTimeout(t, 0);
+                        if ((n10 === i || !n10) && setTimeout) return n10 = setTimeout, setTimeout(t, 0);
+                        try {
+                            return n10(t, 0);
+                        } catch (e) {
+                            try {
+                                return n10.call(null, t, 0);
+                            } catch (e) {
+                                return n10.call(this, t, 0);
+                            }
+                        }
+                    }
+                    !function() {
+                        try {
+                            n10 = "function" == typeof setTimeout ? setTimeout : i;
+                        } catch (t) {
+                            n10 = i;
+                        }
+                        try {
+                            r = "function" == typeof clearTimeout ? clearTimeout : a;
+                        } catch (t30) {
+                            r = a;
+                        }
+                    }();
+                    var c, u = [], l = !1, f = -1;
+                    function h() {
+                        l && c && (l = !1, c.length ? u = c.concat(u) : f = -1, u.length && d());
+                    }
+                    function d() {
+                        if (!l) {
+                            var t31 = s(h);
+                            l = !0;
+                            for(var e = u.length; e;){
+                                for(c = u, u = []; ++f < e;)c && c[f].run();
+                                f = -1, e = u.length;
+                            }
+                            c = null, l = !1, (function(t) {
+                                if (r === clearTimeout) return clearTimeout(t);
+                                if ((r === a || !r) && clearTimeout) return r = clearTimeout, clearTimeout(t);
+                                try {
+                                    r(t);
+                                } catch (e) {
+                                    try {
+                                        return r.call(null, t);
+                                    } catch (e) {
+                                        return r.call(this, t);
+                                    }
+                                }
+                            })(t31);
+                        }
+                    }
+                    function p(t, e) {
+                        this.fun = t, this.array = e;
+                    }
+                    function m() {
+                    }
+                    o.nextTick = function(t) {
+                        var e = new Array(arguments.length - 1);
+                        if (arguments.length > 1) for(var n = 1; n < arguments.length; n++)e[n - 1] = arguments[n];
+                        u.push(new p(t, e)), 1 !== u.length || l || s(d);
+                    }, p.prototype.run = function() {
+                        this.fun.apply(null, this.array);
+                    }, o.title = "browser", o.browser = !0, o.env = {
+                    }, o.argv = [], o.version = "", o.versions = {
+                    }, o.on = m, o.addListener = m, o.once = m, o.off = m, o.removeListener = m, o.removeAllListeners = m, o.emit = m, o.prependListener = m, o.prependOnceListener = m, o.listeners = function(t) {
+                        return [];
+                    }, o.binding = function(t) {
+                        throw new Error("process.binding is not supported");
+                    }, o.cwd = function() {
+                        return "/";
+                    }, o.chdir = function(t) {
+                        throw new Error("process.chdir is not supported");
+                    }, o.umask = function() {
+                        return 0;
+                    };
+                },
+                function(t33, e21, n11) {
+                    function r5(t, e) {
+                        for(var n = 0; n < e.length; n++){
+                            var r = e[n];
+                            r.enumerable = r.enumerable || !1, r.configurable = !0, "value" in r && (r.writable = !0), Object.defineProperty(t, r.key, r);
+                        }
+                    }
+                    var o6 = n11(9);
+                    t33.exports = (function() {
+                        function t34() {
+                            !function(t, e) {
+                                if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function");
+                            }(this, t34);
+                        }
+                        var e22, n12;
+                        return e22 = t34, n12 = [
+                            {
+                                key: "urlEncode",
+                                value: function(t) {
+                                    return o6(t);
+                                }
+                            },
+                            {
+                                key: "jsonEncode",
+                                value: function(t) {
+                                    return JSON.stringify(t);
+                                }
+                            },
+                            {
+                                key: "formEncode",
+                                value: function(t) {
+                                    if (this.isFormData(t)) return t;
+                                    if (this.isFormElement(t)) return new FormData(t);
+                                    if (this.isObject(t)) {
+                                        var e = new FormData;
+                                        return Object.keys(t).forEach(function(n) {
+                                            var r = t[n];
+                                            e.append(n, r);
+                                        }), e;
+                                    }
+                                    throw new Error("`data` must be an instance of Object, FormData or <FORM> HTMLElement");
+                                }
+                            },
+                            {
+                                key: "isObject",
+                                value: function(t) {
+                                    return "[object Object]" === Object.prototype.toString.call(t);
+                                }
+                            },
+                            {
+                                key: "isFormData",
+                                value: function(t) {
+                                    return t instanceof FormData;
+                                }
+                            },
+                            {
+                                key: "isFormElement",
+                                value: function(t) {
+                                    return t instanceof HTMLFormElement;
+                                }
+                            },
+                            {
+                                key: "selectFiles",
+                                value: function() {
+                                    var t35 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {
+                                    };
+                                    return new Promise(function(e, n13) {
+                                        var r = document.createElement("INPUT");
+                                        r.type = "file", t35.multiple && r.setAttribute("multiple", "multiple"), t35.accept && r.setAttribute("accept", t35.accept), r.style.display = "none", document.body.appendChild(r), r.addEventListener("change", function(t) {
+                                            var n = t.target.files;
+                                            e(n), document.body.removeChild(r);
+                                        }, !1), r.click();
+                                    });
+                                }
+                            },
+                            {
+                                key: "parseHeaders",
+                                value: function(t36) {
+                                    var e23 = t36.trim().split(/[\r\n]+/), n = {
+                                    };
+                                    return e23.forEach(function(t) {
+                                        var e = t.split(": "), r = e.shift(), o = e.join(": ");
+                                        r && (n[r] = o);
+                                    }), n;
+                                }
+                            }
+                        ], r5(e22, n12), t34;
+                    })();
+                },
+                function(t37, e24) {
+                    var n14 = function(t) {
+                        return encodeURIComponent(t).replace(/[!'()*]/g, escape).replace(/%20/g, "+");
+                    }, r = function(t38, e25, o, i) {
+                        return e25 = e25 || null, o = o || "&", i = i || null, t38 ? (function(t) {
+                            for(var e = new Array, n = 0; n < t.length; n++)t[n] && e.push(t[n]);
+                            return e;
+                        })(Object.keys(t38).map(function(a) {
+                            var s, c, u = a;
+                            if (i && (u = i + "[" + u + "]"), "object" == typeof t38[a] && null !== t38[a]) s = r(t38[a], null, o, u);
+                            else {
+                                e25 && (c = u, u = !isNaN(parseFloat(c)) && isFinite(c) ? e25 + Number(u) : u);
+                                var l = t38[a];
+                                l = (l = 0 === (l = !1 === (l = !0 === l ? "1" : l) ? "0" : l) ? "0" : l) || "", s = n14(u) + "=" + n14(l);
+                            }
+                            return s;
+                        })).join(o).replace(/[!'()*]/g, "") : "";
+                    };
+                    t37.exports = r;
+                }
+            ]);
+        },
+        function(t39, e26, n15) {
+            "use strict";
+            n15.r(e26), n15.d(e26, "default", function() {
+                return y;
+            });
+            var r6 = n15(3), o7 = n15.n(r6), i3 = n15(0), a = n15.n(i3), s = n15(4), c = n15.n(s), u = n15(5), l = n15.n(u), f = n15(1), h = n15.n(f), d = (n15(14), n15(6)), p = n15.n(d), m = n15(7), v = n15.n(m), y = (n15(18), function() {
+                function t40(e) {
+                    var n = e.data, r = e.config, o = e.api, i = e.readOnly;
+                    l()(this, t40), this.api = o, this.readOnly = i, this.config = {
+                        endpoint: r.endpoint || "",
+                        headers: r.headers || {
+                        }
+                    }, this.nodes = {
+                        wrapper: null,
+                        container: null,
+                        progress: null,
+                        input: null,
+                        inputHolder: null,
+                        linkContent: null,
+                        linkImage: null,
+                        linkTitle: null,
+                        linkDescription: null,
+                        linkText: null
+                    }, this._data = {
+                        link: "",
+                        meta: {
+                        }
+                    }, this.data = n;
+                }
+                var e27;
+                return h()(t40, null, [
+                    {
+                        key: "isReadOnlySupported",
+                        get: function() {
+                            return !0;
+                        }
+                    },
+                    {
+                        key: "toolbox",
+                        get: function() {
+                            return {
+                                icon: p.a,
+                                title: "Link"
+                            };
+                        }
+                    },
+                    {
+                        key: "enableLineBreaks",
+                        get: function() {
+                            return !0;
+                        }
+                    }
+                ]), h()(t40, [
+                    {
+                        key: "render",
+                        value: function() {
+                            return this.nodes.wrapper = this.make("div", this.CSS.baseClass), this.nodes.container = this.make("div", this.CSS.container), this.nodes.inputHolder = this.makeInputHolder(), this.nodes.linkContent = this.prepareLinkPreview(), Object.keys(this.data.meta).length ? (this.nodes.container.appendChild(this.nodes.linkContent), this.showLinkPreview(this.data.meta)) : this.nodes.container.appendChild(this.nodes.inputHolder), this.nodes.wrapper.appendChild(this.nodes.container), this.nodes.wrapper;
+                        }
+                    },
+                    {
+                        key: "save",
+                        value: function() {
+                            return this.data;
+                        }
+                    },
+                    {
+                        key: "validate",
+                        value: function() {
+                            return "" !== this.data.link.trim();
+                        }
+                    },
+                    {
+                        key: "makeInputHolder",
+                        value: function() {
+                            var t = this, e28 = this.make("div", this.CSS.inputHolder);
+                            return this.nodes.progress = this.make("label", this.CSS.progress), this.nodes.input = this.make("div", [
+                                this.CSS.input,
+                                this.CSS.inputEl
+                            ], {
+                                contentEditable: !this.readOnly
+                            }), this.nodes.input.dataset.placeholder = this.api.i18n.t("Link"), this.readOnly || (this.nodes.input.addEventListener("paste", function(e) {
+                                t.startFetching(e);
+                            }), this.nodes.input.addEventListener("keydown", function(e) {
+                                var n = e.ctrlKey || e.metaKey;
+                                switch(e.keyCode){
+                                    case 13:
+                                        e.preventDefault(), e.stopPropagation(), t.startFetching(e);
+                                        break;
+                                    case 65:
+                                        n && t.selectLinkUrl(e);
+                                }
+                            })), e28.appendChild(this.nodes.progress), e28.appendChild(this.nodes.input), e28;
+                        }
+                    },
+                    {
+                        key: "startFetching",
+                        value: function(t) {
+                            var e = this.nodes.input.textContent;
+                            "paste" === t.type && (e = (t.clipboardData || window.clipboardData).getData("text")), this.removeErrorStyle(), this.fetchLinkData(e);
+                        }
+                    },
+                    {
+                        key: "removeErrorStyle",
+                        value: function() {
+                            this.nodes.inputHolder.classList.remove(this.CSS.inputError), this.nodes.inputHolder.insertBefore(this.nodes.progress, this.nodes.input);
+                        }
+                    },
+                    {
+                        key: "selectLinkUrl",
+                        value: function(t) {
+                            t.preventDefault(), t.stopPropagation();
+                            var e = window.getSelection(), n = new Range, r = e.anchorNode.parentNode.closest(".".concat(this.CSS.inputHolder)).querySelector(".".concat(this.CSS.inputEl));
+                            n.selectNodeContents(r), e.removeAllRanges(), e.addRange(n);
+                        }
+                    },
+                    {
+                        key: "prepareLinkPreview",
+                        value: function() {
+                            var t = this.make("a", this.CSS.linkContent, {
+                                target: "_blank",
+                                rel: "nofollow noindex noreferrer"
+                            });
+                            return this.nodes.linkImage = this.make("div", this.CSS.linkImage), this.nodes.linkTitle = this.make("div", this.CSS.linkTitle), this.nodes.linkDescription = this.make("p", this.CSS.linkDescription), this.nodes.linkText = this.make("span", this.CSS.linkText), t;
+                        }
+                    },
+                    {
+                        key: "showLinkPreview",
+                        value: function(t) {
+                            var e = t.image, n = t.title, r = t.description;
+                            this.nodes.container.appendChild(this.nodes.linkContent), e && e.url && (this.nodes.linkImage.style.backgroundImage = "url(" + e.url + ")", this.nodes.linkContent.appendChild(this.nodes.linkImage)), n && (this.nodes.linkTitle.textContent = n, this.nodes.linkContent.appendChild(this.nodes.linkTitle)), r && (this.nodes.linkDescription.textContent = r, this.nodes.linkContent.appendChild(this.nodes.linkDescription)), this.nodes.linkContent.classList.add(this.CSS.linkContentRendered), this.nodes.linkContent.setAttribute("href", this.data.link), this.nodes.linkContent.appendChild(this.nodes.linkText);
+                            try {
+                                this.nodes.linkText.textContent = new URL(this.data.link).hostname;
+                            } catch (t41) {
+                                this.nodes.linkText.textContent = this.data.link;
+                            }
+                        }
+                    },
+                    {
+                        key: "showProgress",
+                        value: function() {
+                            this.nodes.progress.classList.add(this.CSS.progressLoading);
+                        }
+                    },
+                    {
+                        key: "hideProgress",
+                        value: function() {
+                            var t = this;
+                            return new Promise(function(e) {
+                                t.nodes.progress.classList.remove(t.CSS.progressLoading), t.nodes.progress.classList.add(t.CSS.progressLoaded), setTimeout(e, 500);
+                            });
+                        }
+                    },
+                    {
+                        key: "applyErrorStyle",
+                        value: function() {
+                            this.nodes.inputHolder.classList.add(this.CSS.inputError), this.nodes.progress.remove();
+                        }
+                    },
+                    {
+                        key: "fetchLinkData",
+                        value: (e27 = c()(a.a.mark(function t42(e) {
+                            var n, r;
+                            return a.a.wrap(function(t) {
+                                for(;;)switch(t.prev = t.next){
+                                    case 0:
+                                        return this.showProgress(), this.data = {
+                                            link: e
+                                        }, t.prev = 2, t.next = 5, v.a.get({
+                                            url: this.config.endpoint,
+                                            headers: this.config.headers,
+                                            data: {
+                                                url: e
+                                            }
+                                        });
+                                    case 5:
+                                        n = t.sent, r = n.body, this.onFetch(r), t.next = 13;
+                                        break;
+                                    case 10:
+                                        t.prev = 10, t.t0 = t.catch(2), this.fetchingFailed(this.api.i18n.t("Couldn't fetch the link data"));
+                                    case 13:
+                                    case "end":
+                                        return t.stop();
+                                }
+                            }, t42, this, [
+                                [
+                                    2,
+                                    10
+                                ]
+                            ]);
+                        })), function(t) {
+                            return e27.apply(this, arguments);
+                        })
+                    },
+                    {
+                        key: "onFetch",
+                        value: function(t) {
+                            var e = this;
+                            if (t && t.success) {
+                                var n = t.meta, r = t.link || this.data.link;
+                                this.data = {
+                                    meta: n,
+                                    link: r
+                                }, n ? this.hideProgress().then(function() {
+                                    e.nodes.inputHolder.remove(), e.showLinkPreview(n);
+                                }) : this.fetchingFailed(this.api.i18n.t("Wrong response format from the server"));
+                            } else this.fetchingFailed(this.api.i18n.t("Couldn't get this link data, try the other one"));
+                        }
+                    },
+                    {
+                        key: "fetchingFailed",
+                        value: function(t) {
+                            this.api.notifier.show({
+                                message: t,
+                                style: "error"
+                            }), this.applyErrorStyle();
+                        }
+                    },
+                    {
+                        key: "make",
+                        value: function(t) {
+                            var e, n = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : null, r = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {
+                            }, i = document.createElement(t);
+                            Array.isArray(n) ? (e = i.classList).add.apply(e, o7()(n)) : n && i.classList.add(n);
+                            for(var a in r)i[a] = r[a];
+                            return i;
+                        }
+                    },
+                    {
+                        key: "data",
+                        set: function(t) {
+                            this._data = Object.assign({
+                            }, {
+                                link: t.link || this._data.link,
+                                meta: t.meta || this._data.meta
+                            });
+                        },
+                        get: function() {
+                            return this._data;
+                        }
+                    },
+                    {
+                        key: "CSS",
+                        get: function() {
+                            return {
+                                baseClass: this.api.styles.block,
+                                input: this.api.styles.input,
+                                container: "link-tool",
+                                inputEl: "link-tool__input",
+                                inputHolder: "link-tool__input-holder",
+                                inputError: "link-tool__input-holder--error",
+                                linkContent: "link-tool__content",
+                                linkContentRendered: "link-tool__content--rendered",
+                                linkImage: "link-tool__image",
+                                linkTitle: "link-tool__title",
+                                linkDescription: "link-tool__description",
+                                linkText: "link-tool__anchor",
+                                progress: "link-tool__progress",
+                                progressLoading: "link-tool__progress--loading",
+                                progressLoaded: "link-tool__progress--loaded"
+                            };
+                        }
+                    }
+                ]), t40;
+            }());
+        },
+        function(t43, e, n) {
+            var r = n(2);
+            t43.exports = function(t) {
+                if (Array.isArray(t)) return r(t);
+            };
+        },
+        function(t44, e) {
+            t44.exports = function(t) {
+                if ("undefined" != typeof Symbol && Symbol.iterator in Object(t)) return Array.from(t);
+            };
+        },
+        function(t45, e29, n16) {
+            var r = n16(2);
+            t45.exports = function(t, e) {
+                if (t) {
+                    if ("string" == typeof t) return r(t, e);
+                    var n = Object.prototype.toString.call(t).slice(8, -1);
+                    return "Object" === n && t.constructor && (n = t.constructor.name), "Map" === n || "Set" === n ? Array.from(t) : "Arguments" === n || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n) ? r(t, e) : void 0;
+                }
+            };
+        },
+        function(t, e) {
+            t.exports = function() {
+                throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+            };
+        },
+        function(t46, e30, n17) {
+            var r7 = function(t47) {
+                var e31 = Object.prototype, n18 = e31.hasOwnProperty, r8 = "function" == typeof Symbol ? Symbol : {
+                }, o8 = r8.iterator || "@@iterator", i4 = r8.asyncIterator || "@@asyncIterator", a3 = r8.toStringTag || "@@toStringTag";
+                function s2(t48, e32, n19, r9) {
+                    var o9 = e32 && e32.prototype instanceof l1 ? e32 : l1, i5 = Object.create(o9.prototype), a4 = new _(r9 || []);
+                    return i5._invoke = (function(t, e, n) {
+                        var r = "suspendedStart";
+                        return function(o, i) {
+                            if ("executing" === r) throw new Error("Generator is already running");
+                            if ("completed" === r) {
+                                if ("throw" === o) throw i;
+                                return x();
+                            }
+                            for(n.method = o, n.arg = i;;){
+                                var a = n.delegate;
+                                if (a) {
+                                    var s = b(a, n);
+                                    if (s) {
+                                        if (s === u1) continue;
+                                        return s;
+                                    }
+                                }
+                                if ("next" === n.method) n.sent = n._sent = n.arg;
+                                else if ("throw" === n.method) {
+                                    if ("suspendedStart" === r) throw r = "completed", n.arg;
+                                    n.dispatchException(n.arg);
+                                } else "return" === n.method && n.abrupt("return", n.arg);
+                                r = "executing";
+                                var l = c1(t, e, n);
+                                if ("normal" === l.type) {
+                                    if (r = n.done ? "completed" : "suspendedYield", l.arg === u1) continue;
+                                    return {
+                                        value: l.arg,
+                                        done: n.done
+                                    };
+                                }
+                                "throw" === l.type && (r = "completed", n.method = "throw", n.arg = l.arg);
+                            }
+                        };
+                    })(t48, n19, a4), i5;
+                }
+                function c1(t, e, n) {
+                    try {
+                        return {
+                            type: "normal",
+                            arg: t.call(e, n)
+                        };
+                    } catch (t49) {
+                        return {
+                            type: "throw",
+                            arg: t49
+                        };
+                    }
+                }
+                t47.wrap = s2;
+                var u1 = {
+                };
+                function l1() {
+                }
+                function f1() {
+                }
+                function h() {
+                }
+                var d = {
+                };
+                d[o8] = function() {
+                    return this;
+                };
+                var p = Object.getPrototypeOf, m = p && p(p(E([])));
+                m && m !== e31 && n18.call(m, o8) && (d = m);
+                var v = h.prototype = l1.prototype = Object.create(d);
+                function y(t50) {
+                    [
+                        "next",
+                        "throw",
+                        "return"
+                    ].forEach(function(e) {
+                        t50[e] = function(t) {
+                            return this._invoke(e, t);
+                        };
+                    });
+                }
+                function g(t51, e) {
+                    var r10;
+                    this._invoke = function(o, i6) {
+                        function a5() {
+                            return new e(function(r11, a6) {
+                                !function r(o, i, a, s) {
+                                    var u = c1(t51[o], t51, i);
+                                    if ("throw" !== u.type) {
+                                        var l = u.arg, f = l.value;
+                                        return f && "object" == typeof f && n18.call(f, "__await") ? e.resolve(f.__await).then(function(t) {
+                                            r("next", t, a, s);
+                                        }, function(t) {
+                                            r("throw", t, a, s);
+                                        }) : e.resolve(f).then(function(t) {
+                                            l.value = t, a(l);
+                                        }, function(t) {
+                                            return r("throw", t, a, s);
+                                        });
+                                    }
+                                    s(u.arg);
+                                }(o, i6, r11, a6);
+                            });
+                        }
+                        return r10 = r10 ? r10.then(a5, a5) : a5();
+                    };
+                }
+                function b(t, e) {
+                    var n = t.iterator[e.method];
+                    if (void 0 === n) {
+                        if (e.delegate = null, "throw" === e.method) {
+                            if (t.iterator.return && (e.method = "return", e.arg = void 0, b(t, e), "throw" === e.method)) return u1;
+                            e.method = "throw", e.arg = new TypeError("The iterator does not provide a 'throw' method");
+                        }
+                        return u1;
+                    }
+                    var r = c1(n, t.iterator, e.arg);
+                    if ("throw" === r.type) return e.method = "throw", e.arg = r.arg, e.delegate = null, u1;
+                    var o = r.arg;
+                    return o ? o.done ? (e[t.resultName] = o.value, e.next = t.nextLoc, "return" !== e.method && (e.method = "next", e.arg = void 0), e.delegate = null, u1) : o : (e.method = "throw", e.arg = new TypeError("iterator result is not an object"), e.delegate = null, u1);
+                }
+                function w(t) {
+                    var e = {
+                        tryLoc: t[0]
+                    };
+                    1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e);
+                }
+                function k(t) {
+                    var e = t.completion || {
+                    };
+                    e.type = "normal", delete e.arg, t.completion = e;
+                }
+                function _(t) {
+                    this.tryEntries = [
+                        {
+                            tryLoc: "root"
+                        }
+                    ], t.forEach(w, this), this.reset(!0);
+                }
+                function E(t) {
+                    if (t) {
+                        var e33 = t[o8];
+                        if (e33) return e33.call(t);
+                        if ("function" == typeof t.next) return t;
+                        if (!isNaN(t.length)) {
+                            var r = -1, i = function e() {
+                                for(; ++r < t.length;)if (n18.call(t, r)) return e.value = t[r], e.done = !1, e;
+                                return e.value = void 0, e.done = !0, e;
+                            };
+                            return i.next = i;
+                        }
+                    }
+                    return {
+                        next: x
+                    };
+                }
+                function x() {
+                    return {
+                        value: void 0,
+                        done: !0
+                    };
+                }
+                return f1.prototype = v.constructor = h, h.constructor = f1, h[a3] = f1.displayName = "GeneratorFunction", t47.isGeneratorFunction = function(t) {
+                    var e = "function" == typeof t && t.constructor;
+                    return !!e && (e === f1 || "GeneratorFunction" === (e.displayName || e.name));
+                }, t47.mark = function(t) {
+                    return Object.setPrototypeOf ? Object.setPrototypeOf(t, h) : (t.__proto__ = h, a3 in t || (t[a3] = "GeneratorFunction")), t.prototype = Object.create(v), t;
+                }, t47.awrap = function(t) {
+                    return {
+                        __await: t
+                    };
+                }, y(g.prototype), g.prototype[i4] = function() {
+                    return this;
+                }, t47.AsyncIterator = g, t47.async = function(e, n, r, o, i) {
+                    void 0 === i && (i = Promise);
+                    var a = new g(s2(e, n, r, o), i);
+                    return t47.isGeneratorFunction(n) ? a : a.next().then(function(t) {
+                        return t.done ? t.value : a.next();
+                    });
+                }, y(v), v[a3] = "Generator", v[o8] = function() {
+                    return this;
+                }, v.toString = function() {
+                    return "[object Generator]";
+                }, t47.keys = function(t) {
+                    var e = [];
+                    for(var n20 in t)e.push(n20);
+                    return e.reverse(), function n() {
+                        for(; e.length;){
+                            var r = e.pop();
+                            if (r in t) return n.value = r, n.done = !1, n;
+                        }
+                        return n.done = !0, n;
+                    };
+                }, t47.values = E, _.prototype = {
+                    constructor: _,
+                    reset: function(t) {
+                        if (this.prev = 0, this.next = 0, this.sent = this._sent = void 0, this.done = !1, this.delegate = null, this.method = "next", this.arg = void 0, this.tryEntries.forEach(k), !t) for(var e in this)"t" === e.charAt(0) && n18.call(this, e) && !isNaN(+e.slice(1)) && (this[e] = void 0);
+                    },
+                    stop: function() {
+                        this.done = !0;
+                        var t = this.tryEntries[0].completion;
+                        if ("throw" === t.type) throw t.arg;
+                        return this.rval;
+                    },
+                    dispatchException: function(t) {
+                        if (this.done) throw t;
+                        var e = this;
+                        function r12(n, r) {
+                            return a.type = "throw", a.arg = t, e.next = n, r && (e.method = "next", e.arg = void 0), !!r;
+                        }
+                        for(var o = this.tryEntries.length - 1; o >= 0; --o){
+                            var i = this.tryEntries[o], a = i.completion;
+                            if ("root" === i.tryLoc) return r12("end");
+                            if (i.tryLoc <= this.prev) {
+                                var s = n18.call(i, "catchLoc"), c = n18.call(i, "finallyLoc");
+                                if (s && c) {
+                                    if (this.prev < i.catchLoc) return r12(i.catchLoc, !0);
+                                    if (this.prev < i.finallyLoc) return r12(i.finallyLoc);
+                                } else if (s) {
+                                    if (this.prev < i.catchLoc) return r12(i.catchLoc, !0);
+                                } else {
+                                    if (!c) throw new Error("try statement without catch or finally");
+                                    if (this.prev < i.finallyLoc) return r12(i.finallyLoc);
+                                }
+                            }
+                        }
+                    },
+                    abrupt: function(t, e) {
+                        for(var r = this.tryEntries.length - 1; r >= 0; --r){
+                            var o = this.tryEntries[r];
+                            if (o.tryLoc <= this.prev && n18.call(o, "finallyLoc") && this.prev < o.finallyLoc) {
+                                var i = o;
+                                break;
+                            }
+                        }
+                        i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null);
+                        var a = i ? i.completion : {
+                        };
+                        return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, u1) : this.complete(a);
+                    },
+                    complete: function(t, e) {
+                        if ("throw" === t.type) throw t.arg;
+                        return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), u1;
+                    },
+                    finish: function(t) {
+                        for(var e = this.tryEntries.length - 1; e >= 0; --e){
+                            var n = this.tryEntries[e];
+                            if (n.finallyLoc === t) return this.complete(n.completion, n.afterLoc), k(n), u1;
+                        }
+                    },
+                    catch: function(t) {
+                        for(var e = this.tryEntries.length - 1; e >= 0; --e){
+                            var n = this.tryEntries[e];
+                            if (n.tryLoc === t) {
+                                var r = n.completion;
+                                if ("throw" === r.type) {
+                                    var o = r.arg;
+                                    k(n);
+                                }
+                                return o;
+                            }
+                        }
+                        throw new Error("illegal catch attempt");
+                    },
+                    delegateYield: function(t, e, n) {
+                        return this.delegate = {
+                            iterator: E(t),
+                            resultName: e,
+                            nextLoc: n
+                        }, "next" === this.method && (this.arg = void 0), u1;
+                    }
+                }, t47;
+            }(t46.exports);
+            try {
+                regeneratorRuntime = r7;
+            } catch (t) {
+                Function("r", "regeneratorRuntime = r")(r7);
+            }
+        },
+        function(t, e, n) {
+            var r = n(15), o = n(16);
+            "string" == typeof (o = o.__esModule ? o.default : o) && (o = [
+                [
+                    t.i,
+                    o,
+                    ""
+                ]
+            ]);
+            var i = {
+                insert: "head",
+                singleton: !1
+            };
+            r(o, i);
+            t.exports = o.locals || {
+            };
+        },
+        function(t52, e35, n21) {
+            "use strict";
+            var r13, o10 = function() {
+                return void 0 === r13 && (r13 = Boolean(window && document && document.all && !window.atob)), r13;
+            }, i7 = function() {
+                var t = {
+                };
+                return function(e) {
+                    if (void 0 === t[e]) {
+                        var n = document.querySelector(e);
+                        if (window.HTMLIFrameElement && n instanceof window.HTMLIFrameElement) try {
+                            n = n.contentDocument.head;
+                        } catch (t53) {
+                            n = null;
+                        }
+                        t[e] = n;
+                    }
+                    return t[e];
+                };
+            }(), a7 = [];
+            function s(t) {
+                for(var e = -1, n = 0; n < a7.length; n++)if (a7[n].identifier === t) {
+                    e = n;
+                    break;
+                }
+                return e;
+            }
+            function c2(t, e) {
+                for(var n = {
+                }, r = [], o = 0; o < t.length; o++){
+                    var i = t[o], c = e.base ? i[0] + e.base : i[0], u = n[c] || 0, l = "".concat(c, " ").concat(u);
+                    n[c] = u + 1;
+                    var f = s(l), h = {
+                        css: i[1],
+                        media: i[2],
+                        sourceMap: i[3]
+                    };
+                    -1 !== f ? (a7[f].references++, a7[f].updater(h)) : a7.push({
+                        identifier: l,
+                        updater: v(h, e),
+                        references: 1
+                    }), r.push(l);
+                }
+                return r;
+            }
+            function u2(t55) {
+                var e = document.createElement("style"), r = t55.attributes || {
+                };
+                if (void 0 === r.nonce) {
+                    var o = n21.nc;
+                    o && (r.nonce = o);
+                }
+                if (Object.keys(r).forEach(function(t) {
+                    e.setAttribute(t, r[t]);
+                }), "function" == typeof t55.insert) t55.insert(e);
+                else {
+                    var a = i7(t55.insert || "head");
+                    if (!a) throw new Error("Couldn't find a style target. This probably means that the value for the 'insert' parameter is invalid.");
+                    a.appendChild(e);
+                }
+                return e;
+            }
+            var l2, f2 = (l2 = [], function(t, e) {
+                return l2[t] = e, l2.filter(Boolean).join("\n");
+            });
+            function h1(t, e, n, r) {
+                var o = n ? "" : r.media ? "@media ".concat(r.media, " {").concat(r.css, "}") : r.css;
+                if (t.styleSheet) t.styleSheet.cssText = f2(e, o);
+                else {
+                    var i = document.createTextNode(o), a = t.childNodes;
+                    a[e] && t.removeChild(a[e]), a.length ? t.insertBefore(i, a[e]) : t.appendChild(i);
+                }
+            }
+            function d(t, e, n) {
+                var r = n.css, o = n.media, i = n.sourceMap;
+                if (o ? t.setAttribute("media", o) : t.removeAttribute("media"), i && btoa && (r += "\n/*# sourceMappingURL=data:application/json;base64,".concat(btoa(unescape(encodeURIComponent(JSON.stringify(i)))), " */")), t.styleSheet) t.styleSheet.cssText = r;
+                else {
+                    for(; t.firstChild;)t.removeChild(t.firstChild);
+                    t.appendChild(document.createTextNode(r));
+                }
+            }
+            var p = null, m = 0;
+            function v(t56, e36) {
+                var n, r, o;
+                if (e36.singleton) {
+                    var i = m++;
+                    n = p || (p = u2(e36)), r = h1.bind(null, n, i, !1), o = h1.bind(null, n, i, !0);
+                } else n = u2(e36), r = d.bind(null, n, e36), o = function() {
+                    !function(t) {
+                        if (null === t.parentNode) return !1;
+                        t.parentNode.removeChild(t);
+                    }(n);
+                };
+                return r(t56), function(e) {
+                    if (e) {
+                        if (e.css === t56.css && e.media === t56.media && e.sourceMap === t56.sourceMap) return;
+                        r(t56 = e);
+                    } else o();
+                };
+            }
+            t52.exports = function(t57, e) {
+                (e = e || {
+                }).singleton || "boolean" == typeof e.singleton || (e.singleton = o10());
+                var n = c2(t57 = t57 || [], e);
+                return function(t) {
+                    if (t = t || [], "[object Array]" === Object.prototype.toString.call(t)) {
+                        for(var r = 0; r < n.length; r++){
+                            var o = s(n[r]);
+                            a7[o].references--;
+                        }
+                        for(var i = c2(t, e), u = 0; u < n.length; u++){
+                            var l = s(n[u]);
+                            0 === a7[l].references && (a7[l].updater(), a7.splice(l, 1));
+                        }
+                        n = i;
+                    }
+                };
+            };
+        },
+        function(t, e, n) {
+            (e = n(17)(!1)).push([
+                t.i,
+                ".link-tool {\n  position: relative;\n}\n\n  .link-tool__input {\n    padding-left: 38px;\n    background-image: url(\"data:image/svg+xml,%3Csvg width='13' height='14' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8.567 13.629c.728.464 1.581.65 2.41.558l-.873.873A3.722 3.722 0 1 1 4.84 9.794L6.694 7.94a3.722 3.722 0 0 1 5.256-.008L10.484 9.4a5.209 5.209 0 0 1-.017.016 1.625 1.625 0 0 0-2.29.009l-1.854 1.854a1.626 1.626 0 0 0 2.244 2.35zm2.766-7.358a3.722 3.722 0 0 0-2.41-.558l.873-.873a3.722 3.722 0 1 1 5.264 5.266l-1.854 1.854a3.722 3.722 0 0 1-5.256.008L9.416 10.5a5.2 5.2 0 0 1 .017-.016 1.625 1.625 0 0 0 2.29-.009l1.854-1.854a1.626 1.626 0 0 0-2.244-2.35z' fill='rgba(0, 0, 0, 0.6)' transform='translate(-3.667 -2.7)'/%3E%3C/svg%3E%0A\");\n    background-repeat: no-repeat;\n    background-position: 15px;\n    white-space: nowrap;\n    text-overflow: ellipsis;\n    overflow: hidden;\n  }\n\n  .link-tool__input-holder {\n      position: relative;\n    }\n\n  .link-tool__input-holder--error .link-tool__input {\n          background-image: url(\"data:image/svg+xml,%3Csvg width='13' height='14' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8.567 13.629c.728.464 1.581.65 2.41.558l-.873.873A3.722 3.722 0 1 1 4.84 9.794L6.694 7.94a3.722 3.722 0 0 1 5.256-.008L10.484 9.4a5.209 5.209 0 0 1-.017.016 1.625 1.625 0 0 0-2.29.009l-1.854 1.854a1.626 1.626 0 0 0 2.244 2.35zm2.766-7.358a3.722 3.722 0 0 0-2.41-.558l.873-.873a3.722 3.722 0 1 1 5.264 5.266l-1.854 1.854a3.722 3.722 0 0 1-5.256.008L9.416 10.5a5.2 5.2 0 0 1 .017-.016 1.625 1.625 0 0 0 2.29-.009l1.854-1.854a1.626 1.626 0 0 0-2.244-2.35z' fill='rgb(224, 147, 147)' transform='translate(-3.667 -2.7)'/%3E%3C/svg%3E%0A\");\n          background-color: #fff3f6;\n          border-color: #f3e0e0;\n          color: #a95a5a;\n          box-shadow: inset 0 1px 3px 0 rgba(146, 62, 62, .05);\n        }\n\n  .link-tool__input[contentEditable=true][data-placeholder]::before{\n      position: absolute;\n      content: attr(data-placeholder);\n      color: #707684;\n      font-weight: normal;\n      opacity: 0;\n    }\n\n  .link-tool__input[contentEditable=true][data-placeholder]:empty::before {\n        opacity: 1;\n      }\n\n  .link-tool__input[contentEditable=true][data-placeholder]:empty:focus::before {\n         opacity: 0;\n       }\n\n  .link-tool__progress {\n    position: absolute;\n    box-shadow: inset 0 1px 3px 0 rgba(102, 85, 107, 0.04);\n    height: 100%;\n    width: 0;\n    background-color: #f4f5f7;\n    z-index: -1;\n  }\n\n  .link-tool__progress--loading {\n      -webkit-animation: progress 500ms ease-in;\n      -webkit-animation-fill-mode: forwards;\n    }\n\n  .link-tool__progress--loaded {\n      width: 100%;\n    }\n\n  .link-tool__content {\n    display: block;\n    padding: 25px;\n    border-radius: 2px;\n    box-shadow: 0 0 0 2px #fff;\n    color: initial !important;\n    text-decoration: none !important;\n  }\n\n  .link-tool__content::after {\n      content: \"\";\n      clear: both;\n      display: table;\n    }\n\n  .link-tool__content--rendered {\n      background: #fff;\n      border: 1px solid rgba(201, 201, 204, 0.48);\n      box-shadow: 0 1px 3px rgba(0,0,0, .1);\n      border-radius: 6px;\n      will-change: filter;\n      animation: link-in 450ms 1 cubic-bezier(0.215, 0.61, 0.355, 1);\n    }\n\n  .link-tool__content--rendered:hover {\n        box-shadow: 0 0 3px rgba(0,0,0, .16);\n      }\n\n  .link-tool__image {\n    background-position: center center;\n    background-repeat: no-repeat;\n    background-size: cover;\n    margin: 0 0 0 30px;\n    width: 65px;\n    height: 65px;\n    border-radius: 3px;\n    float: right;\n  }\n\n  .link-tool__title {\n    font-size: 17px;\n    font-weight: 600;\n    line-height: 1.5em;\n    margin: 0 0 10px 0;\n  }\n\n  .link-tool__title + .link-tool__anchor {\n      margin-top: 25px;\n    }\n\n  .link-tool__description {\n    margin: 0 0 20px 0;\n    font-size: 15px;\n    line-height: 1.55em;\n    display: -webkit-box;\n    -webkit-line-clamp: 3;\n    -webkit-box-orient: vertical;\n    overflow: hidden;\n  }\n\n  .link-tool__anchor {\n    display: block;\n    font-size: 15px;\n    line-height: 1em;\n    color: #888 !important;\n    border: 0 !important;\n    padding: 0 !important;\n  }\n\n@keyframes link-in {\n  from {\n    filter: blur(5px);\n  }\n\n  to {\n    filter: none;\n  }\n}\n\n.codex-editor--narrow .link-tool__image {\n  display: none;\n}\n\n@-webkit-keyframes progress {\n  0% {\n    width: 0;\n  }\n  100% {\n    width: 85%;\n  }\n}\n",
+                ""
+            ]), t.exports = e;
+        },
+        function(t58, e37, n22) {
+            "use strict";
+            t58.exports = function(t59) {
+                var e38 = [];
+                return e38.toString = function() {
+                    return this.map(function(e39) {
+                        var n23 = function(t60, e) {
+                            var n = t60[1] || "", r = t60[3];
+                            if (!r) return n;
+                            if (e && "function" == typeof btoa) {
+                                var o = (a = r, s = btoa(unescape(encodeURIComponent(JSON.stringify(a)))), c = "sourceMappingURL=data:application/json;charset=utf-8;base64,".concat(s), "/*# ".concat(c, " */")), i = r.sources.map(function(t) {
+                                    return "/*# sourceURL=".concat(r.sourceRoot || "").concat(t, " */");
+                                });
+                                return [
+                                    n
+                                ].concat(i).concat([
+                                    o
+                                ]).join("\n");
+                            }
+                            var a, s, c;
+                            return [
+                                n
+                            ].join("\n");
+                        }(e39, t59);
+                        return e39[2] ? "@media ".concat(e39[2], " {").concat(n23, "}") : n23;
+                    }).join("");
+                }, e38.i = function(t, n, r) {
+                    "string" == typeof t && (t = [
+                        [
+                            null,
+                            t,
+                            ""
+                        ]
+                    ]);
+                    var o = {
+                    };
+                    if (r) for(var i = 0; i < this.length; i++){
+                        var a = this[i][0];
+                        null != a && (o[a] = !0);
+                    }
+                    for(var s = 0; s < t.length; s++){
+                        var c = [].concat(t[s]);
+                        r && o[c[0]] || (n && (c[2] ? c[2] = "".concat(n, " and ").concat(c[2]) : c[2] = n), e38.push(c));
+                    }
+                }, e38;
+            };
+        },
+        function(t61, e40, n24) {
+            (function(t62) {
+                !function(t63) {
+                    var e41 = function() {
+                        try {
+                            return !!Symbol.iterator;
+                        } catch (t) {
+                            return !1;
+                        }
+                    }(), n25 = function(t) {
+                        var n = {
+                            next: function() {
+                                var e = t.shift();
+                                return {
+                                    done: void 0 === e,
+                                    value: e
+                                };
+                            }
+                        };
+                        return e41 && (n[Symbol.iterator] = function() {
+                            return n;
+                        }), n;
+                    }, r14 = function(t) {
+                        return encodeURIComponent(t).replace(/%20/g, "+");
+                    }, o11 = function(t) {
+                        return decodeURIComponent(String(t).replace(/\+/g, " "));
+                    };
+                    (function() {
+                        try {
+                            var e = t63.URLSearchParams;
+                            return "a=1" === new e("?a=1").toString() && "function" == typeof e.prototype.set;
+                        } catch (t) {
+                            return !1;
+                        }
+                    })() || (function() {
+                        var o12 = function(t64) {
+                            Object.defineProperty(this, "_entries", {
+                                writable: !0,
+                                value: {
+                                }
+                            });
+                            var e42 = typeof t64;
+                            if ("undefined" === e42) ;
+                            else if ("string" === e42) "" !== t64 && this._fromString(t64);
+                            else if (t64 instanceof o12) {
+                                var n = this;
+                                t64.forEach(function(t, e) {
+                                    n.append(e, t);
+                                });
+                            } else {
+                                if (null === t64 || "object" !== e42) throw new TypeError("Unsupported input's type for URLSearchParams");
+                                if ("[object Array]" === Object.prototype.toString.call(t64)) for(var r = 0; r < t64.length; r++){
+                                    var i = t64[r];
+                                    if ("[object Array]" !== Object.prototype.toString.call(i) && 2 === i.length) throw new TypeError("Expected [string, any] as entry at index " + r + " of URLSearchParams's input");
+                                    this.append(i[0], i[1]);
+                                }
+                                else for(var a in t64)t64.hasOwnProperty(a) && this.append(a, t64[a]);
+                            }
+                        }, i9 = o12.prototype;
+                        i9.append = function(t, e) {
+                            t in this._entries ? this._entries[t].push(String(e)) : this._entries[t] = [
+                                String(e)
+                            ];
+                        }, i9.delete = function(t) {
+                            delete this._entries[t];
+                        }, i9.get = function(t) {
+                            return t in this._entries ? this._entries[t][0] : null;
+                        }, i9.getAll = function(t) {
+                            return t in this._entries ? this._entries[t].slice(0) : [];
+                        }, i9.has = function(t) {
+                            return t in this._entries;
+                        }, i9.set = function(t, e) {
+                            this._entries[t] = [
+                                String(e)
+                            ];
+                        }, i9.forEach = function(t, e) {
+                            var n;
+                            for(var r in this._entries)if (this._entries.hasOwnProperty(r)) {
+                                n = this._entries[r];
+                                for(var o = 0; o < n.length; o++)t.call(e, n[o], r, this);
+                            }
+                        }, i9.keys = function() {
+                            var t = [];
+                            return this.forEach(function(e, n) {
+                                t.push(n);
+                            }), n25(t);
+                        }, i9.values = function() {
+                            var t = [];
+                            return this.forEach(function(e) {
+                                t.push(e);
+                            }), n25(t);
+                        }, i9.entries = function() {
+                            var t = [];
+                            return this.forEach(function(e, n) {
+                                t.push([
+                                    n,
+                                    e
+                                ]);
+                            }), n25(t);
+                        }, e41 && (i9[Symbol.iterator] = i9.entries), i9.toString = function() {
+                            var t = [];
+                            return this.forEach(function(e, n) {
+                                t.push(r14(n) + "=" + r14(e));
+                            }), t.join("&");
+                        }, t63.URLSearchParams = o12;
+                    })();
+                    var i8 = t63.URLSearchParams.prototype;
+                    "function" != typeof i8.sort && (i8.sort = function() {
+                        var t65 = this, e43 = [];
+                        this.forEach(function(n, r) {
+                            e43.push([
+                                r,
+                                n
+                            ]), t65._entries || t65.delete(r);
+                        }), e43.sort(function(t, e) {
+                            return t[0] < e[0] ? -1 : t[0] > e[0] ? 1 : 0;
+                        }), t65._entries && (t65._entries = {
+                        });
+                        for(var n26 = 0; n26 < e43.length; n26++)this.append(e43[n26][0], e43[n26][1]);
+                    }), "function" != typeof i8._fromString && Object.defineProperty(i8, "_fromString", {
+                        enumerable: !1,
+                        configurable: !1,
+                        writable: !1,
+                        value: function(t) {
+                            if (this._entries) this._entries = {
+                            };
+                            else {
+                                var e = [];
+                                this.forEach(function(t, n) {
+                                    e.push(n);
+                                });
+                                for(var n27 = 0; n27 < e.length; n27++)this.delete(e[n27]);
+                            }
+                            var r, i = (t = t.replace(/^\?/, "")).split("&");
+                            for(n27 = 0; n27 < i.length; n27++)r = i[n27].split("="), this.append(o11(r[0]), r.length > 1 ? o11(r[1]) : "");
+                        }
+                    });
+                }(void 0 !== t62 ? t62 : "undefined" != typeof window ? window : "undefined" != typeof self ? self : this), (function(t66) {
+                    if ((function() {
+                        try {
+                            var e = new t66.URL("b", "http://a");
+                            return e.pathname = "c d", "http://a/c%20d" === e.href && e.searchParams;
+                        } catch (t) {
+                            return !1;
+                        }
+                    })() || (function() {
+                        var e45 = t66.URL, n29 = function(e46, n) {
+                            "string" != typeof e46 && (e46 = String(e46));
+                            var r, o = document;
+                            if (n && (void 0 === t66.location || n !== t66.location.href)) {
+                                (r = (o = document.implementation.createHTMLDocument("")).createElement("base")).href = n, o.head.appendChild(r);
+                                try {
+                                    if (0 !== r.href.indexOf(n)) throw new Error(r.href);
+                                } catch (t) {
+                                    throw new Error("URL unable to set base " + n + " due to " + t);
+                                }
+                            }
+                            var i = o.createElement("a");
+                            i.href = e46, r && (o.body.appendChild(i), i.href = i.href);
+                            var a = o.createElement("input");
+                            if (a.type = "url", a.value = e46, ":" === i.protocol || !/:/.test(i.href) || !a.checkValidity() && !n) throw new TypeError("Invalid URL");
+                            Object.defineProperty(this, "_anchorElement", {
+                                value: i
+                            });
+                            var s = new t66.URLSearchParams(this.search), c = !0, u = !0, l = this;
+                            [
+                                "append",
+                                "delete",
+                                "set"
+                            ].forEach(function(t) {
+                                var e = s[t];
+                                s[t] = function() {
+                                    e.apply(s, arguments), c && (u = !1, l.search = s.toString(), u = !0);
+                                };
+                            }), Object.defineProperty(this, "searchParams", {
+                                value: s,
+                                enumerable: !0
+                            });
+                            var f = void 0;
+                            Object.defineProperty(this, "_updateSearchParams", {
+                                enumerable: !1,
+                                configurable: !1,
+                                writable: !1,
+                                value: function() {
+                                    this.search !== f && (f = this.search, u && (c = !1, this.searchParams._fromString(this.search), c = !0));
+                                }
+                            });
+                        }, r15 = n29.prototype;
+                        [
+                            "hash",
+                            "host",
+                            "hostname",
+                            "port",
+                            "protocol"
+                        ].forEach(function(t67) {
+                            !function(t) {
+                                Object.defineProperty(r15, t, {
+                                    get: function() {
+                                        return this._anchorElement[t];
+                                    },
+                                    set: function(e) {
+                                        this._anchorElement[t] = e;
+                                    },
+                                    enumerable: !0
+                                });
+                            }(t67);
+                        }), Object.defineProperty(r15, "search", {
+                            get: function() {
+                                return this._anchorElement.search;
+                            },
+                            set: function(t) {
+                                this._anchorElement.search = t, this._updateSearchParams();
+                            },
+                            enumerable: !0
+                        }), Object.defineProperties(r15, {
+                            toString: {
+                                get: function() {
+                                    var t = this;
+                                    return function() {
+                                        return t.href;
+                                    };
+                                }
+                            },
+                            href: {
+                                get: function() {
+                                    return this._anchorElement.href.replace(/\?$/, "");
+                                },
+                                set: function(t) {
+                                    this._anchorElement.href = t, this._updateSearchParams();
+                                },
+                                enumerable: !0
+                            },
+                            pathname: {
+                                get: function() {
+                                    return this._anchorElement.pathname.replace(/(^\/?)/, "/");
+                                },
+                                set: function(t) {
+                                    this._anchorElement.pathname = t;
+                                },
+                                enumerable: !0
+                            },
+                            origin: {
+                                get: function() {
+                                    var t = {
+                                        "http:": 80,
+                                        "https:": 443,
+                                        "ftp:": 21
+                                    }[this._anchorElement.protocol], e = this._anchorElement.port != t && "" !== this._anchorElement.port;
+                                    return this._anchorElement.protocol + "//" + this._anchorElement.hostname + (e ? ":" + this._anchorElement.port : "");
+                                },
+                                enumerable: !0
+                            },
+                            password: {
+                                get: function() {
+                                    return "";
+                                },
+                                set: function(t) {
+                                },
+                                enumerable: !0
+                            },
+                            username: {
+                                get: function() {
+                                    return "";
+                                },
+                                set: function(t) {
+                                },
+                                enumerable: !0
+                            }
+                        }), n29.createObjectURL = function(t) {
+                            return e45.createObjectURL.apply(e45, arguments);
+                        }, n29.revokeObjectURL = function(t) {
+                            return e45.revokeObjectURL.apply(e45, arguments);
+                        }, t66.URL = n29;
+                    })(), void 0 !== t66.location && !("origin" in t66.location)) {
+                        var e44 = function() {
+                            return t66.location.protocol + "//" + t66.location.hostname + (t66.location.port ? ":" + t66.location.port : "");
+                        };
+                        try {
+                            Object.defineProperty(t66.location, "origin", {
+                                get: e44,
+                                enumerable: !0
+                            });
+                        } catch (n) {
+                            setInterval(function() {
+                                t66.location.origin = e44();
+                            }, 100);
+                        }
+                    }
+                })(void 0 !== t62 ? t62 : "undefined" != typeof window ? window : "undefined" != typeof self ? self : this);
+            }).call(this, n24(19));
+        },
+        function(t, e) {
+            var n;
+            n = (function() {
+                return this;
+            })();
+            try {
+                n = n || new Function("return this")();
+            } catch (t68) {
+                "object" == typeof window && (n = window);
+            }
+            t.exports = n;
+        }
+    ]).default;
+});
+
+},{}],"4qeqT":[function(require,module,exports) {
+!function(e, t) {
+    "object" == typeof exports && "object" == typeof module ? module.exports = t() : "function" == typeof define && define.amd ? define([], t) : "object" == typeof exports ? exports.Embed = t() : e.Embed = t();
+}(window, function() {
+    return (function(e1) {
+        var t1 = {
+        };
+        function n(r) {
+            if (t1[r]) return t1[r].exports;
+            var i = t1[r] = {
+                i: r,
+                l: !1,
+                exports: {
+                }
+            };
+            return e1[r].call(i.exports, i, i.exports, n), i.l = !0, i.exports;
+        }
+        return n.m = e1, n.c = t1, n.d = function(e, t, r) {
+            n.o(e, t) || Object.defineProperty(e, t, {
+                enumerable: !0,
+                get: r
+            });
+        }, n.r = function(e) {
+            "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(e, Symbol.toStringTag, {
+                value: "Module"
+            }), Object.defineProperty(e, "__esModule", {
+                value: !0
+            });
+        }, n.t = function(e, t) {
+            if (1 & t && (e = n(e)), 8 & t) return e;
+            if (4 & t && "object" == typeof e && e && e.__esModule) return e;
+            var r = Object.create(null);
+            if (n.r(r), Object.defineProperty(r, "default", {
+                enumerable: !0,
+                value: e
+            }), 2 & t && "string" != typeof e) for(var i in e)n.d(r, i, (function(t) {
+                return e[t];
+            }).bind(null, i));
+            return r;
+        }, n.n = function(e) {
+            var t = e && e.__esModule ? function() {
+                return e.default;
+            } : function() {
+                return e;
+            };
+            return n.d(t, "a", t), t;
+        }, n.o = function(e, t) {
+            return Object.prototype.hasOwnProperty.call(e, t);
+        }, n.p = "/", n(n.s = 14);
+    })([
+        function(e2, t2, n) {
+            var r = n(5), i = n(6), o = n(7), a = n(9);
+            e2.exports = function(e, t) {
+                return r(e) || i(e, t) || o(e, t) || a();
+            };
+        },
+        function(e3, t3) {
+            function n(t) {
+                return "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? e3.exports = n = function(e) {
+                    return typeof e;
+                } : e3.exports = n = function(e) {
+                    return e && "function" == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e;
+                }, n(t);
+            }
+            e3.exports = n;
+        },
+        function(e4, t4) {
+            e4.exports = function(e, t) {
+                if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function");
+            };
+        },
+        function(e5, t5) {
+            function n1(e, t) {
+                for(var n = 0; n < t.length; n++){
+                    var r = t[n];
+                    r.enumerable = r.enumerable || !1, r.configurable = !0, "value" in r && (r.writable = !0), Object.defineProperty(e, r.key, r);
+                }
+            }
+            e5.exports = function(e, t, r) {
+                return t && n1(e.prototype, t), r && n1(e, r), e;
+            };
+        },
+        function(e6, t6) {
+            function n2(e, t, n) {
+                var r, i, o, a, l;
+                function c() {
+                    var s = Date.now() - a;
+                    s < t && s >= 0 ? r = setTimeout(c, t - s) : (r = null, n || (l = e.apply(o, i), o = i = null));
+                }
+                null == t && (t = 100);
+                var s1 = function() {
+                    o = this, i = arguments, a = Date.now();
+                    var s = n && !r;
+                    return r || (r = setTimeout(c, t)), s && (l = e.apply(o, i), o = i = null), l;
+                };
+                return s1.clear = function() {
+                    r && (clearTimeout(r), r = null);
+                }, s1.flush = function() {
+                    r && (l = e.apply(o, i), o = i = null, clearTimeout(r), r = null);
+                }, s1;
+            }
+            n2.debounce = n2, e6.exports = n2;
+        },
+        function(e7, t) {
+            e7.exports = function(e) {
+                if (Array.isArray(e)) return e;
+            };
+        },
+        function(e8, t7) {
+            e8.exports = function(e, t) {
+                if ("undefined" != typeof Symbol && Symbol.iterator in Object(e)) {
+                    var n = [], r = !0, i = !1, o = void 0;
+                    try {
+                        for(var a, l = e[Symbol.iterator](); !(r = (a = l.next()).done) && (n.push(a.value), !t || n.length !== t); r = !0);
+                    } catch (e) {
+                        i = !0, o = e;
+                    } finally{
+                        try {
+                            r || null == l.return || l.return();
+                        } finally{
+                            if (i) throw o;
+                        }
+                    }
+                    return n;
+                }
+            };
+        },
+        function(e9, t8, n3) {
+            var r = n3(8);
+            e9.exports = function(e, t) {
+                if (e) {
+                    if ("string" == typeof e) return r(e, t);
+                    var n = Object.prototype.toString.call(e).slice(8, -1);
+                    return "Object" === n && e.constructor && (n = e.constructor.name), "Map" === n || "Set" === n ? Array.from(n) : "Arguments" === n || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n) ? r(e, t) : void 0;
+                }
+            };
+        },
+        function(e10, t9) {
+            e10.exports = function(e, t) {
+                (null == t || t > e.length) && (t = e.length);
+                for(var n = 0, r = new Array(t); n < t; n++)r[n] = e[n];
+                return r;
+            };
+        },
+        function(e, t) {
+            e.exports = function() {
+                throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+            };
+        },
+        function(e, t, n) {
+            var r = n(11), i = n(12);
+            "string" == typeof (i = i.__esModule ? i.default : i) && (i = [
+                [
+                    e.i,
+                    i,
+                    ""
+                ]
+            ]);
+            var o = {
+                insert: "head",
+                singleton: !1
+            };
+            r(i, o);
+            e.exports = i.locals || {
+            };
+        },
+        function(e11, t10, n4) {
+            "use strict";
+            var r1, i1 = function() {
+                return void 0 === r1 && (r1 = Boolean(window && document && document.all && !window.atob)), r1;
+            }, o1 = function() {
+                var e = {
+                };
+                return function(t) {
+                    if (void 0 === e[t]) {
+                        var n = document.querySelector(t);
+                        if (window.HTMLIFrameElement && n instanceof window.HTMLIFrameElement) try {
+                            n = n.contentDocument.head;
+                        } catch (e12) {
+                            n = null;
+                        }
+                        e[t] = n;
+                    }
+                    return e[t];
+                };
+            }(), a1 = [];
+            function l(e) {
+                for(var t = -1, n = 0; n < a1.length; n++)if (a1[n].identifier === e) {
+                    t = n;
+                    break;
+                }
+                return t;
+            }
+            function c1(e, t) {
+                for(var n = {
+                }, r = [], i = 0; i < e.length; i++){
+                    var o = e[i], c = t.base ? o[0] + t.base : o[0], s = n[c] || 0, d = "".concat(c, " ").concat(s);
+                    n[c] = s + 1;
+                    var u = l(d), h = {
+                        css: o[1],
+                        media: o[2],
+                        sourceMap: o[3]
+                    };
+                    -1 !== u ? (a1[u].references++, a1[u].updater(h)) : a1.push({
+                        identifier: d,
+                        updater: b(h, t),
+                        references: 1
+                    }), r.push(d);
+                }
+                return r;
+            }
+            function s2(e14) {
+                var t = document.createElement("style"), r = e14.attributes || {
+                };
+                if (void 0 === r.nonce) {
+                    var i = n4.nc;
+                    i && (r.nonce = i);
+                }
+                if (Object.keys(r).forEach(function(e) {
+                    t.setAttribute(e, r[e]);
+                }), "function" == typeof e14.insert) e14.insert(t);
+                else {
+                    var a = o1(e14.insert || "head");
+                    if (!a) throw new Error("Couldn't find a style target. This probably means that the value for the 'insert' parameter is invalid.");
+                    a.appendChild(t);
+                }
+                return t;
+            }
+            var d1, u1 = (d1 = [], function(e, t) {
+                return d1[e] = t, d1.filter(Boolean).join("\n");
+            });
+            function h1(e, t, n, r) {
+                var i = n ? "" : r.media ? "@media ".concat(r.media, " {").concat(r.css, "}") : r.css;
+                if (e.styleSheet) e.styleSheet.cssText = u1(t, i);
+                else {
+                    var o = document.createTextNode(i), a = e.childNodes;
+                    a[t] && e.removeChild(a[t]), a.length ? e.insertBefore(o, a[t]) : e.appendChild(o);
+                }
+            }
+            function m(e, t, n) {
+                var r = n.css, i = n.media, o = n.sourceMap;
+                if (i ? e.setAttribute("media", i) : e.removeAttribute("media"), o && btoa && (r += "\n/*# sourceMappingURL=data:application/json;base64,".concat(btoa(unescape(encodeURIComponent(JSON.stringify(o)))), " */")), e.styleSheet) e.styleSheet.cssText = r;
+                else {
+                    for(; e.firstChild;)e.removeChild(e.firstChild);
+                    e.appendChild(document.createTextNode(r));
+                }
+            }
+            var f = null, p = 0;
+            function b(e15, t11) {
+                var n, r, i;
+                if (t11.singleton) {
+                    var o = p++;
+                    n = f || (f = s2(t11)), r = h1.bind(null, n, o, !1), i = h1.bind(null, n, o, !0);
+                } else n = s2(t11), r = m.bind(null, n, t11), i = function() {
+                    !function(e) {
+                        if (null === e.parentNode) return !1;
+                        e.parentNode.removeChild(e);
+                    }(n);
+                };
+                return r(e15), function(t) {
+                    if (t) {
+                        if (t.css === e15.css && t.media === e15.media && t.sourceMap === e15.sourceMap) return;
+                        r(e15 = t);
+                    } else i();
+                };
+            }
+            e11.exports = function(e16, t) {
+                (t = t || {
+                }).singleton || "boolean" == typeof t.singleton || (t.singleton = i1());
+                var n = c1(e16 = e16 || [], t);
+                return function(e) {
+                    if (e = e || [], "[object Array]" === Object.prototype.toString.call(e)) {
+                        for(var r = 0; r < n.length; r++){
+                            var i = l(n[r]);
+                            a1[i].references--;
+                        }
+                        for(var o = c1(e, t), s = 0; s < n.length; s++){
+                            var d = l(n[s]);
+                            0 === a1[d].references && (a1[d].updater(), a1.splice(d, 1));
+                        }
+                        n = o;
+                    }
+                };
+            };
+        },
+        function(e, t, n) {
+            (t = n(13)(!1)).push([
+                e.i,
+                ".embed-tool--loading .embed-tool__caption {\n      display: none;\n    }\n\n    .embed-tool--loading .embed-tool__preloader {\n      display: block;\n    }\n\n    .embed-tool--loading .embed-tool__content {\n      display: none;\n    }\n  .embed-tool__preloader {\n    display: none;\n    position: relative;\n    height: 200px;\n    box-sizing: border-box;\n    border-radius: 5px;\n    border: 1px solid #e6e9eb;\n  }\n  .embed-tool__preloader::before {\n      content: '';\n      position: absolute;\n      z-index: 3;\n      left: 50%;\n      top: 50%;\n      width: 30px;\n      height: 30px;\n      margin-top: -25px;\n      margin-left: -15px;\n      border-radius: 50%;\n      border: 2px solid #cdd1e0;\n      border-top-color: #388ae5;\n      box-sizing: border-box;\n      animation: embed-preloader-spin 2s infinite linear;\n    }\n  .embed-tool__url {\n    position: absolute;\n    bottom: 20px;\n    left: 50%;\n    transform: translateX(-50%);\n    max-width: 250px;\n    color: #7b7e89;\n    font-size: 11px;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n  }\n  .embed-tool__content {\n    width: 100%;\n  }\n  .embed-tool__caption {\n    margin-top: 7px;\n  }\n  .embed-tool__caption[contentEditable=true][data-placeholder]::before{\n      position: absolute;\n      content: attr(data-placeholder);\n      color: #707684;\n      font-weight: normal;\n      opacity: 0;\n    }\n  .embed-tool__caption[contentEditable=true][data-placeholder]:empty::before {\n         opacity: 1;\n      }\n  .embed-tool__caption[contentEditable=true][data-placeholder]:empty:focus::before {\n        opacity: 0;\n      }\n\n@keyframes embed-preloader-spin {\n  0% {\n    transform: rotate(0deg);\n  }\n  100% {\n    transform: rotate(360deg);\n  }\n}\n",
+                ""
+            ]), e.exports = t;
+        },
+        function(e17, t12, n5) {
+            "use strict";
+            e17.exports = function(e18) {
+                var t13 = [];
+                return t13.toString = function() {
+                    return this.map(function(t14) {
+                        var n6 = function(e19, t) {
+                            var n = e19[1] || "", r = e19[3];
+                            if (!r) return n;
+                            if (t && "function" == typeof btoa) {
+                                var i = (a = r, l = btoa(unescape(encodeURIComponent(JSON.stringify(a)))), c = "sourceMappingURL=data:application/json;charset=utf-8;base64,".concat(l), "/*# ".concat(c, " */")), o = r.sources.map(function(e) {
+                                    return "/*# sourceURL=".concat(r.sourceRoot || "").concat(e, " */");
+                                });
+                                return [
+                                    n
+                                ].concat(o).concat([
+                                    i
+                                ]).join("\n");
+                            }
+                            var a, l, c;
+                            return [
+                                n
+                            ].join("\n");
+                        }(t14, e18);
+                        return t14[2] ? "@media ".concat(t14[2], " {").concat(n6, "}") : n6;
+                    }).join("");
+                }, t13.i = function(e, n, r) {
+                    "string" == typeof e && (e = [
+                        [
+                            null,
+                            e,
+                            ""
+                        ]
+                    ]);
+                    var i = {
+                    };
+                    if (r) for(var o = 0; o < this.length; o++){
+                        var a = this[o][0];
+                        null != a && (i[a] = !0);
+                    }
+                    for(var l = 0; l < e.length; l++){
+                        var c = [].concat(e[l]);
+                        r && i[c[0]] || (n && (c[2] ? c[2] = "".concat(n, " and ").concat(c[2]) : c[2] = n), t13.push(c));
+                    }
+                }, t13;
+            };
+        },
+        function(e20, t15, n7) {
+            "use strict";
+            n7.r(t15), n7.d(t15, "default", function() {
+                return m1;
+            });
+            var r2 = n7(1), i2 = n7.n(r2), o2 = n7(0), a2 = n7.n(o2), l1 = n7(2), c2 = n7.n(l1), s3 = n7(3), d2 = n7.n(s3), u2 = {
+                vimeo: {
+                    regex: /(?:http[s]?:\/\/)?(?:www.)?(?:player.)?vimeo\.co(?:.+\/([^\/]\d+)(?:#t=[\d]+)?s?$)/,
+                    embedUrl: "https://player.vimeo.com/video/<%= remote_id %>?title=0&byline=0",
+                    html: '<iframe style="width:100%;" height="320" frameborder="0"></iframe>',
+                    height: 320,
+                    width: 580
+                },
+                youtube: {
+                    regex: /(?:https?:\/\/)?(?:www\.)?(?:(?:youtu\.be\/)|(?:youtube\.com)\/(?:v\/|u\/\w\/|embed\/|watch))(?:(?:\?v=)?([^#&?=]*))?((?:[?&]\w*=\w*)*)/,
+                    embedUrl: "https://www.youtube.com/embed/<%= remote_id %>",
+                    html: '<iframe style="width:100%;" height="320" frameborder="0" allowfullscreen></iframe>',
+                    height: 320,
+                    width: 580,
+                    id: function(e21) {
+                        var t16 = a2()(e21, 2), n = t16[0], r3 = t16[1];
+                        if (!r3 && n) return n;
+                        var i = {
+                            start: "start",
+                            end: "end",
+                            t: "start",
+                            time_continue: "start",
+                            list: "list"
+                        };
+                        return r3 = r3.slice(1).split("&").map(function(e) {
+                            var t = e.split("="), r = a2()(t, 2), o = r[0], l = r[1];
+                            return n || "v" !== o ? i[o] ? "".concat(i[o], "=").concat(l) : null : (n = l, null);
+                        }).filter(function(e) {
+                            return !!e;
+                        }), n + "?" + r3.join("&");
+                    }
+                },
+                coub: {
+                    regex: /https?:\/\/coub\.com\/view\/([^\/\?\&]+)/,
+                    embedUrl: "https://coub.com/embed/<%= remote_id %>",
+                    html: '<iframe style="width:100%;" height="320" frameborder="0" allowfullscreen></iframe>',
+                    height: 320,
+                    width: 580
+                },
+                vine: {
+                    regex: /https?:\/\/vine\.co\/v\/([^\/\?\&]+)/,
+                    embedUrl: "https://vine.co/v/<%= remote_id %>/embed/simple/",
+                    html: '<iframe style="width:100%;" height="320" frameborder="0" allowfullscreen></iframe>',
+                    height: 320,
+                    width: 580
+                },
+                imgur: {
+                    regex: /https?:\/\/(?:i\.)?imgur\.com.*\/([a-zA-Z0-9]+)(?:\.gifv)?/,
+                    embedUrl: "http://imgur.com/<%= remote_id %>/embed",
+                    html: '<iframe allowfullscreen="true" scrolling="no" id="imgur-embed-iframe-pub-<%= remote_id %>" class="imgur-embed-iframe-pub" style="height: 500px; width: 100%; border: 1px solid #000"></iframe>',
+                    height: 500,
+                    width: 540
+                },
+                gfycat: {
+                    regex: /https?:\/\/gfycat\.com(?:\/detail)?\/([a-zA-Z]+)/,
+                    embedUrl: "https://gfycat.com/ifr/<%= remote_id %>",
+                    html: "<iframe frameborder='0' scrolling='no' style=\"width:100%;\" height='436' allowfullscreen ></iframe>",
+                    height: 436,
+                    width: 580
+                },
+                "twitch-channel": {
+                    regex: /https?:\/\/www\.twitch\.tv\/([^\/\?\&]*)\/?$/,
+                    embedUrl: "https://player.twitch.tv/?channel=<%= remote_id %>",
+                    html: '<iframe frameborder="0" allowfullscreen="true" scrolling="no" height="366" style="width:100%;"></iframe>',
+                    height: 366,
+                    width: 600
+                },
+                "twitch-video": {
+                    regex: /https?:\/\/www\.twitch\.tv\/(?:[^\/\?\&]*\/v|videos)\/([0-9]*)/,
+                    embedUrl: "https://player.twitch.tv/?video=v<%= remote_id %>",
+                    html: '<iframe frameborder="0" allowfullscreen="true" scrolling="no" height="366" style="width:100%;"></iframe>',
+                    height: 366,
+                    width: 600
+                },
+                "yandex-music-album": {
+                    regex: /https?:\/\/music\.yandex\.ru\/album\/([0-9]*)\/?$/,
+                    embedUrl: "https://music.yandex.ru/iframe/#album/<%= remote_id %>/",
+                    html: '<iframe frameborder="0" style="border:none;width:540px;height:400px;" style="width:100%;" height="400"></iframe>',
+                    height: 400,
+                    width: 540
+                },
+                "yandex-music-track": {
+                    regex: /https?:\/\/music\.yandex\.ru\/album\/([0-9]*)\/track\/([0-9]*)/,
+                    embedUrl: "https://music.yandex.ru/iframe/#track/<%= remote_id %>/",
+                    html: '<iframe frameborder="0" style="border:none;width:540px;height:100px;" style="width:100%;" height="100"></iframe>',
+                    height: 100,
+                    width: 540,
+                    id: function(e) {
+                        return e.join("/");
+                    }
+                },
+                "yandex-music-playlist": {
+                    regex: /https?:\/\/music\.yandex\.ru\/users\/([^\/\?\&]*)\/playlists\/([0-9]*)/,
+                    embedUrl: "https://music.yandex.ru/iframe/#playlist/<%= remote_id %>/show/cover/description/",
+                    html: '<iframe frameborder="0" style="border:none;width:540px;height:400px;" width="540" height="400"></iframe>',
+                    height: 400,
+                    width: 540,
+                    id: function(e) {
+                        return e.join("/");
+                    }
+                },
+                codepen: {
+                    regex: /https?:\/\/codepen\.io\/([^\/\?\&]*)\/pen\/([^\/\?\&]*)/,
+                    embedUrl: "https://codepen.io/<%= remote_id %>?height=300&theme-id=0&default-tab=css,result&embed-version=2",
+                    html: "<iframe height='300' scrolling='no' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'></iframe>",
+                    height: 300,
+                    width: 600,
+                    id: function(e) {
+                        return e.join("/embed/");
+                    }
+                },
+                instagram: {
+                    regex: /https?:\/\/www\.instagram\.com\/p\/([^\/\?\&]+)\/?/,
+                    embedUrl: "https://www.instagram.com/p/<%= remote_id %>/embed",
+                    html: '<iframe width="400" height="505" style="margin: 0 auto;" frameborder="0" scrolling="no" allowtransparency="true"></iframe>',
+                    height: 505,
+                    width: 400
+                },
+                twitter: {
+                    regex: /^https?:\/\/twitter\.com\/(?:#!\/)?(\w+)\/status(?:es)?\/(\d+)(?:\/.*)?$/,
+                    embedUrl: "https://twitframe.com/show?url=https://twitter.com/<%= remote_id %>",
+                    html: '<iframe width="600" height="600" style="margin: 0 auto;" frameborder="0" scrolling="no" allowtransparency="true"></iframe>',
+                    height: 300,
+                    width: 600,
+                    id: function(e) {
+                        return e.join("/status/");
+                    }
+                },
+                pinterest: {
+                    regex: /https?:\/\/([^\/\?\&]*).pinterest.com\/pin\/([^\/\?\&]*)\/?$/,
+                    embedUrl: "https://assets.pinterest.com/ext/embed.html?id=<%= remote_id %>",
+                    html: "<iframe scrolling='no' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%; min-height: 400px; max-height: 1000px;'></iframe>",
+                    id: function(e) {
+                        return e[1];
+                    }
+                },
+                facebook: {
+                    regex: /https?:\/\/www.facebook.com\/([^\/\?\&]*)\/(.*)/,
+                    embedUrl: "https://www.facebook.com/plugins/post.php?href=https://www.facebook.com/<%= remote_id %>&width=500",
+                    html: "<iframe scrolling='no' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%; min-height: 500px; max-height: 1000px;'></iframe>",
+                    id: function(e) {
+                        return e.join("/");
+                    }
+                },
+                aparat: {
+                    regex: /(?:http[s]?:\/\/)?(?:www.)?aparat\.com\/v\/([^\/\?\&]+)\/?/,
+                    embedUrl: "https://www.aparat.com/video/video/embed/videohash/<%= remote_id %>/vt/frame",
+                    html: '<iframe width="600" height="300" style="margin: 0 auto;" frameborder="0" scrolling="no" allowtransparency="true"></iframe>',
+                    height: 300,
+                    width: 600
+                },
+                miro: {
+                    regex: /https:\/\/miro.com\/\S+(\S{12})\/(\S+)?/,
+                    embedUrl: "https://miro.com/app/live-embed/<%= remote_id %>",
+                    html: '<iframe width="700" height="500" style="margin: 0 auto;" allowFullScreen frameBorder="0" scrolling="no"></iframe>'
+                }
+            }, h2 = (n7(10), n7(4)), m1 = function() {
+                function e22(t) {
+                    var n = t.data, r = t.api, i = t.readOnly;
+                    c2()(this, e22), this.api = r, this._data = {
+                    }, this.element = null, this.readOnly = i, this.data = n;
+                }
+                return d2()(e22, [
+                    {
+                        key: "render",
+                        value: function() {
+                            var t = this;
+                            if (!this.data.service) {
+                                var n = document.createElement("div");
+                                return this.element = n, n;
+                            }
+                            var r = e22.services[this.data.service].html, i = document.createElement("div"), o = document.createElement("div"), a = document.createElement("template"), l = this.createPreloader();
+                            i.classList.add(this.CSS.baseClass, this.CSS.container, this.CSS.containerLoading), o.classList.add(this.CSS.input, this.CSS.caption), i.appendChild(l), o.contentEditable = !this.readOnly, o.dataset.placeholder = this.api.i18n.t("Enter a caption"), o.innerHTML = this.data.caption || "", a.innerHTML = r, a.content.firstChild.setAttribute("src", this.data.embed), a.content.firstChild.classList.add(this.CSS.content);
+                            var c = this.embedIsReady(i);
+                            return i.appendChild(a.content.firstChild), i.appendChild(o), c.then(function() {
+                                i.classList.remove(t.CSS.containerLoading);
+                            }), this.element = i, i;
+                        }
+                    },
+                    {
+                        key: "createPreloader",
+                        value: function() {
+                            var e = document.createElement("preloader"), t = document.createElement("div");
+                            return t.textContent = this.data.source, e.classList.add(this.CSS.preloader), t.classList.add(this.CSS.url), e.appendChild(t), e;
+                        }
+                    },
+                    {
+                        key: "save",
+                        value: function() {
+                            return this.data;
+                        }
+                    },
+                    {
+                        key: "onPaste",
+                        value: function(t) {
+                            var n = t.detail, r = n.key, i = n.data, o = e22.services[r], a = o.regex, l = o.embedUrl, c = o.width, s = o.height, d = o.id, u = void 0 === d ? function(e) {
+                                return e.shift();
+                            } : d, h = a.exec(i).slice(1), m = l.replace(/<%= remote_id %>/g, u(h));
+                            this.data = {
+                                service: r,
+                                source: i,
+                                embed: m,
+                                width: c,
+                                height: s
+                            };
+                        }
+                    },
+                    {
+                        key: "embedIsReady",
+                        value: function(e) {
+                            var t = null;
+                            return new Promise(function(n, r) {
+                                (t = new MutationObserver(Object(h2.debounce)(n, 450))).observe(e, {
+                                    childList: !0,
+                                    subtree: !0
+                                });
+                            }).then(function() {
+                                t.disconnect();
+                            });
+                        }
+                    },
+                    {
+                        key: "data",
+                        set: function(e) {
+                            if (!(e instanceof Object)) throw Error("Embed Tool data should be object");
+                            var t = e.service, n = e.source, r = e.embed, i = e.width, o = e.height, a = e.caption, l = void 0 === a ? "" : a;
+                            this._data = {
+                                service: t || this.data.service,
+                                source: n || this.data.source,
+                                embed: r || this.data.embed,
+                                width: i || this.data.width,
+                                height: o || this.data.height,
+                                caption: l || this.data.caption || ""
+                            };
+                            var c = this.element;
+                            c && c.parentNode.replaceChild(this.render(), c);
+                        },
+                        get: function() {
+                            if (this.element) {
+                                var e = this.element.querySelector(".".concat(this.api.styles.input));
+                                this._data.caption = e ? e.innerHTML : "";
+                            }
+                            return this._data;
+                        }
+                    },
+                    {
+                        key: "CSS",
+                        get: function() {
+                            return {
+                                baseClass: this.api.styles.block,
+                                input: this.api.styles.input,
+                                container: "embed-tool",
+                                containerLoading: "embed-tool--loading",
+                                preloader: "embed-tool__preloader",
+                                caption: "embed-tool__caption",
+                                url: "embed-tool__url",
+                                content: "embed-tool__content"
+                            };
+                        }
+                    }
+                ], [
+                    {
+                        key: "prepare",
+                        value: function(t17) {
+                            var n8 = t17.config, r4 = (void 0 === n8 ? {
+                            } : n8).services, o = void 0 === r4 ? {
+                            } : r4, l = Object.entries(u2), c = Object.entries(o).filter(function(e) {
+                                var t = a2()(e, 2), n = (t[0], t[1]);
+                                return "boolean" == typeof n && !0 === n;
+                            }).map(function(e) {
+                                return a2()(e, 1)[0];
+                            }), s = Object.entries(o).filter(function(e) {
+                                var t = a2()(e, 2), n = (t[0], t[1]);
+                                return "object" === i2()(n);
+                            }).filter(function(t) {
+                                var n = a2()(t, 2), r = (n[0], n[1]);
+                                return e22.checkServiceConfig(r);
+                            }).map(function(e) {
+                                var t = a2()(e, 2), n = t[0], r = t[1];
+                                return [
+                                    n,
+                                    {
+                                        regex: r.regex,
+                                        embedUrl: r.embedUrl,
+                                        html: r.html,
+                                        height: r.height,
+                                        width: r.width,
+                                        id: r.id
+                                    }
+                                ];
+                            });
+                            c.length && (l = l.filter(function(e) {
+                                var t = a2()(e, 1)[0];
+                                return c.includes(t);
+                            })), l = l.concat(s), e22.services = l.reduce(function(e, t) {
+                                var n = a2()(t, 2), r = n[0], i = n[1];
+                                return r in e ? (e[r] = Object.assign({
+                                }, e[r], i), e) : (e[r] = i, e);
+                            }, {
+                            }), e22.patterns = l.reduce(function(e, t) {
+                                var n = a2()(t, 2), r = n[0], i = n[1];
+                                return e[r] = i.regex, e;
+                            }, {
+                            });
+                        }
+                    },
+                    {
+                        key: "checkServiceConfig",
+                        value: function(e) {
+                            var t = e.regex, n = e.embedUrl, r = e.html, i = e.height, o = e.width, a = e.id, l = t && t instanceof RegExp && n && "string" == typeof n && r && "string" == typeof r;
+                            return l = (l = (l = l && (void 0 === a || a instanceof Function)) && (void 0 === i || Number.isFinite(i))) && (void 0 === o || Number.isFinite(o));
+                        }
+                    },
+                    {
+                        key: "pasteConfig",
+                        get: function() {
+                            return {
+                                patterns: e22.patterns
+                            };
+                        }
+                    },
+                    {
+                        key: "isReadOnlySupported",
+                        get: function() {
+                            return !0;
+                        }
+                    }
+                ]), e22;
+            }();
+        }
+    ]).default;
+});
+
+},{}],"eH9Rq":[function(require,module,exports) {
+!function(t, e) {
+    "object" == typeof exports && "object" == typeof module ? module.exports = e() : "function" == typeof define && define.amd ? define([], e) : "object" == typeof exports ? exports.Table = e() : t.Table = e();
+}(window, function() {
+    return (function(t1) {
+        var e1 = {
+        };
+        function o(r) {
+            if (e1[r]) return e1[r].exports;
+            var i = e1[r] = {
+                i: r,
+                l: !1,
+                exports: {
+                }
+            };
+            return t1[r].call(i.exports, i, i.exports, o), i.l = !0, i.exports;
+        }
+        return o.m = t1, o.c = e1, o.d = function(t, e, r) {
+            o.o(t, e) || Object.defineProperty(t, e, {
+                enumerable: !0,
+                get: r
+            });
+        }, o.r = function(t) {
+            "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(t, Symbol.toStringTag, {
+                value: "Module"
+            }), Object.defineProperty(t, "__esModule", {
+                value: !0
+            });
+        }, o.t = function(t, e) {
+            if (1 & e && (t = o(t)), 8 & e) return t;
+            if (4 & e && "object" == typeof t && t && t.__esModule) return t;
+            var r = Object.create(null);
+            if (o.r(r), Object.defineProperty(r, "default", {
+                enumerable: !0,
+                value: t
+            }), 2 & e && "string" != typeof t) for(var i in t)o.d(r, i, (function(e) {
+                return t[e];
+            }).bind(null, i));
+            return r;
+        }, o.n = function(t) {
+            var e = t && t.__esModule ? function() {
+                return t.default;
+            } : function() {
+                return t;
+            };
+            return o.d(e, "a", e), e;
+        }, o.o = function(t, e) {
+            return Object.prototype.hasOwnProperty.call(t, e);
+        }, o.p = "/", o(o.s = 15);
+    })([
+        function(t, e) {
+            t.exports = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><path d="M8.02 2.48a.9.9 0 01.9.9l-.001 3.74h3.701a.9.9 0 010 1.8l-3.701-.001.001 3.701a.9.9 0 01-1.8 0V8.919l-3.74.001a.9.9 0 010-1.8h3.74V3.38a.9.9 0 01.9-.9z"></path></svg>';
+        },
+        function(t, e) {
+            t.exports = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><path d="M12.277 3.763a.9.9 0 010 1.273L9.293 8.018l2.984 2.986a.9.9 0 01-1.273 1.272L8.02 9.291l-2.984 2.985a.9.9 0 01-1.273-1.272l2.984-2.986-2.984-2.982a.9.9 0 011.273-1.273L8.02 6.745l2.984-2.982a.9.9 0 011.273 0z"></path></svg>';
+        },
+        function(t, e) {
+            t.exports = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"><rect width="18" height="18" fill="#F4F5F7" rx="2"></rect><circle cx="11.5" cy="6.5" r="1.5"></circle><circle cx="11.5" cy="11.5" r="1.5"></circle><circle cx="6.5" cy="6.5" r="1.5"></circle><circle cx="6.5" cy="11.5" r="1.5"></circle></svg>';
+        },
+        function(t, e) {
+            t.exports = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16"><path transform="matrix(0 1 1 0 2.514 2.046)" d="M8.728-.038l.01.012 2.52 3.503a.895.895 0 01.169.568v.067a.894.894 0 01-.249.632l-.01.012-3.064 3.093a.9.9 0 01-1.29-1.254l.011-.012 1.877-1.896c-1.824-.204-3.232.063-4.242.767-1.279.892-2.035 2.571-2.222 5.112a.901.901 0 01-1.796-.132C.666 7.399 1.647 5.222 3.43 3.978c1.342-.936 3.072-1.296 5.173-1.11L7.276 1.027A.9.9 0 018.719-.05l.01.012z"></path></svg>';
+        },
+        function(t, e) {
+            t.exports = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><path fill="#1D202B" d="M13.552 10.774l-.012.01-3.503 2.52a.895.895 0 01-.568.169h-.067a.894.894 0 01-.632-.249l-.012-.01-3.093-3.064a.9.9 0 011.254-1.29l.012.011 1.896 1.877c.204-1.824-.063-3.232-.767-4.242-.892-1.279-2.571-2.035-5.112-2.222a.901.901 0 01.132-1.796c3.035.224 5.212 1.205 6.456 2.988.936 1.342 1.296 3.072 1.11 5.173l1.841-1.327a.9.9 0 011.077 1.443l-.012.01z"></path></svg>';
+        },
+        function(t, e) {
+            t.exports = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><path fill="#1D202B" d="M10.808 2.442l.01.012 2.52 3.503a.895.895 0 01.169.568v.067a.894.894 0 01-.249.632l-.01.012-3.064 3.093a.9.9 0 01-1.29-1.254l.011-.012 1.877-1.896c-1.824-.204-3.232.063-4.242.767-1.279.892-2.035 2.571-2.222 5.112a.901.901 0 01-1.796-.132c.224-3.035 1.205-5.212 2.988-6.456 1.342-.936 3.072-1.296 5.173-1.11L9.356 3.507a.9.9 0 011.443-1.076l.01.012z"></path></svg>';
+        },
+        function(t, e) {
+            t.exports = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><path fill="#1D202B" d="M10.808 13.518l.01-.012 2.52-3.503a.895.895 0 00.169-.568v-.067a.894.894 0 00-.249-.632l-.01-.012-3.064-3.093a.9.9 0 00-1.29 1.254l.011.012 1.877 1.896c-1.824.204-3.232-.063-4.242-.767-1.279-.892-2.035-2.571-2.222-5.112a.901.901 0 00-1.796.132c.224 3.035 1.205 5.212 2.988 6.456 1.342.936 3.072 1.296 5.173 1.11l-1.327 1.841a.9.9 0 001.443 1.076l.01-.012z"></path></svg>';
+        },
+        function(t, e) {
+            t.exports = '<svg width="18" height="14"><path d="M2.833 8v1.95a1.7 1.7 0 0 0 1.7 1.7h3.45V8h-5.15zm0-2h5.15V2.35h-3.45a1.7 1.7 0 0 0-1.7 1.7V6zm12.3 2h-5.15v3.65h3.45a1.7 1.7 0 0 0 1.7-1.7V8zm0-2V4.05a1.7 1.7 0 0 0-1.7-1.7h-3.45V6h5.15zM4.533.1h8.9a3.95 3.95 0 0 1 3.95 3.95v5.9a3.95 3.95 0 0 1-3.95 3.95h-8.9a3.95 3.95 0 0 1-3.95-3.95v-5.9A3.95 3.95 0 0 1 4.533.1z"></path></svg>';
+        },
+        function(t, e) {
+            t.exports = '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="13"><path d="M14.74 10.175a1.1 1.1 0 110 2.2H1.1a1.1 1.1 0 110-2.2h13.64zm0-4.235a1.1 1.1 0 110 2.2H1.1a1.1 1.1 0 110-2.2h13.64zM13.887 0a1.952 1.952 0 110 3.905H1.954A1.953 1.953 0 111.952 0h11.935z"></path></svg>';
+        },
+        function(t, e) {
+            t.exports = '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="13"><path d="M14.602 9.9a1.237 1.237 0 110 2.475H1.238a1.238 1.238 0 110-2.475h13.364zm0-4.95a1.237 1.237 0 110 2.475H1.238a1.237 1.237 0 110-2.475h13.364zm0-4.95a1.238 1.238 0 110 2.475H1.238a1.238 1.238 0 110-2.475h13.364z"></path></svg>';
+        },
+        function(t, e, o) {
+            var r = o(11);
+            "string" == typeof r && (r = [
+                [
+                    t.i,
+                    r,
+                    ""
+                ]
+            ]);
+            var i = {
+                hmr: !0,
+                transform: void 0,
+                insertInto: void 0
+            };
+            o(13)(r, i);
+            r.locals && (t.exports = r.locals);
+        },
+        function(t, e, o) {
+            (t.exports = o(12)(!1)).push([
+                t.i,
+                '.tc-wrap{--color-background:#f9f9fb;--color-text-secondary:#7b7e89;--color-border:#e8e8eb;--cell-size:34px;--toolbox-icon-size:18px;--toolbox-padding:6px;--toolbox-aiming-field-size:calc(var(--toolbox-icon-size) + 2*var(--toolbox-padding));border-left:0;position:relative;height:100%;width:100%;margin-top:var(--toolbox-icon-size);box-sizing:border-box;display:grid;grid-template-columns:calc(100% - var(--cell-size)) var(--cell-size);}.tc-wrap--readonly{grid-template-columns:100% var(--cell-size)}.tc-wrap svg{vertical-align:top;fill:currentColor}.tc-table{position:relative;width:100%;height:100%;display:grid;font-size:14px;border-top:1px solid var(--color-border);line-height:1.4;}.tc-table:after{width:var(--cell-size);height:100%;left:calc(-1*var(--cell-size));top:0}.tc-table:after,.tc-table:before{position:absolute;content:""}.tc-table:before{width:100%;height:var(--toolbox-aiming-field-size);top:calc(-1*var(--toolbox-aiming-field-size));left:0}.tc-table--heading .tc-row:first-child{font-weight:600;border-bottom:2px solid var(--color-border);}.tc-table--heading .tc-row:first-child [contenteditable]:empty:before{content:attr(heading);color:var(--color-text-secondary)}.tc-table--heading .tc-row:first-child:after{bottom:-2px;border-bottom:2px solid var(--color-border)}.tc-add-column,.tc-add-row{display:flex;color:var(--color-text-secondary)}.tc-add-column{padding:9px 0;justify-content:center;border-top:1px solid var(--color-border)}.tc-add-row{height:var(--cell-size);align-items:center;padding-left:12px;position:relative;}.tc-add-row:before{content:"";position:absolute;right:calc(-1*var(--cell-size));width:var(--cell-size);height:100%}.tc-add-column,.tc-add-row{transition:0s;cursor:pointer;will-change:background-color;}.tc-add-column:hover,.tc-add-row:hover{transition:background-color .1s ease;background-color:var(--color-background)}.tc-add-row{margin-top:1px;}.tc-add-row:hover:before{transition:.1s;background-color:var(--color-background)}.tc-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(10px,1fr));position:relative;border-bottom:1px solid var(--color-border);}.tc-row:after{content:"";pointer-events:none;position:absolute;width:var(--cell-size);height:100%;bottom:-1px;right:calc(-1*var(--cell-size));border-bottom:1px solid var(--color-border)}.tc-row--selected{background:var(--color-background)}.tc-row--selected:after{background:var(--color-background)}.tc-cell{border-right:1px solid var(--color-border);padding:6px 12px;overflow:hidden;outline:none;line-break:normal;}.tc-cell--selected{background:var(--color-background)}.tc-wrap--readonly .tc-row:after{display:none}.tc-toolbox{--toolbox-padding:6px;--popover-margin:30px;--toggler-click-zone-size:30px;--toggler-dots-color:#7b7e89;--toggler-dots-color-hovered:#1d202b;position:absolute;cursor:pointer;z-index:1;opacity:0;transition:opacity .1s;will-change:left,opacity;}.tc-toolbox--column{top:calc(-1*var(--toggler-click-zone-size));-webkit-transform:translateX(calc(-1*var(--toggler-click-zone-size)/2));transform:translateX(calc(-1*var(--toggler-click-zone-size)/2));will-change:left,opacity}.tc-toolbox--row{left:calc(-1*var(--popover-margin));-webkit-transform:translateY(calc(-1*var(--toggler-click-zone-size)/2));transform:translateY(calc(-1*var(--toggler-click-zone-size)/2));margin-top:-1px;will-change:top,opacity}.tc-toolbox--showed{opacity:1}.tc-toolbox .tc-popover{position:absolute;top:0;left:var(--popover-margin)}.tc-toolbox__toggler{display:flex;align-items:center;justify-content:center;width:var(--toggler-click-zone-size);height:var(--toggler-click-zone-size);color:var(--toggler-dots-color);opacity:0;transition:opacity .15s ease;will-change:opacity;}.tc-toolbox__toggler:hover{color:var(--toggler-dots-color-hovered)}.tc-wrap:hover .tc-toolbox__toggler{opacity:1}.tc-settings .cdx-settings-button{width:50%;margin:0}.tc-popover{--color-border:#eaeaea;--color-background:#fff;--color-background-hover:rgba(232,232,235,0.49);--color-background-confirm:#e24a4a;--color-background-confirm-hover:#d54040;--color-text-confirm:#fff;background:var(--color-background);border:1px solid var(--color-border);box-shadow:0 3px 15px -3px rgba(13,20,33,.13);border-radius:6px;padding:6px;display:none;will-change:opacity,transform;}.tc-popover--opened{display:block;-webkit-animation:menuShowing .1s cubic-bezier(.215,.61,.355,1) forwards;animation:menuShowing .1s cubic-bezier(.215,.61,.355,1) forwards}.tc-popover__item{display:flex;align-items:center;padding:2px 14px 2px 2px;border-radius:5px;cursor:pointer;white-space:nowrap;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}.tc-popover__item:hover{background:var(--color-background-hover)}.tc-popover__item:not(:last-of-type){margin-bottom:2px}.tc-popover__item-icon{display:inline-flex;width:26px;height:26px;align-items:center;justify-content:center;background:var(--color-background);border-radius:5px;border:1px solid var(--color-border);margin-right:8px}.tc-popover__item-label{line-height:22px;font-size:14px;font-weight:500}.tc-popover__item--confirm{background:var(--color-background-confirm);color:var(--color-text-confirm);}.tc-popover__item--confirm:hover{background-color:var(--color-background-confirm-hover)}.tc-popover__item--confirm .tc-popover__item-icon{background:var(--color-background-confirm);border-color:rgba(0,0,0,.1);}.tc-popover__item--confirm .tc-popover__item-icon svg{transition:-webkit-transform .2s ease-in;transition:transform .2s ease-in;transition:transform .2s ease-in,-webkit-transform .2s ease-in;-webkit-transform:rotate(90deg) scale(1.2);transform:rotate(90deg) scale(1.2)}.tc-popover__item--hidden{display:none}@-webkit-keyframes menuShowing{0%{opacity:0;-webkit-transform:translateY(-8px) scale(.9);transform:translateY(-8px) scale(.9)}70%{opacity:1;-webkit-transform:translateY(2px);transform:translateY(2px)}to{-webkit-transform:translateY(0);transform:translateY(0)}}@keyframes menuShowing{0%{opacity:0;-webkit-transform:translateY(-8px) scale(.9);transform:translateY(-8px) scale(.9)}70%{opacity:1;-webkit-transform:translateY(2px);transform:translateY(2px)}to{-webkit-transform:translateY(0);transform:translateY(0)}}',
+                ""
+            ]);
+        },
+        function(t2, e2) {
+            t2.exports = function(t3) {
+                var e3 = [];
+                return e3.toString = function() {
+                    return this.map(function(e4) {
+                        var o1 = function(t4, e) {
+                            var o = t4[1] || "", r = t4[3];
+                            if (!r) return o;
+                            if (e && "function" == typeof btoa) {
+                                var i = (s = r, "/*# sourceMappingURL=data:application/json;charset=utf-8;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(s)))) + " */"), n = r.sources.map(function(t) {
+                                    return "/*# sourceURL=" + r.sourceRoot + t + " */";
+                                });
+                                return [
+                                    o
+                                ].concat(n).concat([
+                                    i
+                                ]).join("\n");
+                            }
+                            var s;
+                            return [
+                                o
+                            ].join("\n");
+                        }(e4, t3);
+                        return e4[2] ? "@media " + e4[2] + "{" + o1 + "}" : o1;
+                    }).join("");
+                }, e3.i = function(t, o) {
+                    "string" == typeof t && (t = [
+                        [
+                            null,
+                            t,
+                            ""
+                        ]
+                    ]);
+                    for(var r = {
+                    }, i = 0; i < this.length; i++){
+                        var n = this[i][0];
+                        "number" == typeof n && (r[n] = !0);
+                    }
+                    for(i = 0; i < t.length; i++){
+                        var s = t[i];
+                        "number" == typeof s[0] && r[s[0]] || (o && !s[2] ? s[2] = o : o && (s[2] = "(" + s[2] + ") and (" + o + ")"), e3.push(s));
+                    }
+                }, e3;
+            };
+        },
+        function(t5, e5, o2) {
+            var r1, i1, n1 = {
+            }, s1 = (r1 = function() {
+                return window && document && document.all && !window.atob;
+            }, function() {
+                return void 0 === i1 && (i1 = r1.apply(this, arguments)), i1;
+            }), a1 = function(t6) {
+                var e6 = {
+                };
+                return function(t7, o) {
+                    if ("function" == typeof t7) return t7();
+                    if (void 0 === e6[t7]) {
+                        var r = (function(t, e) {
+                            return e ? e.querySelector(t) : document.querySelector(t);
+                        }).call(this, t7, o);
+                        if (window.HTMLIFrameElement && r instanceof window.HTMLIFrameElement) try {
+                            r = r.contentDocument.head;
+                        } catch (t) {
+                            r = null;
+                        }
+                        e6[t7] = r;
+                    }
+                    return e6[t7];
+                };
+            }(), l1 = null, c = 0, d = [], h = o2(14);
+            function p(t, e) {
+                for(var o = 0; o < t.length; o++){
+                    var r = t[o], i = n1[r.id];
+                    if (i) {
+                        i.refs++;
+                        for(var s = 0; s < i.parts.length; s++)i.parts[s](r.parts[s]);
+                        for(; s < r.parts.length; s++)i.parts.push(w(r.parts[s], e));
+                    } else {
+                        var a = [];
+                        for(s = 0; s < r.parts.length; s++)a.push(w(r.parts[s], e));
+                        n1[r.id] = {
+                            id: r.id,
+                            refs: 1,
+                            parts: a
+                        };
+                    }
+                }
+            }
+            function u(t, e) {
+                for(var o = [], r = {
+                }, i = 0; i < t.length; i++){
+                    var n = t[i], s = e.base ? n[0] + e.base : n[0], a = {
+                        css: n[1],
+                        media: n[2],
+                        sourceMap: n[3]
+                    };
+                    r[s] ? r[s].parts.push(a) : o.push(r[s] = {
+                        id: s,
+                        parts: [
+                            a
+                        ]
+                    });
+                }
+                return o;
+            }
+            function f(t, e) {
+                var o = a1(t.insertInto);
+                if (!o) throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
+                var r = d[d.length - 1];
+                if ("top" === t.insertAt) r ? r.nextSibling ? o.insertBefore(e, r.nextSibling) : o.appendChild(e) : o.insertBefore(e, o.firstChild), d.push(e);
+                else if ("bottom" === t.insertAt) o.appendChild(e);
+                else {
+                    if ("object" != typeof t.insertAt || !t.insertAt.before) throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");
+                    var i = a1(t.insertAt.before, o);
+                    o.insertBefore(e, i);
+                }
+            }
+            function g(t) {
+                if (null === t.parentNode) return !1;
+                t.parentNode.removeChild(t);
+                var e = d.indexOf(t);
+                e >= 0 && d.splice(e, 1);
+            }
+            function m(t) {
+                var e = document.createElement("style");
+                if (void 0 === t.attrs.type && (t.attrs.type = "text/css"), void 0 === t.attrs.nonce) {
+                    var r = function() {
+                        return o2.nc;
+                    }();
+                    r && (t.attrs.nonce = r);
+                }
+                return b(e, t.attrs), f(t, e), e;
+            }
+            function b(t, e) {
+                Object.keys(e).forEach(function(o) {
+                    t.setAttribute(o, e[o]);
+                });
+            }
+            function w(t8, e7) {
+                var o3, r2, i2, n2;
+                if (e7.transform && t8.css) {
+                    if (!(n2 = "function" == typeof e7.transform ? e7.transform(t8.css) : e7.transform.default(t8.css))) return function() {
+                    };
+                    t8.css = n2;
+                }
+                if (e7.singleton) {
+                    var s = c++;
+                    o3 = l1 || (l1 = m(e7)), r2 = C.bind(null, o3, s, !1), i2 = C.bind(null, o3, s, !0);
+                } else t8.sourceMap && "function" == typeof URL && "function" == typeof URL.createObjectURL && "function" == typeof URL.revokeObjectURL && "function" == typeof Blob && "function" == typeof btoa ? (o3 = (function(t) {
+                    var e = document.createElement("link");
+                    return void 0 === t.attrs.type && (t.attrs.type = "text/css"), t.attrs.rel = "stylesheet", b(e, t.attrs), f(t, e), e;
+                })(e7), r2 = (function(t, e, o) {
+                    var r = o.css, i = o.sourceMap, n = void 0 === e.convertToAbsoluteUrls && i;
+                    (e.convertToAbsoluteUrls || n) && (r = h(r));
+                    i && (r += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(i)))) + " */");
+                    var s = new Blob([
+                        r
+                    ], {
+                        type: "text/css"
+                    }), a = t.href;
+                    t.href = URL.createObjectURL(s), a && URL.revokeObjectURL(a);
+                }).bind(null, o3, e7), i2 = function() {
+                    g(o3), o3.href && URL.revokeObjectURL(o3.href);
+                }) : (o3 = m(e7), r2 = (function(t, e) {
+                    var o = e.css, r = e.media;
+                    r && t.setAttribute("media", r);
+                    if (t.styleSheet) t.styleSheet.cssText = o;
+                    else {
+                        for(; t.firstChild;)t.removeChild(t.firstChild);
+                        t.appendChild(document.createTextNode(o));
+                    }
+                }).bind(null, o3), i2 = function() {
+                    g(o3);
+                });
+                return r2(t8), function(e) {
+                    if (e) {
+                        if (e.css === t8.css && e.media === t8.media && e.sourceMap === t8.sourceMap) return;
+                        r2(t8 = e);
+                    } else i2();
+                };
+            }
+            t5.exports = function(t9, e) {
+                if ("undefined" != typeof DEBUG && DEBUG && "object" != typeof document) throw new Error("The style-loader cannot be used in a non-browser environment");
+                (e = e || {
+                }).attrs = "object" == typeof e.attrs ? e.attrs : {
+                }, e.singleton || "boolean" == typeof e.singleton || (e.singleton = s1()), e.insertInto || (e.insertInto = "head"), e.insertAt || (e.insertAt = "bottom");
+                var o = u(t9, e);
+                return p(o, e), function(t) {
+                    for(var r = [], i = 0; i < o.length; i++){
+                        var s = o[i];
+                        (a = n1[s.id]).refs--, r.push(a);
+                    }
+                    t && p(u(t, e), e);
+                    for(i = 0; i < r.length; i++){
+                        var a;
+                        if (0 === (a = r[i]).refs) {
+                            for(var l = 0; l < a.parts.length; l++)a.parts[l]();
+                            delete n1[a.id];
+                        }
+                    }
+                };
+            };
+            var v, x = (v = [], function(t, e) {
+                return v[t] = e, v.filter(Boolean).join("\n");
+            });
+            function C(t, e, o, r) {
+                var i = o ? "" : r.css;
+                if (t.styleSheet) t.styleSheet.cssText = x(e, i);
+                else {
+                    var n = document.createTextNode(i), s = t.childNodes;
+                    s[e] && t.removeChild(s[e]), s.length ? t.insertBefore(n, s[e]) : t.appendChild(n);
+                }
+            }
+        },
+        function(t10, e8) {
+            t10.exports = function(t11) {
+                var e9 = "undefined" != typeof window && window.location;
+                if (!e9) throw new Error("fixUrls requires window.location");
+                if (!t11 || "string" != typeof t11) return t11;
+                var o = e9.protocol + "//" + e9.host, r = o + e9.pathname.replace(/\/[^\/]*$/, "/");
+                return t11.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function(t, e10) {
+                    var i, n = e10.trim().replace(/^"(.*)"$/, function(t, e) {
+                        return e;
+                    }).replace(/^'(.*)'$/, function(t, e) {
+                        return e;
+                    });
+                    return /^(#|data:|http:\/\/|https:\/\/|file:\/\/\/|\s*$)/i.test(n) ? t : (i = 0 === n.indexOf("//") ? n : 0 === n.indexOf("/") ? o + n : r + n.replace(/^\.\//, ""), "url(" + JSON.stringify(i) + ")");
+                });
+            };
+        },
+        function(t13, e11, o4) {
+            "use strict";
+            o4.r(e11);
+            var r3 = o4(0), i3 = o4.n(r3), n3 = o4(2), s2 = o4.n(n3);
+            function a2(t, e, o = {
+            }) {
+                const r = document.createElement(t);
+                Array.isArray(e) ? r.classList.add(...e) : e && r.classList.add(e);
+                for(const t12 in o)Object.prototype.hasOwnProperty.call(o, t12) && (r[t12] = o[t12]);
+                return r;
+            }
+            function l2(t) {
+                const e = t.getBoundingClientRect();
+                return {
+                    y1: Math.floor(e.top + window.pageYOffset),
+                    x1: Math.floor(e.left + window.pageXOffset),
+                    x2: Math.floor(e.right + window.pageXOffset),
+                    y2: Math.floor(e.bottom + window.pageYOffset)
+                };
+            }
+            function c(t, e) {
+                const o = l2(t), r = l2(e);
+                return {
+                    fromTopBorder: r.y1 - o.y1,
+                    fromLeftBorder: r.x1 - o.x1,
+                    fromRightBorder: o.x2 - r.x2,
+                    fromBottomBorder: o.y2 - r.y2
+                };
+            }
+            function d(t, e) {
+                return e.parentNode.insertBefore(t, e);
+            }
+            function h(t, e = !0) {
+                const o = document.createRange(), r = window.getSelection();
+                o.selectNodeContents(t), o.collapse(e), r.removeAllRanges(), r.addRange(o);
+            }
+            class p {
+                constructor({ items: t  }){
+                    this.items = t, this.wrapper = void 0, this.itemEls = [];
+                }
+                static get CSS() {
+                    return {
+                        popover: "tc-popover",
+                        popoverOpened: "tc-popover--opened",
+                        item: "tc-popover__item",
+                        itemHidden: "tc-popover__item--hidden",
+                        itemConfirmState: "tc-popover__item--confirm",
+                        itemIcon: "tc-popover__item-icon",
+                        itemLabel: "tc-popover__item-label"
+                    };
+                }
+                render() {
+                    return this.wrapper = a2("div", p.CSS.popover), this.items.forEach((t, e)=>{
+                        const o = a2("div", p.CSS.item), r = a2("div", p.CSS.itemIcon, {
+                            innerHTML: t.icon
+                        }), i = a2("div", p.CSS.itemLabel, {
+                            textContent: t.label
+                        });
+                        o.dataset.index = e, o.appendChild(r), o.appendChild(i), this.wrapper.appendChild(o), this.itemEls.push(o);
+                    }), this.wrapper.addEventListener("click", (t)=>{
+                        this.popoverClicked(t);
+                    }), this.wrapper;
+                }
+                popoverClicked(t) {
+                    const e = t.target.closest(`.${p.CSS.item}`);
+                    if (!e) return;
+                    const o = e.dataset.index, r = this.items[o];
+                    !r.confirmationRequired || this.hasConfirmationState(e) ? r.onClick() : this.setConfirmationState(e);
+                }
+                setConfirmationState(t) {
+                    t.classList.add(p.CSS.itemConfirmState);
+                }
+                clearConfirmationState(t) {
+                    t.classList.remove(p.CSS.itemConfirmState);
+                }
+                hasConfirmationState(t) {
+                    return t.classList.contains(p.CSS.itemConfirmState);
+                }
+                get opened() {
+                    return this.wrapper.classList.contains(p.CSS.popoverOpened);
+                }
+                open() {
+                    this.items.forEach((t, e)=>{
+                        "function" == typeof t.hideIf && this.itemEls[e].classList.toggle(p.CSS.itemHidden, t.hideIf());
+                    }), this.wrapper.classList.add(p.CSS.popoverOpened);
+                }
+                close() {
+                    this.wrapper.classList.remove(p.CSS.popoverOpened), this.itemEls.forEach((t)=>{
+                        this.clearConfirmationState(t);
+                    });
+                }
+            }
+            class u {
+                constructor({ api: t , items: e , onOpen: o , onClose: r , cssModifier: i = ""  }){
+                    this.api = t, this.items = e, this.onOpen = o, this.onClose = r, this.cssModifier = i, this.popover = null, this.wrapper = this.createToolbox();
+                }
+                static get CSS() {
+                    return {
+                        toolbox: "tc-toolbox",
+                        toolboxShowed: "tc-toolbox--showed",
+                        toggler: "tc-toolbox__toggler"
+                    };
+                }
+                get element() {
+                    return this.wrapper;
+                }
+                createToolbox() {
+                    const t = a2("div", [
+                        u.CSS.toolbox,
+                        this.cssModifier ? `${u.CSS.toolbox}--${this.cssModifier}` : ""
+                    ]), e = this.createPopover(), o = this.createToggler();
+                    return t.appendChild(o), t.appendChild(e), t;
+                }
+                createToggler() {
+                    const t = a2("div", u.CSS.toggler, {
+                        innerHTML: s2.a
+                    });
+                    return t.addEventListener("click", ()=>{
+                        this.togglerClicked();
+                    }), t;
+                }
+                createPopover() {
+                    return this.popover = new p({
+                        items: this.items
+                    }), this.popover.render();
+                }
+                togglerClicked() {
+                    this.popover.opened ? (this.popover.close(), this.onClose()) : (this.popover.open(), this.onOpen());
+                }
+                show(t) {
+                    const e12 = t();
+                    Object.entries(e12).forEach(([t, e])=>{
+                        this.wrapper.style[t] = e;
+                    }), this.wrapper.classList.add(u.CSS.toolboxShowed);
+                }
+                hide() {
+                    this.popover.close(), this.wrapper.classList.remove(u.CSS.toolboxShowed);
+                }
+            }
+            var f = o4(3), g = o4.n(f), m = o4(4), b = o4.n(m), w = o4(5), v = o4.n(w), x = o4(6), C = o4.n(x), y = o4(1), S = o4.n(y);
+            const R = {
+                wrapper: "tc-wrap",
+                wrapperReadOnly: "tc-wrap--readonly",
+                table: "tc-table",
+                row: "tc-row",
+                withHeadings: "tc-table--heading",
+                rowSelected: "tc-row--selected",
+                cell: "tc-cell",
+                cellSelected: "tc-cell--selected",
+                addRow: "tc-add-row",
+                addColumn: "tc-add-column"
+            };
+            class k {
+                constructor(t14, e13, o5, r4){
+                    this.readOnly = t14, this.api = e13, this.data = o5, this.config = r4, this.wrapper = null, this.table = null, this.toolboxColumn = this.createColumnToolbox(), this.toolboxRow = this.createRowToolbox(), this.createTableWrapper(), this.hoveredRow = 0, this.hoveredColumn = 0, this.selectedRow = 0, this.selectedColumn = 0, this.tunes = {
+                        withHeadings: !1
+                    }, this.resize(), this.fill(), this.focusedCell = {
+                        row: 0,
+                        column: 0
+                    }, this.documentClicked = (t)=>{
+                        const e = null !== t.target.closest(`.${R.table}`), o = null === t.target.closest(`.${R.wrapper}`);
+                        (e || o) && this.hideToolboxes();
+                        const r = t.target.closest(`.${R.addRow}`), i = t.target.closest(`.${R.addColumn}`);
+                        r && r.parentNode === this.wrapper ? (this.addRow(void 0, !0), this.hideToolboxes()) : i && i.parentNode === this.wrapper && (this.addColumn(void 0, !0), this.hideToolboxes());
+                    }, this.readOnly || this.bindEvents();
+                }
+                getWrapper() {
+                    return this.wrapper;
+                }
+                bindEvents() {
+                    document.addEventListener("click", this.documentClicked), this.table.addEventListener("mousemove", function(t, e) {
+                        let o = 0;
+                        return function(...r) {
+                            const i = (new Date).getTime();
+                            if (!(i - o < t)) return o = i, e(...r);
+                        };
+                    }(150, (t)=>this.onMouseMoveInTable(t)
+                    ), {
+                        passive: !0
+                    }), this.table.onkeypress = (t)=>this.onKeyPressListener(t)
+                    , this.table.addEventListener("keydown", (t)=>this.onKeyDownListener(t)
+                    ), this.table.addEventListener("focusin", (t)=>this.focusInTableListener(t)
+                    );
+                }
+                createColumnToolbox() {
+                    return new u({
+                        api: this.api,
+                        cssModifier: "column",
+                        items: [
+                            {
+                                label: this.api.i18n.t("Add column to left"),
+                                icon: g.a,
+                                onClick: ()=>{
+                                    this.addColumn(this.selectedColumn, !0), this.hideToolboxes();
+                                }
+                            },
+                            {
+                                label: this.api.i18n.t("Add column to right"),
+                                icon: b.a,
+                                onClick: ()=>{
+                                    this.addColumn(this.selectedColumn + 1, !0), this.hideToolboxes();
+                                }
+                            },
+                            {
+                                label: this.api.i18n.t("Delete column"),
+                                icon: S.a,
+                                hideIf: ()=>1 === this.numberOfColumns
+                                ,
+                                confirmationRequired: !0,
+                                onClick: ()=>{
+                                    this.deleteColumn(this.selectedColumn), this.hideToolboxes();
+                                }
+                            }
+                        ],
+                        onOpen: ()=>{
+                            this.selectColumn(this.hoveredColumn), this.hideRowToolbox();
+                        },
+                        onClose: ()=>{
+                            this.unselectColumn();
+                        }
+                    });
+                }
+                createRowToolbox() {
+                    return new u({
+                        api: this.api,
+                        cssModifier: "row",
+                        items: [
+                            {
+                                label: this.api.i18n.t("Add row above"),
+                                icon: v.a,
+                                onClick: ()=>{
+                                    this.addRow(this.selectedRow, !0), this.hideToolboxes();
+                                }
+                            },
+                            {
+                                label: this.api.i18n.t("Add row below"),
+                                icon: C.a,
+                                onClick: ()=>{
+                                    this.addRow(this.selectedRow + 1, !0), this.hideToolboxes();
+                                }
+                            },
+                            {
+                                label: this.api.i18n.t("Delete row"),
+                                icon: S.a,
+                                hideIf: ()=>1 === this.numberOfRows
+                                ,
+                                confirmationRequired: !0,
+                                onClick: ()=>{
+                                    this.deleteRow(this.selectedRow), this.hideToolboxes();
+                                }
+                            }
+                        ],
+                        onOpen: ()=>{
+                            this.selectRow(this.hoveredRow), this.hideColumnToolbox();
+                        },
+                        onClose: ()=>{
+                            this.unselectRow();
+                        }
+                    });
+                }
+                moveCursorToNextRow() {
+                    this.focusedCell.row !== this.numberOfRows ? (this.focusedCell.row += 1, this.focusCell(this.focusedCell)) : (this.addRow(), this.focusedCell.row += 1, this.focusCell(this.focusedCell), this.updateToolboxesPosition(0, 0));
+                }
+                getCell(t, e) {
+                    return this.table.querySelector(`.${R.row}:nth-child(${t}) .${R.cell}:nth-child(${e})`);
+                }
+                getRow(t) {
+                    return this.table.querySelector(`.${R.row}:nth-child(${t})`);
+                }
+                getRowByCell(t) {
+                    return t.parentElement;
+                }
+                getRowFirstCell(t) {
+                    return t.querySelector(`.${R.cell}:first-child`);
+                }
+                setCellContent(t, e, o) {
+                    this.getCell(t, e).innerHTML = o;
+                }
+                addColumn(t = -1, e = !1) {
+                    let o = this.numberOfColumns;
+                    for(let r = 1; r <= this.numberOfRows; r++){
+                        let i;
+                        const n = this.createCell();
+                        if (t > 0 && t <= o ? d(n, i = this.getCell(r, t)) : i = this.getRow(r).appendChild(n), 1 === r) {
+                            const i = this.getCell(r, t > 0 ? t : o + 1);
+                            i && e && h(i);
+                        }
+                    }
+                    this.addHeadingAttrToFirstRow();
+                }
+                addRow(t = -1, e = !1) {
+                    let o, r = a2("div", R.row);
+                    this.tunes.withHeadings && this.removeHeadingAttrFromFirstRow();
+                    let i = this.numberOfColumns;
+                    if (t > 0 && t <= this.numberOfRows) o = d(r, this.getRow(t));
+                    else o = this.table.appendChild(r);
+                    this.fillRow(o, i), this.tunes.withHeadings && this.addHeadingAttrToFirstRow();
+                    const n = this.getRowFirstCell(o);
+                    return n && e && h(n), o;
+                }
+                deleteColumn(t) {
+                    for(let e = 1; e <= this.numberOfRows; e++){
+                        const o = this.getCell(e, t);
+                        if (!o) return;
+                        o.remove();
+                    }
+                }
+                deleteRow(t) {
+                    this.getRow(t).remove(), this.addHeadingAttrToFirstRow();
+                }
+                createTableWrapper() {
+                    if (this.wrapper = a2("div", R.wrapper), this.table = a2("div", R.table), this.readOnly && this.wrapper.classList.add(R.wrapperReadOnly), this.wrapper.appendChild(this.toolboxRow.element), this.wrapper.appendChild(this.toolboxColumn.element), this.wrapper.appendChild(this.table), !this.readOnly) {
+                        const t = a2("div", R.addColumn, {
+                            innerHTML: i3.a
+                        }), e = a2("div", R.addRow, {
+                            innerHTML: i3.a
+                        });
+                        this.wrapper.appendChild(t), this.wrapper.appendChild(e);
+                    }
+                }
+                computeInitialSize() {
+                    const t = this.data && this.data.content, e = Array.isArray(t), o = !!e && t.length, r = e ? t.length : void 0, i = o ? t[0].length : void 0, n = Number.parseInt(this.config && this.config.rows), s = Number.parseInt(this.config && this.config.cols), a = !isNaN(n) && n > 0 ? n : void 0, l = !isNaN(s) && s > 0 ? s : void 0;
+                    return {
+                        rows: r || a || 2,
+                        cols: i || l || 2
+                    };
+                }
+                resize() {
+                    const { rows: t , cols: e  } = this.computeInitialSize();
+                    for(let e14 = 0; e14 < t; e14++)this.addRow();
+                    for(let t15 = 0; t15 < e; t15++)this.addColumn();
+                }
+                fill() {
+                    const t = this.data;
+                    if (t && t.content) for(let e = 0; e < t.content.length; e++)for(let o = 0; o < t.content[e].length; o++)this.setCellContent(e + 1, o + 1, t.content[e][o]);
+                }
+                fillRow(t, e) {
+                    for(let o = 1; o <= e; o++){
+                        const e = this.createCell();
+                        t.appendChild(e);
+                    }
+                }
+                createCell() {
+                    return a2("div", R.cell, {
+                        contentEditable: !this.readOnly
+                    });
+                }
+                get numberOfRows() {
+                    return this.table.childElementCount;
+                }
+                get numberOfColumns() {
+                    return this.numberOfRows ? this.table.querySelector(`.${R.row}:first-child`).childElementCount : 0;
+                }
+                get isColumnMenuShowing() {
+                    return 0 !== this.selectedColumn;
+                }
+                get isRowMenuShowing() {
+                    return 0 !== this.selectedRow;
+                }
+                onMouseMoveInTable(t) {
+                    const { row: e , column: o  } = this.getHoveredCell(t);
+                    this.hoveredColumn = o, this.hoveredRow = e, this.updateToolboxesPosition();
+                }
+                onKeyPressListener(t) {
+                    if ("Enter" === t.key) {
+                        if (t.shiftKey) return !0;
+                        this.moveCursorToNextRow();
+                    }
+                    return "Enter" !== t.key;
+                }
+                onKeyDownListener(t) {
+                    "Tab" === t.key && t.stopPropagation();
+                }
+                focusInTableListener(t) {
+                    const e = t.target, o = this.getRowByCell(e);
+                    this.focusedCell = {
+                        row: Array.from(this.table.querySelectorAll(`.${R.row}`)).indexOf(o) + 1,
+                        column: Array.from(o.querySelectorAll(`.${R.cell}`)).indexOf(e) + 1
+                    };
+                }
+                hideToolboxes() {
+                    this.hideRowToolbox(), this.hideColumnToolbox(), this.updateToolboxesPosition();
+                }
+                hideRowToolbox() {
+                    this.unselectRow(), this.toolboxRow.hide();
+                }
+                hideColumnToolbox() {
+                    this.unselectColumn(), this.toolboxColumn.hide();
+                }
+                focusCell() {
+                    this.focusedCellElem.focus();
+                }
+                get focusedCellElem() {
+                    const { row: t , column: e  } = this.focusedCell;
+                    return this.getCell(t, e);
+                }
+                updateToolboxesPosition(t = this.hoveredRow, e15 = this.hoveredColumn) {
+                    this.isColumnMenuShowing || e15 > 0 && e15 <= this.numberOfColumns && this.toolboxColumn.show(()=>({
+                            left: `calc((100% - var(--cell-size)) / (${this.numberOfColumns} * 2) * (1 + (${e15} - 1) * 2))`
+                        })
+                    ), this.isRowMenuShowing || t > 0 && e15 <= this.numberOfColumns && this.toolboxRow.show(()=>{
+                        const e = this.getRow(t), { fromTopBorder: o  } = c(this.table, e), { height: r  } = e.getBoundingClientRect();
+                        return {
+                            top: `${Math.ceil(o + r / 2)}px`
+                        };
+                    });
+                }
+                setHeadingsSetting(t) {
+                    this.tunes.withHeadings = t, t ? (this.table.classList.add(R.withHeadings), this.addHeadingAttrToFirstRow()) : (this.table.classList.remove(R.withHeadings), this.removeHeadingAttrFromFirstRow());
+                }
+                addHeadingAttrToFirstRow() {
+                    for(let t = 1; t <= this.numberOfColumns; t++){
+                        let e = this.getCell(1, t);
+                        e && e.setAttribute("heading", this.api.i18n.t("Heading"));
+                    }
+                }
+                removeHeadingAttrFromFirstRow() {
+                    for(let t = 1; t <= this.numberOfColumns; t++){
+                        let e = this.getCell(1, t);
+                        e && e.removeAttribute("heading");
+                    }
+                }
+                selectRow(t) {
+                    const e = this.getRow(t);
+                    e && (this.selectedRow = t, e.classList.add(R.rowSelected));
+                }
+                unselectRow() {
+                    if (this.selectedRow <= 0) return;
+                    const t = this.table.querySelector(`.${R.rowSelected}`);
+                    t && t.classList.remove(R.rowSelected), this.selectedRow = 0;
+                }
+                selectColumn(t) {
+                    for(let e = 1; e <= this.numberOfRows; e++){
+                        const o = this.getCell(e, t);
+                        o && o.classList.add(R.cellSelected);
+                    }
+                    this.selectedColumn = t;
+                }
+                unselectColumn() {
+                    if (this.selectedColumn <= 0) return;
+                    let t16 = this.table.querySelectorAll(`.${R.cellSelected}`);
+                    Array.from(t16).forEach((t)=>{
+                        t.classList.remove(R.cellSelected);
+                    }), this.selectedColumn = 0;
+                }
+                getHoveredCell(t17) {
+                    let e16 = this.hoveredRow, o6 = this.hoveredColumn;
+                    const { width: r5 , height: i4 , x: n4 , y: s3  } = function(t, e) {
+                        const o = t.getBoundingClientRect(), { width: r , height: i , x: n , y: s  } = o, { clientX: a , clientY: l  } = e;
+                        return {
+                            width: r,
+                            height: i,
+                            x: a - n,
+                            y: l - s
+                        };
+                    }(this.table, t17);
+                    return n4 >= 0 && (o6 = this.binSearch(this.numberOfColumns, (t)=>this.getCell(1, t)
+                    , ({ fromLeftBorder: t  })=>n4 < t
+                    , ({ fromRightBorder: t  })=>n4 > r5 - t
+                    )), s3 >= 0 && (e16 = this.binSearch(this.numberOfRows, (t)=>this.getCell(t, 1)
+                    , ({ fromTopBorder: t  })=>s3 < t
+                    , ({ fromBottomBorder: t  })=>s3 > i4 - t
+                    )), {
+                        row: e16 || this.hoveredRow,
+                        column: o6 || this.hoveredColumn
+                    };
+                }
+                binSearch(t, e, o, r) {
+                    let i, n = 0, s = t + 1, a = 0;
+                    for(; n < s - 1 && a < 10;){
+                        const t = e(i = Math.ceil((n + s) / 2)), l = c(this.table, t);
+                        if (o(l)) s = i;
+                        else {
+                            if (!r(l)) break;
+                            n = i;
+                        }
+                        a++;
+                    }
+                    return i;
+                }
+                getData() {
+                    const t18 = [];
+                    for(let e = 1; e <= this.numberOfRows; e++){
+                        const o = this.table.querySelector(`.${R.row}:nth-child(${e})`), r = Array.from(o.querySelectorAll(`.${R.cell}`));
+                        r.every((t)=>!t.textContent.trim()
+                        ) || t18.push(r.map((t)=>t.innerHTML
+                        ));
+                    }
+                    return t18;
+                }
+                destroy() {
+                    document.removeEventListener("click", this.documentClicked);
+                }
+            }
+            var T = o4(7), L = o4.n(T), O = o4(8), z = o4.n(O), M = o4(9), A = o4.n(M);
+            class H {
+                static get isReadOnlySupported() {
+                    return !0;
+                }
+                static get enableLineBreaks() {
+                    return !0;
+                }
+                constructor({ data: t , config: e , api: o , readOnly: r  }){
+                    this.api = o, this.readOnly = r, this.data = {
+                        withHeadings: !(!t || !t.withHeadings) && t.withHeadings,
+                        content: t && t.content ? t.content : []
+                    }, this.config = e, this.table = null;
+                }
+                static get toolbox() {
+                    return {
+                        icon: L.a,
+                        title: "Table"
+                    };
+                }
+                static get CSS() {
+                    return {
+                        settingsWrapper: "tc-settings"
+                    };
+                }
+                render() {
+                    return this.table = new k(this.readOnly, this.api, this.data, this.config), this.container = a2("div", this.api.styles.block), this.container.appendChild(this.table.getWrapper()), this.table.setHeadingsSetting(this.data.withHeadings), this.container;
+                }
+                renderSettings() {
+                    const t = a2("div", H.CSS.settingsWrapper);
+                    return [
+                        {
+                            name: this.api.i18n.t("With headings"),
+                            icon: z.a,
+                            isActive: this.data.withHeadings,
+                            setTune: ()=>{
+                                this.data.withHeadings = !0;
+                            }
+                        },
+                        {
+                            name: this.api.i18n.t("Without headings"),
+                            icon: A.a,
+                            isActive: !this.data.withHeadings,
+                            setTune: ()=>{
+                                this.data.withHeadings = !1;
+                            }
+                        }
+                    ].forEach((e)=>{
+                        let o = a2("div", this.api.styles.settingsButton);
+                        e.isActive && o.classList.add(this.api.styles.settingsButtonActive), o.innerHTML = e.icon, o.addEventListener("click", ()=>this.toggleTune(e, o)
+                        ), this.api.tooltip.onHover(o, e.name, {
+                            placement: "top",
+                            hidingDelay: 500
+                        }), t.append(o);
+                    }), t;
+                }
+                save() {
+                    const t = this.table.getData();
+                    return {
+                        withHeadings: this.data.withHeadings,
+                        content: t
+                    };
+                }
+                toggleTune(t19, e) {
+                    const o = e.parentNode.querySelectorAll("." + this.api.styles.settingsButton);
+                    Array.from(o).forEach((t)=>t.classList.remove(this.api.styles.settingsButtonActive)
+                    ), e.classList.toggle(this.api.styles.settingsButtonActive), t19.setTune(), this.table.setHeadingsSetting(this.data.withHeadings);
+                }
+                destroy() {
+                    this.table.destroy();
+                }
+            }
+            o4(10), e11.default = H;
+        }
+    ]).default;
+});
 
 },{}]},["lIcx0","iKaXS"], "iKaXS", "parcelRequire6fcb")
 
