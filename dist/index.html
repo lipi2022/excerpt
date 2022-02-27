@@ -1,41 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>excerpt editor</title>
-    <link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
-    <link href="/index.c8dfe2ab.css" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  </head>
-  <body>
-    <div class="ce-example">
-      <div class="ce-example__header">
-        <a class="ce-example__header-logo" href="https://codex.so/editor">excerpt</a>
 
-      
+<head>
+  <meta charset="UTF-8">
+  <title>excerpt editor</title>
+  <link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link href="/index.61d3354a.css" rel="stylesheet">
+</head>
+
+<body>
+  <div id="landing-main" class="container mx-auto box-border overflow-x-hidden">
+
+    <div id="landing-header" class="flex p-4">
+      <div to="/" class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-teal-500 to-slate-500">
+        excerpt
       </div>
-      <div class="ce-example__content _ce-example__content--small">
-        <div id="editorjs"></div>
-
-        <div class="ce-example__button" id="saveButton">editor.save()</div>
-
-        <div class="ce-example__statusbar">
-          Readonly:
-          <b id="readonly-state"> Off </b>
-          <div class="ce-example__statusbar-button" id="toggleReadOnlyButton">
-            toggle
-          </div>
-        </div>
-      </div>
+      <div class="flex flex-grow items-center content-center pr-2"></div>
+      <div class="flex items-center ">login</div>
     </div>
 
-    <!-- Load Tools -->
-    <!--
+
+  </div>
+
+
+  <div id="editorjs"></div>
+
+  <div class="button" id="saveButton">editor.save()</div>
+
+
+  
+  
+
+  <!-- Load Tools -->
+  <!--
    You can upload Tools to your project's directory and connect them by relative links.
    Also you can load each Tool from CDN or use NPM/Yarn packages.
    Read more at Tools Connection doc:
    https://editorjs.io/getting-started#tools-connection
    -->
 
-    <script src="/index.c36ff0bf.js" defer=""></script>
+  <script src="/index.a05cedd9.js" defer=""></script>
 </body></html>
