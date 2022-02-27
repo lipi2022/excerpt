@@ -2,8 +2,11 @@
   "name": "excerpt",
   "version": "0.0.1",
   "description": "excerpt web editor",
-  "main": "block.js",
+  "source": "src/index.html",
+  "main": "src/block.js",
   "scripts": {
+    "start": "parcel",
+    "build": "parcel build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
