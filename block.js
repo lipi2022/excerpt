@@ -1,6 +1,10 @@
 import EditorJS from '@editorjs/editorjs';
 import Header from '@editorjs/header';
 import ImageTool from '@editorjs/image';
+import List from '@editorjs/list';
+const Quote = require('@editorjs/quote');
+const CodeTool = require('@editorjs/code');
+
 
 /**
  * To initialize the Editor, create a new instance with configuration object
