@@ -71,6 +71,9 @@ var editor = new EditorJS({
         additinalRequestHeaders: {
           "Authorization": image_token,
           "Content-Type": "application/json",
+          "Access-Control-Request-Headers": "Content-Type",
+          "Access-Control-Request-Method": "POST",
+          "Access-Control-Allow-Origin": "*"
         },
         uploader: {
           /**
