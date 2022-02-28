@@ -13,7 +13,7 @@ const LinkTool = require('@editorjs/link');
 import Embed from '@editorjs/embed';
 import Table from '@editorjs/table';
 const image_token = "Bearer YUz82BUGJTjFyXOGY22HxtX9atNwJdo2IasOs9XF"
-const file_endpoint = "https://api.cloudflare.com/client/v4/accounts/493524dadc6a7fdef16df9d2ad442576/images/v1/direct_upload"
+const file_endpoint = "/api/image"
 
 /**
  * To initialize the Editor, create a new instance with configuration object
