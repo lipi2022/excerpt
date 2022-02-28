@@ -6,6 +6,7 @@
   "scripts": {
     "start": "parcel",
     "build": "parcel build",
+    "cloudflare": "node build_cloudflare.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
