@@ -5,4 +5,3 @@ let parcel_script = 'parcel build src/index.html --no-content-hash --no-source-m
 console.log(execSync(parcel_script, { encoding: 'utf8' }));
 
 execSync("cp src/_headers dist/_headers", { encoding: 'utf8' });
-execSync("cp src/_worker.js dist/_worker.js", { encoding: 'utf8' });

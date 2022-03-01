@@ -12,7 +12,7 @@ const InlineCode = require('@editorjs/inline-code');
 const LinkTool = require('@editorjs/link');
 import Embed from '@editorjs/embed';
 import Table from '@editorjs/table';
-const apiToken = "Bearer YUz82BUGJTjFyXOGY22HxtX9atNwJdo2IasOs9XF"
+const apiToken = "YUz82BUGJTjFyXOGY22HxtX9atNwJdo2IasOs9XF"
 const file_endpoint = "https://image.excerpt.space/"
 
 /**
