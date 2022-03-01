@@ -12,8 +12,8 @@ const InlineCode = require('@editorjs/inline-code');
 const LinkTool = require('@editorjs/link');
 import Embed from '@editorjs/embed';
 import Table from '@editorjs/table';
-const image_token = "Bearer YUz82BUGJTjFyXOGY22HxtX9atNwJdo2IasOs9XF"
-const file_endpoint = "/api/image"
+const apiToken = "Bearer YUz82BUGJTjFyXOGY22HxtX9atNwJdo2IasOs9XF"
+const file_endpoint = "https://image.excerpt.space/"
 
 /**
  * To initialize the Editor, create a new instance with configuration object
@@ -69,7 +69,7 @@ var editor = new EditorJS({
           byUrl: '',
         },
         additinalRequestHeaders: {
-          "Authorization": image_token,
+          "Authorization": `Bearer ${apiToken}`,
           "Content-Type": "application/json",
           "Access-Control-Request-Headers": "Content-Type",
           "Access-Control-Request-Method": "POST",
