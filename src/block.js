@@ -13,7 +13,7 @@ const LinkTool = require('@editorjs/link');
 import Embed from '@editorjs/embed';
 import Table from '@editorjs/table';
 const apiToken = "YUz82BUGJTjFyXOGY22HxtX9atNwJdo2IasOs9XF"
-const file_endpoint = "https://image.excerpt.space/"
+const file_endpoint = "/corsproxy/?apiurl=https://image.excerpt.space/"
 
 /**
  * To initialize the Editor, create a new instance with configuration object
