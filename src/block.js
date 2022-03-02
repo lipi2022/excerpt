@@ -70,6 +70,7 @@ var editor = new EditorJS({
         },
         additinalRequestHeaders: {
           "Authorization": `Bearer ${apiToken}`,
+          "Content-Type": 'multipart/form-data',
         },
         uploader: {
           /**
