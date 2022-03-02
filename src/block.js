@@ -61,7 +61,7 @@ var editor = new EditorJS({
     image: {
       class: ImageTool,
       config: {
-        accept: 'image/*',
+        types: 'image/*',
         field: "image",
         /**
          * Custom uploader
