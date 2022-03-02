@@ -70,10 +70,6 @@ var editor = new EditorJS({
         },
         additinalRequestHeaders: {
           "Authorization": `Bearer ${apiToken}`,
-          "Content-Type": "application/json",
-          "Access-Control-Request-Headers": "Content-Type",
-          "Access-Control-Request-Method": "POST",
-          "Access-Control-Allow-Origin": "*"
         },
         uploader: {
           /**
